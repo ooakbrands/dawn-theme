@@ -1,0 +1,130 @@
+{% style %}
+  .vet-strip-{{ section.id }} {
+    background: {{ section.settings.bg_color }};
+    padding: {{ section.settings.padding_top }}px 1.25rem {{ section.settings.padding_bottom }}px;
+    color: {{ section.settings.text_color }};
+  }
+  .vet-strip-{{ section.id }} .vet-inner {
+    max-width: {{ section.settings.max_width }}px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 1.25rem;
+    align-items: center;
+    background: {{ section.settings.card_bg }};
+    border: 1px solid {{ section.settings.border_color }};
+    border-radius: 18px;
+    padding: 1rem 1.25rem;
+  }
+  .vet-strip-{{ section.id }} .vet-avatar {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    object-fit: cover;
+    background: #eee;
+  }
+  .vet-strip-{{ section.id }} .vet-quote {
+    font-size: 0.95rem;
+    line-height: 1.45;
+    margin: 0;
+    font-style: italic;
+  }
+  .vet-strip-{{ section.id }} .vet-meta {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.15rem;
+    font-size: 0.85rem;
+    text-align: right;
+    white-space: nowrap;
+  }
+  .vet-strip-{{ section.id }} .vet-name {
+    font-weight: 700;
+    color: {{ section.settings.name_color }};
+  }
+  .vet-strip-{{ section.id }} .vet-title {
+    color: {{ section.settings.title_color }};
+    opacity: 0.75;
+  }
+  .vet-strip-{{ section.id }} .vet-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    background: {{ section.settings.badge_bg }};
+    color: {{ section.settings.badge_text_color }};
+    padding: 0.3rem 0.7rem;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    margin-bottom: 0.4rem;
+  }
+  @media (max-width: 749px) {
+    .vet-strip-{{ section.id }} .vet-inner {
+      grid-template-columns: auto 1fr;
+      gap: 0.85rem;
+    }
+    .vet-strip-{{ section.id }} .vet-meta {
+      grid-column: 1 / -1;
+      align-items: flex-start;
+      text-align: left;
+      flex-direction: row;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+    .vet-strip-{{ section.id }} .vet-quote { font-size: 0.9rem; }
+  }
+{% endstyle %}
+
+<section class="vet-strip-{{ section.id }}">
+  <div class="vet-inner">
+    {% if section.settings.vet_image %}
+      <img class="vet-avatar" src="{{ section.settings.vet_image | image_url: width: 112 }}" alt="{{ section.settings.vet_name | escape }}" loading="lazy" width="56" height="56">
+    {% else %}
+      <div class="vet-avatar" aria-hidden="true"></div>
+    {% endif %}
+
+    <div>
+      {% if section.settings.badge_text != blank %}
+        <span class="vet-badge">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 2 4 6v6c0 5 3.4 9.4 8 10 4.6-.6 8-5 8-10V6l-8-4Z" fill="currentColor"/></svg>
+          {{ section.settings.badge_text }}
+        </span>
+      {% endif %}
+      <p class="vet-quote">{{ section.settings.vet_quote }}</p>
+    </div>
+
+    <div class="vet-meta">
+      <span class="vet-name">{{ section.settings.vet_name }}</span>
+      <span class="vet-title">{{ section.settings.vet_title }}</span>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Kalmerend · Dierenartsstrook",
+  "settings": [
+    { "type": "image_picker", "id": "vet_image", "label": "Foto dierenarts" },
+    { "type": "text", "id": "vet_name", "label": "Naam", "default": "Drs. Lieke van der Meer" },
+    { "type": "text", "id": "vet_title", "label": "Functie", "default": "Dierenarts · Gedragstherapie" },
+    { "type": "textarea", "id": "vet_quote", "label": "Citaat", "default": "Bij honden die slecht reageren op vuurwerk, onweer of alleen-zijn zie ik in de praktijk vaak dat een natuurlijke kalmerende ondersteuning het dagelijks ritme stabiliseert — zonder dat de hond suf wordt." },
+    { "type": "text", "id": "badge_text", "label": "Badge-tekst", "default": "Dierenarts goedgekeurd" },
+    { "type": "header", "content": "Kleuren" },
+    { "type": "color", "id": "bg_color", "label": "Sectie-achtergrond", "default": "#FFFFFF" },
+    { "type": "color", "id": "card_bg", "label": "Kaart-achtergrond", "default": "#F4F8F2" },
+    { "type": "color", "id": "border_color", "label": "Randkleur", "default": "#E1ECDD" },
+    { "type": "color", "id": "text_color", "label": "Tekstkleur", "default": "#17433C" },
+    { "type": "color", "id": "name_color", "label": "Naamkleur", "default": "#17433C" },
+    { "type": "color", "id": "title_color", "label": "Functiekleur", "default": "#4C716B" },
+    { "type": "color", "id": "badge_bg", "label": "Badge achtergrond", "default": "#C6FA54" },
+    { "type": "color", "id": "badge_text_color", "label": "Badge tekstkleur", "default": "#17433C" },
+    { "type": "header", "content": "Spacing" },
+    { "type": "range", "id": "max_width", "label": "Max breedte (px)", "min": 800, "max": 1400, "step": 20, "default": 1100 },
+    { "type": "range", "id": "padding_top", "label": "Padding boven (px)", "min": 0, "max": 80, "step": 4, "default": 16 },
+    { "type": "range", "id": "padding_bottom", "label": "Padding onder (px)", "min": 0, "max": 80, "step": 4, "default": 16 }
+  ],
+  "presets": [{ "name": "Kalmerend · Dierenartsstrook" }]
+}
+{% endschema %}

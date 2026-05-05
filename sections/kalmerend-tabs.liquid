@@ -1,0 +1,160 @@
+{% style %}
+  .ktabs-{{ section.id }} {
+    background: {{ section.settings.bg_color }};
+    padding: {{ section.settings.padding_top }}px 1.25rem {{ section.settings.padding_bottom }}px;
+    color: {{ section.settings.text_color }};
+  }
+  .ktabs-{{ section.id }} .ktabs-inner {
+    max-width: {{ section.settings.max_width }}px;
+    margin: 0 auto;
+  }
+  .ktabs-{{ section.id }} .ktabs-nav {
+    display: flex;
+    gap: 0.5rem;
+    border-bottom: 1px solid {{ section.settings.border_color }};
+    margin-bottom: 1.5rem;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .ktabs-{{ section.id }} .ktabs-nav::-webkit-scrollbar { display: none; }
+  .ktabs-{{ section.id }} .ktabs-tab {
+    appearance: none;
+    background: transparent;
+    border: none;
+    padding: 0.85rem 1.25rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: {{ section.settings.text_color }};
+    opacity: 0.55;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+    white-space: nowrap;
+    transition: opacity .2s, border-color .2s, color .2s;
+  }
+  .ktabs-{{ section.id }} .ktabs-tab[aria-selected="true"] {
+    opacity: 1;
+    color: {{ section.settings.active_color }};
+    border-bottom-color: {{ section.settings.accent_color }};
+  }
+  .ktabs-{{ section.id }} .ktabs-panels { position: relative; }
+  .ktabs-{{ section.id }} .ktabs-panel { display: none; line-height: 1.6; font-size: 1rem; }
+  .ktabs-{{ section.id }} .ktabs-panel[data-active="true"] { display: block; }
+  .ktabs-{{ section.id }} .ktabs-panel h3 {
+    font-size: 1.25rem;
+    margin: 0 0 0.85rem;
+    color: {{ section.settings.heading_color }};
+  }
+  .ktabs-{{ section.id }} .ktabs-panel ul { margin: 0.6rem 0 0; padding: 0; list-style: none; }
+  .ktabs-{{ section.id }} .ktabs-panel ul li {
+    position: relative;
+    padding-left: 1.75rem;
+    margin: 0.6rem 0;
+  }
+  .ktabs-{{ section.id }} .ktabs-panel ul li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.35em;
+    width: 1.1rem;
+    height: 1.1rem;
+    background: {{ section.settings.accent_color }};
+    border-radius: 50%;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path fill='%2317433C' d='M6.6 11.2 3.4 8l1-1 2.2 2.1 4.9-4.9 1 1z'/></svg>");
+    background-size: 80%;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+{% endstyle %}
+
+<section class="ktabs-{{ section.id }}">
+  <div class="ktabs-inner">
+    <div class="ktabs-nav" role="tablist" aria-label="{{ section.settings.aria_label | default: 'Productinformatie' }}">
+      {% for block in section.blocks %}
+        <button type="button" role="tab" id="ktab-{{ section.id }}-{{ forloop.index }}-tab"
+                aria-controls="ktab-{{ section.id }}-{{ forloop.index }}-panel"
+                aria-selected="{% if forloop.first %}true{% else %}false{% endif %}"
+                tabindex="{% if forloop.first %}0{% else %}-1{% endif %}"
+                class="ktabs-tab" data-ktab-target="{{ forloop.index }}">{{ block.settings.label }}</button>
+      {% endfor %}
+    </div>
+
+    <div class="ktabs-panels">
+      {% for block in section.blocks %}
+        <div role="tabpanel"
+             id="ktab-{{ section.id }}-{{ forloop.index }}-panel"
+             aria-labelledby="ktab-{{ section.id }}-{{ forloop.index }}-tab"
+             data-active="{% if forloop.first %}true{% else %}false{% endif %}"
+             class="ktabs-panel"
+             {{ block.shopify_attributes }}>
+          {{ block.settings.content }}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<script>
+  (function () {
+    const root = document.querySelector('.ktabs-{{ section.id }}');
+    if (!root) return;
+    const tabs = root.querySelectorAll('.ktabs-tab');
+    const panels = root.querySelectorAll('.ktabs-panel');
+    function activate(idx) {
+      tabs.forEach((t, i) => {
+        const on = i === idx;
+        t.setAttribute('aria-selected', on);
+        t.tabIndex = on ? 0 : -1;
+      });
+      panels.forEach((p, i) => p.setAttribute('data-active', i === idx));
+    }
+    tabs.forEach((tab, i) => {
+      tab.addEventListener('click', () => activate(i));
+      tab.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowRight') { e.preventDefault(); const n = (i + 1) % tabs.length; tabs[n].focus(); activate(n); }
+        if (e.key === 'ArrowLeft')  { e.preventDefault(); const n = (i - 1 + tabs.length) % tabs.length; tabs[n].focus(); activate(n); }
+      });
+    });
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Kalmerend · Tabs",
+  "settings": [
+    { "type": "text", "id": "aria_label", "label": "Toegankelijkheidslabel", "default": "Productinformatie" },
+    { "type": "header", "content": "Kleuren" },
+    { "type": "color", "id": "bg_color", "label": "Sectie-achtergrond", "default": "#FFFFFF" },
+    { "type": "color", "id": "text_color", "label": "Tekstkleur", "default": "#17433C" },
+    { "type": "color", "id": "heading_color", "label": "Koppen", "default": "#17433C" },
+    { "type": "color", "id": "border_color", "label": "Onderlijn nav", "default": "#E1ECDD" },
+    { "type": "color", "id": "active_color", "label": "Actieve tab tekstkleur", "default": "#17433C" },
+    { "type": "color", "id": "accent_color", "label": "Accent (onderlijn + bullets)", "default": "#C6FA54" },
+    { "type": "header", "content": "Spacing" },
+    { "type": "range", "id": "max_width", "label": "Max breedte", "min": 800, "max": 1400, "step": 20, "default": 1100 },
+    { "type": "range", "id": "padding_top", "label": "Padding boven", "min": 0, "max": 120, "step": 4, "default": 40 },
+    { "type": "range", "id": "padding_bottom", "label": "Padding onder", "min": 0, "max": 120, "step": 4, "default": 40 }
+  ],
+  "blocks": [
+    {
+      "type": "tab",
+      "name": "Tab",
+      "settings": [
+        { "type": "text", "id": "label", "label": "Tab-label", "default": "Beschrijving" },
+        { "type": "richtext", "id": "content", "label": "Inhoud", "default": "<p>Voer hier de inhoud van deze tab in.</p>" }
+      ]
+    }
+  ],
+  "max_blocks": 6,
+  "presets": [
+    {
+      "name": "Kalmerend · Tabs",
+      "blocks": [
+        { "type": "tab", "settings": { "label": "Beschrijving", "content": "<p>PetCura Kalmerend is een natuurlijke kauwsnack die honden helpt ontspannen tijdens spannende momenten zoals vuurwerk, onweer, autoritjes en alleen-zijn. De plantaardige formule combineert L-Theanine, kamille, valeriaan en magnesium voor merkbare rust binnen 30 tot 60 minuten — zonder verdovend effect.</p>" } },
+        { "type": "tab", "settings": { "label": "Voordelen", "content": "<ul><li>Sneller tot rust bij prikkels</li><li>Beter slaapritme door diepere rustfases</li><li>Soepeler gedrag, minder ijsberen en piepen</li><li>Veilig voor dagelijks gebruik, zonder gewenning</li></ul>" } },
+        { "type": "tab", "settings": { "label": "Dosering", "content": "<p>Geef de snack 30 tot 60 minuten vóór een spannend moment. Bij chronische onrust dagelijks geven, opgebouwd over drie dagen naar de volledige dosering. Volg de gewichtstabel hieronder.</p>" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

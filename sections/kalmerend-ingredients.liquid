@@ -1,0 +1,266 @@
+{% style %}
+  .king-{{ section.id }} {
+    background: {{ section.settings.bg_color }};
+    color: {{ section.settings.text_color }};
+    padding: {{ section.settings.padding_top }}px 1.25rem {{ section.settings.padding_bottom }}px;
+  }
+  .king-{{ section.id }} .king-inner {
+    max-width: {{ section.settings.max_width }}px;
+    margin: 0 auto;
+  }
+  .king-{{ section.id }} .king-head { text-align: center; margin-bottom: 2.5rem; }
+  .king-{{ section.id }} .king-eyebrow {
+    display: inline-block;
+    background: {{ section.settings.accent_color }};
+    color: {{ section.settings.eyebrow_text_color }};
+    padding: 0.35rem 0.85rem;
+    border-radius: 999px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 0.85rem;
+  }
+  .king-{{ section.id }} h2 {
+    font-size: clamp(1.7rem, 3vw, 2.6rem);
+    line-height: 1.15;
+    margin: 0 0 0.6rem;
+    color: {{ section.settings.heading_color }};
+    font-weight: 700;
+  }
+  .king-{{ section.id }} .king-sub { font-size: 1.05rem; opacity: 0.8; max-width: 640px; margin: 0 auto; }
+
+  .king-{{ section.id }} .king-trio {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+    margin-bottom: 2rem;
+  }
+  .king-{{ section.id }} .king-card {
+    background: {{ section.settings.card_bg }};
+    border: 1px solid {{ section.settings.card_border }};
+    border-radius: 18px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+  .king-{{ section.id }} .king-img {
+    aspect-ratio: 4 / 3;
+    background: {{ section.settings.image_bg }};
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+  }
+  .king-{{ section.id }} .king-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .king-{{ section.id }} .king-img.placeholder::before {
+    content: "";
+    width: 64%;
+    height: 64%;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 30%, {{ section.settings.accent_color }}, transparent 60%), {{ section.settings.image_bg }};
+  }
+  .king-{{ section.id }} .king-body { padding: 1.4rem 1.4rem 1.6rem; flex: 1; }
+  .king-{{ section.id }} .king-dose {
+    display: inline-block;
+    background: {{ section.settings.dose_bg }};
+    color: {{ section.settings.dose_text }};
+    padding: 0.25rem 0.7rem;
+    border-radius: 999px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    margin-bottom: 0.6rem;
+  }
+  .king-{{ section.id }} .king-name {
+    font-size: 1.25rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin: 0 0 0.6rem;
+    color: {{ section.settings.heading_color }};
+  }
+  .king-{{ section.id }} .king-desc { font-size: 0.95rem; line-height: 1.55; margin: 0; }
+
+  .king-{{ section.id }} details.king-table {
+    border: 1px solid {{ section.settings.card_border }};
+    border-radius: 14px;
+    background: {{ section.settings.card_bg }};
+    padding: 0.25rem 1.25rem;
+  }
+  .king-{{ section.id }} details.king-table summary {
+    cursor: pointer;
+    list-style: none;
+    padding: 1.1rem 0;
+    font-weight: 700;
+    color: {{ section.settings.heading_color }};
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .king-{{ section.id }} details.king-table summary::-webkit-details-marker { display: none; }
+  .king-{{ section.id }} details.king-table summary::after {
+    content: "+";
+    font-size: 1.3rem;
+    color: {{ section.settings.heading_color }};
+  }
+  .king-{{ section.id }} details.king-table[open] summary::after { content: "−"; }
+  .king-{{ section.id }} table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0.5rem 0 1rem;
+    font-size: 0.95rem;
+  }
+  .king-{{ section.id }} table th, .king-{{ section.id }} table td {
+    text-align: left;
+    padding: 0.7rem 0;
+    border-top: 1px solid {{ section.settings.card_border }};
+  }
+  .king-{{ section.id }} table th {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: {{ section.settings.text_color }};
+    opacity: 0.7;
+    font-weight: 600;
+  }
+  .king-{{ section.id }} table td:last-child, .king-{{ section.id }} table th:last-child { text-align: right; }
+
+  @media (max-width: 989px) {
+    .king-{{ section.id }} .king-trio { grid-template-columns: 1fr; }
+  }
+{% endstyle %}
+
+<section class="king-{{ section.id }}">
+  <div class="king-inner">
+    <div class="king-head">
+      {% if section.settings.eyebrow != blank %}
+        <span class="king-eyebrow">{{ section.settings.eyebrow }}</span>
+      {% endif %}
+      {% if section.settings.heading != blank %}
+        <h2>{{ section.settings.heading }}</h2>
+      {% endif %}
+      {% if section.settings.subheading != blank %}
+        <p class="king-sub">{{ section.settings.subheading }}</p>
+      {% endif %}
+    </div>
+
+    <div class="king-trio">
+      {% for block in section.blocks %}
+        {% if block.type == 'featured' %}
+          <article class="king-card" {{ block.shopify_attributes }}>
+            <div class="king-img {% unless block.settings.image %}placeholder{% endunless %}">
+              {% if block.settings.image %}
+                <img src="{{ block.settings.image | image_url: width: 800 }}" alt="{{ block.settings.name | escape }}" loading="lazy" width="800" height="600">
+              {% endif %}
+            </div>
+            <div class="king-body">
+              {% if block.settings.dose != blank %}<span class="king-dose">{{ block.settings.dose }}</span>{% endif %}
+              <h3 class="king-name">{{ block.settings.name }}</h3>
+              <p class="king-desc">{{ block.settings.description }}</p>
+            </div>
+          </article>
+        {% endif %}
+      {% endfor %}
+    </div>
+
+    {%- assign has_rows = false -%}
+    {% for block in section.blocks %}{% if block.type == 'row' %}{% assign has_rows = true %}{% endif %}{% endfor %}
+
+    {% if has_rows %}
+      <details class="king-table">
+        <summary>{{ section.settings.table_label }}</summary>
+        <table>
+          <thead>
+            <tr>
+              <th>{{ section.settings.col_name }}</th>
+              <th>{{ section.settings.col_dose }}</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for block in section.blocks %}
+              {% if block.type == 'row' %}
+                <tr {{ block.shopify_attributes }}>
+                  <td>{{ block.settings.name }}</td>
+                  <td>{{ block.settings.dose }}</td>
+                </tr>
+              {% endif %}
+            {% endfor %}
+          </tbody>
+        </table>
+      </details>
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Kalmerend · Ingrediënten",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Wat zit erin" },
+    { "type": "text", "id": "heading", "label": "Kop", "default": "De actieve werkstoffen achter de rust" },
+    { "type": "text", "id": "subheading", "label": "Subkop", "default": "Een gerichte combinatie van plantaardige extracten, aminozuren en mineralen — afgestemd op het zenuwstelsel van je hond." },
+    { "type": "text", "id": "table_label", "label": "Label uitklap-tabel", "default": "Bekijk alle actieve ingrediënten" },
+    { "type": "text", "id": "col_name", "label": "Kolomtitel naam", "default": "Ingrediënt" },
+    { "type": "text", "id": "col_dose", "label": "Kolomtitel dosering", "default": "Per dagdosis" },
+    { "type": "header", "content": "Kleuren" },
+    { "type": "color", "id": "bg_color", "label": "Sectie-achtergrond", "default": "#F4F8F2" },
+    { "type": "color", "id": "text_color", "label": "Tekstkleur", "default": "#17433C" },
+    { "type": "color", "id": "heading_color", "label": "Kopkleur", "default": "#17433C" },
+    { "type": "color", "id": "accent_color", "label": "Accentkleur", "default": "#C6FA54" },
+    { "type": "color", "id": "eyebrow_text_color", "label": "Eyebrow tekstkleur", "default": "#17433C" },
+    { "type": "color", "id": "card_bg", "label": "Kaart achtergrond", "default": "#FFFFFF" },
+    { "type": "color", "id": "card_border", "label": "Kaart rand", "default": "#E1ECDD" },
+    { "type": "color", "id": "image_bg", "label": "Afbeelding achtergrond", "default": "#EFF8E0" },
+    { "type": "color", "id": "dose_bg", "label": "Dosering badge bg", "default": "#17433C" },
+    { "type": "color", "id": "dose_text", "label": "Dosering badge tekst", "default": "#C6FA54" },
+    { "type": "header", "content": "Spacing" },
+    { "type": "range", "id": "max_width", "label": "Max breedte", "min": 800, "max": 1400, "step": 20, "default": 1180 },
+    { "type": "range", "id": "padding_top", "label": "Padding boven", "min": 0, "max": 160, "step": 4, "default": 64 },
+    { "type": "range", "id": "padding_bottom", "label": "Padding onder", "min": 0, "max": 160, "step": 4, "default": 64 }
+  ],
+  "blocks": [
+    {
+      "type": "featured",
+      "name": "Uitgelicht ingrediënt",
+      "limit": 3,
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Afbeelding" },
+        { "type": "text", "id": "dose", "label": "Dosering badge", "default": "120 mg" },
+        { "type": "text", "id": "name", "label": "Naam", "default": "L-Theanine" },
+        { "type": "textarea", "id": "description", "label": "Beschrijving", "default": "Aminozuur uit groene thee dat de aanmaak van rustgevende neurotransmitters ondersteunt en prikkels dempt — zonder slaperigheid." }
+      ]
+    },
+    {
+      "type": "row",
+      "name": "Volledige lijst rij",
+      "settings": [
+        { "type": "text", "id": "name", "label": "Ingrediënt", "default": "Ingrediënt" },
+        { "type": "text", "id": "dose", "label": "Dosering", "default": "—" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Kalmerend · Ingrediënten",
+      "blocks": [
+        { "type": "featured", "settings": { "name": "L-Theanine", "dose": "120 mg", "description": "Aminozuur uit groene thee dat rustgevende neurotransmitters in het brein ondersteunt en prikkels dempt — zonder slaperigheid." } },
+        { "type": "featured", "settings": { "name": "Valeriaan + Passiebloem", "dose": "140 mg", "description": "Klassiek kruidencomplex met een natuurlijk kalmerend effect, ondersteunt zowel ontspanning overdag als een rustige nachtrust." } },
+        { "type": "featured", "settings": { "name": "Magnesium + Tryptofaan", "dose": "70 mg", "description": "Magnesium ondersteunt de normale werking van het zenuwstelsel; tryptofaan is bouwsteen voor serotonine, het lichaamseigen rustigheidshormoon." } },
+        { "type": "row", "settings": { "name": "L-Theanine", "dose": "120 mg" } },
+        { "type": "row", "settings": { "name": "Valeriaanwortelextract", "dose": "80 mg" } },
+        { "type": "row", "settings": { "name": "Passiebloem-extract", "dose": "60 mg" } },
+        { "type": "row", "settings": { "name": "Kamille-extract", "dose": "50 mg" } },
+        { "type": "row", "settings": { "name": "Magnesium", "dose": "40 mg" } },
+        { "type": "row", "settings": { "name": "L-Tryptofaan", "dose": "30 mg" } },
+        { "type": "row", "settings": { "name": "Citroenmelisse-extract", "dose": "25 mg" } },
+        { "type": "row", "settings": { "name": "Visolie (omega-3)", "dose": "20 mg" } },
+        { "type": "row", "settings": { "name": "B-vitaminecomplex", "dose": "100% RDA" } }
+      ]
+    }
+  ]
+}
+{% endschema %}
