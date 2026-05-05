@@ -1,0 +1,438 @@
+{% comment %}
+  Section: Toggle Accordion
+  - Accordion with blocks
+  - Supports Custom Liquid inside content
+  - Dawn compatible
+{% endcomment %}
+
+{%- liquid
+  assign sid = section.id
+  assign multiple_open = section.settings.multiple_open
+  assign first_open = section.settings.first_open
+-%}
+
+<section
+  class="pc-toggle-acc pc-toggle-acc--{{ sid }}"
+  style="
+    --pc-bg: {{ section.settings.bg_color }};
+    --pc-border: {{ section.settings.border_color }};
+    --pc-title: {{ section.settings.title_color }};
+    --pc-icon: {{ section.settings.icon_color }};
+    --pc-content: {{ section.settings.content_color }};
+    --pc-radius: {{ section.settings.radius }}px;
+    --pc-title-size: {{ section.settings.title_size }}px;
+    --pc-content-size: {{ section.settings.content_size }}px;
+    --pc-pad-y: {{ section.settings.item_padding_y }}px;
+    --pc-gap: {{ section.settings.icon_gap }}px;
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+  "
+>
+  <div class="pc-toggle-acc__container" style="max-width: {{ section.settings.max_width }}px;">
+    {% if section.settings.heading != blank %}
+      <div class="pc-toggle-acc__heading">
+        <h2 class="pc-toggle-acc__heading-title">{{ section.settings.heading | escape }}</h2>
+      </div>
+    {% endif %}
+
+    <div class="pc-toggle-acc__wrap" data-multiple-open="{{ multiple_open }}" data-first-open="{{ first_open }}">
+      {%- for block in section.blocks -%}
+        {%- liquid
+          assign open_by_default = false
+          if first_open and forloop.first
+            assign open_by_default = true
+          endif
+        -%}
+
+        <div class="pc-toggle-acc__item{% if open_by_default %} is-open{% endif %}" {{ block.shopify_attributes }}>
+          <button
+            class="pc-toggle-acc__btn"
+            type="button"
+            aria-expanded="{% if open_by_default %}true{% else %}false{% endif %}"
+          >
+            <span class="pc-toggle-acc__left">
+              {% if section.settings.show_left_icon %}
+                <span class="pc-toggle-acc__lefticon" aria-hidden="true">
+                  {% if block.settings.left_icon_svg != blank %}
+                    {{ block.settings.left_icon_svg }}
+                  {% else %}
+                    <span class="pc-toggle-acc__fallback-num">{{ forloop.index }}</span>
+                  {% endif %}
+                </span>
+              {% endif %}
+
+              <span class="pc-toggle-acc__title">{{ block.settings.title | escape }}</span>
+            </span>
+
+            <span class="pc-toggle-acc__chev" aria-hidden="true">
+              <svg viewBox="0 0 20 20" width="14" height="14" focusable="false" role="presentation">
+                <path d="M5.5 7.5L10 12l4.5-4.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+              </svg>
+            </span>
+          </button>
+
+          <div class="pc-toggle-acc__panel"{% unless open_by_default %} hidden{% endunless %}>
+            <div class="pc-toggle-acc__content rte">
+              {{ block.settings.custom_liquid }}
+            </div>
+          </div>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+<style>
+.pc-toggle-acc{
+  background: var(--pc-bg);
+}
+
+.pc-toggle-acc__container{
+  margin: 0 auto;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.pc-toggle-acc__heading{
+  margin-bottom: 18px;
+}
+.pc-toggle-acc__heading-title{
+  margin: 0;
+  font-size: 22px;
+  line-height: 1.2;
+}
+
+.pc-toggle-acc__wrap{
+  border-top: 1px solid var(--pc-border);
+}
+
+.pc-toggle-acc__item{
+  border-bottom: 1px solid var(--pc-border);
+}
+
+.pc-toggle-acc__btn{
+  width: 100%;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  padding: var(--pc-pad-y) 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-align: left;
+}
+
+.pc-toggle-acc__left{
+  display: inline-flex;
+  align-items: center;
+  gap: var(--pc-gap);
+  min-width: 0;
+}
+
+.pc-toggle-acc__lefticon{
+  width: 22px;
+  height: 22px;
+  color: var(--pc-icon);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+}
+
+.pc-toggle-acc__lefticon svg{
+  width: 22px;
+  height: 22px;
+  display: block;
+}
+
+.pc-toggle-acc__fallback-num{
+  width: 22px;
+  height: 22px;
+  border: 2px solid var(--pc-icon);
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--pc-icon);
+}
+
+.pc-toggle-acc__title{
+  color: var(--pc-title);
+  font-size: var(--pc-title-size);
+  font-weight: 700;
+  line-height: 1.2;
+  word-break: break-word;
+}
+
+.pc-toggle-acc__chev{
+  color: var(--pc-icon);
+  opacity: 0.45;
+  transition: transform .25s ease, opacity .25s ease;
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pc-toggle-acc__item.is-open .pc-toggle-acc__chev{
+  transform: rotate(180deg);
+  opacity: 0.9;
+}
+
+.pc-toggle-acc__panel{
+  padding-bottom: 18px;
+}
+
+.pc-toggle-acc__content{
+  color: var(--pc-content);
+  font-size: var(--pc-content-size);
+  line-height: 1.6;
+}
+
+.pc-toggle-acc__content table{
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.pc-toggle-acc__content img{
+  max-width: 100%;
+  height: auto;
+}
+
+@media (max-width: 749px){
+  .pc-toggle-acc__container{
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+}
+</style>
+
+<script>
+(function() {
+  function init(root) {
+    if (!root || root.dataset.pcInit === '1') return;
+    root.dataset.pcInit = '1';
+
+    var wrap = root.querySelector('.pc-toggle-acc__wrap');
+    if (!wrap) return;
+
+    var allowMultiple = wrap.getAttribute('data-multiple-open') === 'true';
+
+    var items = root.querySelectorAll('.pc-toggle-acc__item');
+    items.forEach(function(item) {
+      var btn = item.querySelector('.pc-toggle-acc__btn');
+      var panel = item.querySelector('.pc-toggle-acc__panel');
+      if (!btn || !panel) return;
+
+      btn.addEventListener('click', function() {
+        var isOpen = item.classList.contains('is-open');
+
+        if (!allowMultiple) {
+          items.forEach(function(i) {
+            if (i === item) return;
+            i.classList.remove('is-open');
+            var b = i.querySelector('.pc-toggle-acc__btn');
+            var p = i.querySelector('.pc-toggle-acc__panel');
+            if (b) b.setAttribute('aria-expanded', 'false');
+            if (p) p.hidden = true;
+          });
+        }
+
+        if (isOpen) {
+          item.classList.remove('is-open');
+          btn.setAttribute('aria-expanded', 'false');
+          panel.hidden = true;
+        } else {
+          item.classList.add('is-open');
+          btn.setAttribute('aria-expanded', 'true');
+          panel.hidden = false;
+        }
+      });
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.pc-toggle-acc').forEach(init);
+  });
+
+  document.addEventListener('shopify:section:load', function(e) {
+    if (!e || !e.target) return;
+    e.target.querySelectorAll('.pc-toggle-acc').forEach(init);
+  });
+})();
+</script>
+
+{% schema %}
+{
+  "name": "Toggle Accordion",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Section heading",
+      "default": "Ingredienten"
+    },
+    {
+      "type": "range",
+      "id": "max_width",
+      "label": "Max width",
+      "min": 320,
+      "max": 1400,
+      "step": 20,
+      "default": 900
+    },
+    {
+      "type": "checkbox",
+      "id": "first_open",
+      "label": "First item open by default",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "multiple_open",
+      "label": "Allow multiple items open",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "show_left_icon",
+      "label": "Show left icon",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "icon_gap",
+      "label": "Gap between icon and title",
+      "min": 6,
+      "max": 24,
+      "step": 1,
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "item_padding_y",
+      "label": "Item padding (top/bottom)",
+      "min": 10,
+      "max": 40,
+      "step": 1,
+      "default": 22
+    },
+    {
+      "type": "range",
+      "id": "title_size",
+      "label": "Title font size",
+      "min": 14,
+      "max": 28,
+      "step": 1,
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "content_size",
+      "label": "Content font size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "default": 16
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "border_color",
+      "label": "Border color",
+      "default": "#d0d6e2"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title color",
+      "default": "#044d5e"
+    },
+    {
+      "type": "color",
+      "id": "icon_color",
+      "label": "Icon color",
+      "default": "#044d5e"
+    },
+    {
+      "type": "color",
+      "id": "content_color",
+      "label": "Content color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "radius",
+      "label": "Border radius (for inner elements)",
+      "min": 0,
+      "max": 20,
+      "step": 1,
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Section padding top",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Section padding bottom",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "default": 40
+    }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Accordion item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Description"
+        },
+        {
+          "type": "html",
+          "id": "left_icon_svg",
+          "label": "Left icon (SVG HTML) - optional",
+          "default": "Default"
+        },
+        {
+          "type": "liquid",
+          "id": "custom_liquid",
+          "label": "Content (Custom Liquid)",
+          "default": "<p>Place your content here (tables, images, metafields, etc.).</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Toggle Accordion",
+      "blocks": [
+        { "type": "item" },
+        { "type": "item" },
+        { "type": "item" }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,35 @@
+{%- liquid
+  assign is_open = false
+  if open_default and idx == 1
+    assign is_open = true
+  endif
+-%}
+
+<div class="pc-toggle-acc__item{% if is_open %} is-open{% endif %}">
+  <button class="pc-toggle-acc__btn" type="button" aria-expanded="{% if is_open %}true{% else %}false{% endif %}">
+    <span class="pc-toggle-acc__left">
+      {% if show_left_icon %}
+        <span class="pc-toggle-acc__lefticon" aria-hidden="true">
+          {% if icon_svg != blank %}
+            {{ icon_svg }}
+          {% else %}
+            <span class="pc-toggle-acc__fallback-num">{{ idx }}</span>
+          {% endif %}
+        </span>
+      {% endif %}
+      <span class="pc-toggle-acc__title">{{ title | escape }}</span>
+    </span>
+
+    <span class="pc-toggle-acc__chev" aria-hidden="true">
+      <svg viewBox="0 0 20 20" width="14" height="14" focusable="false" role="presentation">
+        <path d="M5.5 7.5L10 12l4.5-4.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+      </svg>
+    </span>
+  </button>
+
+  <div class="pc-toggle-acc__panel"{% unless is_open %} hidden{% endunless %}>
+    <div class="pc-toggle-acc__content rte">
+      {{ content }}
+    </div>
+  </div>
+</div>

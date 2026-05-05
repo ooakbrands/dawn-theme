@@ -1,0 +1,267 @@
+{% comment %}
+  Snippet: pc-acc-block
+  Used inside main-product (Dawn) as a block.
+  Expects:
+    - block (Shopify block object)
+    - section (main-product section)
+{% endcomment %}
+
+{%- liquid
+  assign sid = section.id
+  assign bid = block.id
+  assign multiple_open = block.settings.multiple_open
+  assign first_open = block.settings.first_open
+-%}
+
+<div
+  class="pc-acc pc-acc--{{ sid }} pc-acc--{{ bid }}"
+  style="
+    --pc-bg: {{ block.settings.bg_color }};
+    --pc-border: {{ block.settings.border_color }};
+    --pc-title: {{ block.settings.title_color }};
+    --pc-icon: {{ block.settings.icon_color }};
+    --pc-content: {{ block.settings.content_color }};
+    --pc-title-size: {{ block.settings.title_size }}px;
+    --pc-content-size: {{ block.settings.content_size }}px;
+    --pc-pad-y: {{ block.settings.item_padding_y }}px;
+    --pc-gap: {{ block.settings.icon_gap }}px;
+    --pc-font: {{ block.settings.font_family }};
+    margin-top: {{ block.settings.margin_top }}px;
+    margin-bottom: {{ block.settings.margin_bottom }}px;
+    padding-top: {{ block.settings.padding_top }}px;
+    padding-bottom: {{ block.settings.padding_bottom }}px;
+  "
+  data-multiple-open="{{ multiple_open }}"
+  data-first-open="{{ first_open }}"
+  {{ block.shopify_attributes }}
+>
+  <div class="pc-acc__inner">
+    {% if block.settings.heading != blank %}
+      <div class="pc-acc__heading">
+        <h3 class="pc-acc__heading-title">{{ block.settings.heading | escape }}</h3>
+      </div>
+    {% endif %}
+
+    <div class="pc-acc__wrap">
+      {%- for i in (1..10) -%}
+        {%- liquid
+          assign t_key = 'item_' | append: i | append: '_title'
+          assign c_key = 'item_' | append: i | append: '_content'
+          assign s_key = 'item_' | append: i | append: '_svg'
+
+          assign t = block.settings[t_key]
+          assign c = block.settings[c_key]
+          assign s = block.settings[s_key]
+
+          assign show_item = false
+          if t != blank or c != blank
+            assign show_item = true
+          endif
+
+          assign open_by_default = false
+          if first_open and i == 1
+            assign open_by_default = true
+          endif
+        -%}
+
+        {%- if show_item -%}
+          <div class="pc-acc__item{% if open_by_default %} is-open{% endif %}">
+            <button
+              class="pc-acc__btn"
+              type="button"
+              aria-expanded="{% if open_by_default %}true{% else %}false{% endif %}"
+            >
+              <span class="pc-acc__left">
+                {% if block.settings.show_left_icon %}
+                  <span class="pc-acc__lefticon" aria-hidden="true">
+                    {% if s != blank and s contains '<svg' %}
+                      {{ s }}
+                    {% else %}
+                      <span class="pc-acc__fallback-num">{{ i }}</span>
+                    {% endif %}
+                  </span>
+                {% endif %}
+                <span class="pc-acc__title">{{ t | escape }}</span>
+              </span>
+
+              <span class="pc-acc__chev" aria-hidden="true">
+                <svg viewBox="0 0 20 20" width="14" height="14" focusable="false" role="presentation">
+                  <path d="M5.5 7.5L10 12l4.5-4.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                </svg>
+              </span>
+            </button>
+
+            <div class="pc-acc__panel"{% unless open_by_default %} hidden{% endunless %}>
+              <div class="pc-acc__content rte">
+                {{ c }}
+              </div>
+            </div>
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+<style>
+  .pc-acc{
+    background: var(--pc-bg);
+    font-family: var(--pc-font);
+  }
+
+  .pc-acc__inner{ width: 100%; }
+
+  .pc-acc__heading{ margin-bottom: 12px; }
+  .pc-acc__heading-title{
+    margin: 0;
+    font-size: 18px;
+    line-height: 1.2;
+    font-family: inherit;
+  }
+
+  .pc-acc__wrap{
+    border-top: 1px solid var(--pc-border);
+  }
+  .pc-acc__item{
+    border-bottom: 1px solid var(--pc-border);
+  }
+
+  .pc-acc__btn{
+    width: 100%;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+    padding: var(--pc-pad-y) 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    text-align: left;
+    font-family: inherit;
+  }
+
+  .pc-acc__left{
+    display: inline-flex;
+    align-items: center;
+    gap: var(--pc-gap);
+    min-width: 0;
+    font-family: inherit;
+  }
+
+  .pc-acc__lefticon{
+    width: 22px;
+    height: 22px;
+    color: var(--pc-icon);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 auto;
+  }
+
+  .pc-acc__lefticon svg{
+    width: 22px;
+    height: 22px;
+    display: block;
+  }
+
+  .pc-acc__fallback-num{
+    width: 22px;
+    height: 22px;
+    border: 2px solid var(--pc-icon);
+    border-radius: 999px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--pc-icon);
+    line-height: 1;
+  }
+
+  .pc-acc__title{
+    color: var(--pc-title);
+    font-size: var(--pc-title-size);
+    font-weight: 700;
+    line-height: 1.2;
+    word-break: break-word;
+    font-family: inherit;
+  }
+
+  .pc-acc__chev{
+    color: var(--pc-icon);
+    opacity: 0.45;
+    transition: transform .25s ease, opacity .25s ease;
+    flex: 0 0 auto;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .pc-acc__item.is-open .pc-acc__chev{
+    transform: rotate(180deg);
+    opacity: 0.9;
+  }
+
+  .pc-acc__panel{ padding-bottom: 14px; }
+
+  .pc-acc__content{
+    color: var(--pc-content);
+    font-size: var(--pc-content-size);
+    line-height: 1.6;
+    font-family: inherit;
+  }
+
+  .pc-acc__content img{ max-width: 100%; height: auto; }
+  .pc-acc__content table{ width: 100%; border-collapse: separate; border-spacing: 0; }
+</style>
+
+<script>
+  (function() {
+    function init(root) {
+      if (!root || root.dataset.pcInit === '1') return;
+      root.dataset.pcInit = '1';
+
+      var allowMultiple = root.getAttribute('data-multiple-open') === 'true';
+      var items = root.querySelectorAll('.pc-acc__item');
+
+      items.forEach(function(item) {
+        var btn = item.querySelector('.pc-acc__btn');
+        var panel = item.querySelector('.pc-acc__panel');
+        if (!btn || !panel) return;
+
+        btn.addEventListener('click', function() {
+          var isOpen = item.classList.contains('is-open');
+
+          if (!allowMultiple) {
+            items.forEach(function(i) {
+              if (i === item) return;
+              i.classList.remove('is-open');
+              var b = i.querySelector('.pc-acc__btn');
+              var p = i.querySelector('.pc-acc__panel');
+              if (b) b.setAttribute('aria-expanded', 'false');
+              if (p) p.hidden = true;
+            });
+          }
+
+          if (isOpen) {
+            item.classList.remove('is-open');
+            btn.setAttribute('aria-expanded', 'false');
+            panel.hidden = true;
+          } else {
+            item.classList.add('is-open');
+            btn.setAttribute('aria-expanded', 'true');
+            panel.hidden = false;
+          }
+        });
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      document.querySelectorAll('.pc-acc').forEach(init);
+    });
+
+    document.addEventListener('shopify:section:load', function(e) {
+      if (!e || !e.target) return;
+      e.target.querySelectorAll('.pc-acc').forEach(init);
+    });
+  })();
+</script>

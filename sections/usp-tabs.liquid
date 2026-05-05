@@ -1,0 +1,879 @@
+{% comment %}
+  USP Info Tabs (Advanced)
+  - 4 fixed tabs (Vet / Ingredients / Feeding / Benefits)
+  - Structured content via blocks:
+    * vet_tab (single)
+    * ingredients_header (optional)
+    * ingredient_item (repeat)
+    * feeding_header (optional)
+    * feeding_row (repeat)
+    * benefits_header (optional)
+    * benefit_item (repeat)
+  - Fully customizable: spacing, colors, typography, radius, shadow.
+{% endcomment %}
+
+{% liquid
+  assign sid = 'usp-tabs-' | append: section.id
+%}
+
+<section id="{{ sid }}" class="usp-tabs" style="
+  --usp-max-width: {{ section.settings.max_width }}px;
+  --usp-mt: {{ section.settings.margin_top }}px;
+  --usp-mb: {{ section.settings.margin_bottom }}px;
+  --usp-pt: {{ section.settings.padding_top }}px;
+  --usp-pr: {{ section.settings.padding_right }}px;
+  --usp-pb: {{ section.settings.padding_bottom }}px;
+  --usp-pl: {{ section.settings.padding_left }}px;
+
+  --usp-font-family: {{ section.settings.font_family }};
+  --usp-title-size: {{ section.settings.title_font_size }}px;
+  --usp-title-weight: {{ section.settings.title_font_weight }};
+  --usp-title-color: {{ section.settings.title_color }};
+  --usp-title-mt: {{ section.settings.title_margin_top }}px;
+  --usp-title-mb: {{ section.settings.title_margin_bottom }}px;
+
+  --usp-tab-size: {{ section.settings.tab_font_size }}px;
+  --usp-tab-weight-active: {{ section.settings.tab_font_weight_active }};
+  --usp-tab-weight-inactive: {{ section.settings.tab_font_weight_inactive }};
+  --usp-tab-height: {{ section.settings.tab_height }}px;
+
+  --usp-body-size: {{ section.settings.body_font_size }}px;
+  --usp-body-color: {{ section.settings.body_text_color }};
+  --usp-muted-color: {{ section.settings.muted_text_color }};
+  --usp-link-color: {{ section.settings.link_color }};
+
+  --usp-card-bg: {{ section.settings.card_bg }};
+  --usp-tabs-bg: {{ section.settings.tabs_bg }};
+  --usp-tab-active-bg: {{ section.settings.tab_active_bg }};
+  --usp-tab-inactive-bg: {{ section.settings.tab_inactive_bg }};
+  --usp-tab-active-color: {{ section.settings.tab_active_color }};
+  --usp-tab-inactive-color: {{ section.settings.tab_inactive_color }};
+  --usp-divider-color: {{ section.settings.divider_color }};
+
+  --usp-border-color: {{ section.settings.border_color }};
+  --usp-border-width: {{ section.settings.border_width }}px;
+  --usp-radius: {{ section.settings.radius }}px;
+
+  --usp-panel-padding: {{ section.settings.panel_padding }}px;
+
+  --usp-shadow: {% if section.settings.enable_shadow %}0 0 {{ section.settings.shadow_blur }}px rgba(0,0,0,{{ section.settings.shadow_opacity | divided_by: 100.0 }}){% else %}none{% endif %};
+
+  --usp-icon-size: {{ section.settings.icon_size }}px;
+  --usp-gap: {{ section.settings.item_gap }}px;
+
+  --usp-h2-size: {{ section.settings.h2_font_size }}px;
+  --usp-h2-weight: {{ section.settings.h2_font_weight }};
+">
+
+  <div class="usp-tabs__container">
+    {% if section.settings.title != blank %}
+      <p class="usp-tabs__title">{{ section.settings.title | escape }}</p>
+    {% endif %}
+
+    <div class="usp-tabs__card" data-usp-tabs>
+      <div class="usp-tabs__tablist" role="tablist" aria-label="Product informatie tabs">
+        <button class="usp-tabs__tab is-active" type="button" role="tab"
+          id="{{ sid }}-tab-vet" aria-controls="{{ sid }}-panel-vet"
+          aria-selected="true" tabindex="0" data-tab="vet">
+          <span class="usp-tabs__tab-label">{{ section.settings.label_vet | escape }}</span>
+        </button>
+
+        <button class="usp-tabs__tab" type="button" role="tab"
+          id="{{ sid }}-tab-ingredients" aria-controls="{{ sid }}-panel-ingredients"
+          aria-selected="false" tabindex="-1" data-tab="ingredients">
+          <span class="usp-tabs__tab-label">{{ section.settings.label_ingredients | escape }}</span>
+        </button>
+
+        <button class="usp-tabs__tab" type="button" role="tab"
+          id="{{ sid }}-tab-feeding" aria-controls="{{ sid }}-panel-feeding"
+          aria-selected="false" tabindex="-1" data-tab="feeding">
+          <span class="usp-tabs__tab-label">{{ section.settings.label_feeding | escape }}</span>
+        </button>
+
+        <button class="usp-tabs__tab" type="button" role="tab"
+          id="{{ sid }}-tab-benefits" aria-controls="{{ sid }}-panel-benefits"
+          aria-selected="false" tabindex="-1" data-tab="benefits">
+          <span class="usp-tabs__tab-label">{{ section.settings.label_benefits | escape }}</span>
+        </button>
+      </div>
+
+      <div class="usp-tabs__panels">
+        {%- comment -%} VET PANEL {%- endcomment -%}
+        <div class="usp-tabs__panel is-active" role="tabpanel" id="{{ sid }}-panel-vet"
+          aria-labelledby="{{ sid }}-tab-vet" tabindex="0">
+
+          {% assign has_vet = false %}
+          {% for block in section.blocks %}
+            {% if block.type == 'vet_tab' %}
+              {% assign has_vet = true %}
+              <div class="vet-box" {{ block.shopify_attributes }}>
+                {% if block.settings.quote != blank %}
+                  <blockquote class="vet-quote">
+                    <p>“{{ block.settings.quote }}”</p>
+                  </blockquote>
+                {% endif %}
+
+                <div class="vet-meta">
+                  {% if block.settings.vet_image != blank %}
+                    <div class="vet-avatar">
+                      {{ block.settings.vet_image | image_url: width: 160 | image_tag: loading: 'lazy', alt: block.settings.vet_name | escape }}
+                    </div>
+                  {% else %}
+                    <div class="vet-avatar vet-avatar--placeholder" aria-hidden="true"></div>
+                  {% endif %}
+
+                  <div class="vet-info">
+                    {% if block.settings.vet_name != blank %}
+                      <p class="vet-name">{{ block.settings.vet_name | escape }}</p>
+                    {% endif %}
+                    {% if block.settings.vet_title != blank %}
+                      <p class="vet-title">{{ block.settings.vet_title | escape }}</p>
+                    {% endif %}
+                  </div>
+                </div>
+
+                {% if block.settings.extra_note != blank %}
+                  <div class="usp-rte vet-note">{{ block.settings.extra_note }}</div>
+                {% endif %}
+              </div>
+            {% endif %}
+          {% endfor %}
+
+          {% unless has_vet %}
+            <div class="usp-empty">
+              Voeg een block toe: <strong>“Vet tab (quote)”</strong>.
+            </div>
+          {% endunless %}
+        </div>
+
+        {%- comment -%} INGREDIENTS PANEL {%- endcomment -%}
+        <div class="usp-tabs__panel" role="tabpanel" id="{{ sid }}-panel-ingredients"
+          aria-labelledby="{{ sid }}-tab-ingredients" tabindex="0" hidden>
+
+          {% assign header_text = blank %}
+          {% for block in section.blocks %}
+            {% if block.type == 'ingredients_header' %}
+              {% assign header_text = block.settings.heading %}
+            {% endif %}
+          {% endfor %}
+
+          {% if header_text != blank %}
+            <h3 class="usp-h2">{{ header_text | escape }}</h3>
+          {% endif %}
+
+          <div class="ingredients-list">
+            {% assign has_ingredients = false %}
+            {% for block in section.blocks %}
+              {% if block.type == 'ingredient_item' %}
+                {% assign has_ingredients = true %}
+                <div class="ingredient-row" {{ block.shopify_attributes }}>
+                  <div class="ingredient-icon">
+                    {% if block.settings.icon != blank %}
+                      {{ block.settings.icon | image_url: width: 120 | image_tag: loading: 'lazy', alt: block.settings.name | escape }}
+                    {% else %}
+                      <div class="ingredient-icon--placeholder" aria-hidden="true"></div>
+                    {% endif %}
+                  </div>
+
+                  <div class="ingredient-info">
+                    {% if block.settings.name != blank %}
+                      <p class="ingredient-name">{{ block.settings.name | escape }}</p>
+                    {% endif %}
+                    {% if block.settings.amount != blank %}
+                      <p class="ingredient-amount">{{ block.settings.amount | escape }}</p>
+                    {% endif %}
+                  </div>
+                </div>
+              {% endif %}
+            {% endfor %}
+
+            {% unless has_ingredients %}
+              <div class="usp-empty">
+                Voeg blocks toe: <strong>“Ingredient item”</strong>.
+              </div>
+            {% endunless %}
+          </div>
+
+          {% if section.settings.ingredients_footer_text != blank %}
+            <div class="ingredients-footer">
+              <a href="{{ section.settings.ingredients_footer_link }}" class="usp-link">
+                {{ section.settings.ingredients_footer_text | escape }}
+              </a>
+            </div>
+          {% endif %}
+        </div>
+
+        {%- comment -%} FEEDING PANEL {%- endcomment -%}
+        <div class="usp-tabs__panel" role="tabpanel" id="{{ sid }}-panel-feeding"
+          aria-labelledby="{{ sid }}-tab-feeding" tabindex="0" hidden>
+
+          {% assign feeding_heading = blank %}
+          {% for block in section.blocks %}
+            {% if block.type == 'feeding_header' %}
+              {% assign feeding_heading = block.settings.heading %}
+            {% endif %}
+          {% endfor %}
+
+          {% if feeding_heading != blank %}
+            <h3 class="usp-h2">{{ feeding_heading | escape }}</h3>
+          {% endif %}
+
+          <div class="feeding-table" role="table" aria-label="Feeding guide table">
+            <div class="feeding-head" role="rowgroup">
+              <div class="feeding-row feeding-row--head" role="row">
+                <div class="feeding-cell feeding-cell--icon" role="columnheader">{{ section.settings.feeding_col_1 | escape }}</div>
+                <div class="feeding-cell" role="columnheader">{{ section.settings.feeding_col_2 | escape }}</div>
+                <div class="feeding-cell feeding-cell--right" role="columnheader">{{ section.settings.feeding_col_3 | escape }}</div>
+              </div>
+            </div>
+
+            <div class="feeding-body" role="rowgroup">
+              {% assign has_feeding = false %}
+              {% for block in section.blocks %}
+                {% if block.type == 'feeding_row' %}
+                  {% assign has_feeding = true %}
+                  <div class="feeding-row" role="row" {{ block.shopify_attributes }}>
+                    <div class="feeding-cell feeding-cell--icon" role="cell">
+                      {% if block.settings.icon != blank %}
+                        {{ block.settings.icon | image_url: width: 160 | image_tag: loading: 'lazy', alt: block.settings.weight | escape }}
+                      {% else %}
+                        <div class="feeding-icon--placeholder" aria-hidden="true"></div>
+                      {% endif %}
+                    </div>
+                    <div class="feeding-cell" role="cell">
+                      <strong class="feeding-weight">{{ block.settings.weight | escape }}</strong>
+                    </div>
+                    <div class="feeding-cell feeding-cell--right" role="cell">
+                      <strong class="feeding-dosage">{{ block.settings.dosage | escape }}</strong>
+                    </div>
+                  </div>
+                {% endif %}
+              {% endfor %}
+
+              {% unless has_feeding %}
+                <div class="usp-empty">
+                  Voeg blocks toe: <strong>“Feeding row”</strong>.
+                </div>
+              {% endunless %}
+            </div>
+          </div>
+
+          {% if section.settings.feeding_note != blank %}
+            <p class="usp-note">{{ section.settings.feeding_note | escape }}</p>
+          {% endif %}
+        </div>
+
+        {%- comment -%} BENEFITS PANEL {%- endcomment -%}
+        <div class="usp-tabs__panel" role="tabpanel" id="{{ sid }}-panel-benefits"
+          aria-labelledby="{{ sid }}-tab-benefits" tabindex="0" hidden>
+
+          {% assign benefits_heading = blank %}
+          {% for block in section.blocks %}
+            {% if block.type == 'benefits_header' %}
+              {% assign benefits_heading = block.settings.heading %}
+            {% endif %}
+          {% endfor %}
+
+          {% if benefits_heading != blank %}
+            <h3 class="usp-h2">{{ benefits_heading | escape }}</h3>
+          {% endif %}
+
+          <ul class="benefits-list">
+            {% assign has_benefits = false %}
+            {% for block in section.blocks %}
+              {% if block.type == 'benefit_item' %}
+                {% assign has_benefits = true %}
+                <li class="benefit-item" {{ block.shopify_attributes }}>
+                  <span class="benefit-icon">
+                    {% if block.settings.icon != blank %}
+                      {{ block.settings.icon | image_url: width: 96 | image_tag: loading: 'lazy', alt: 'check' }}
+                    {% else %}
+                      <span class="benefit-icon--default" aria-hidden="true">✓</span>
+                    {% endif %}
+                  </span>
+                  <span class="benefit-text">{{ block.settings.text | escape }}</span>
+                </li>
+              {% endif %}
+            {% endfor %}
+
+            {% unless has_benefits %}
+              <li class="usp-empty">
+                Voeg blocks toe: <strong>“Benefit item”</strong>.
+              </li>
+            {% endunless %}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    #{{ sid }}.usp-tabs{
+      margin-top: var(--usp-mt);
+      margin-bottom: var(--usp-mb);
+      font-family: var(--usp-font-family);
+      color: var(--usp-body-color);
+    }
+    #{{ sid }} .usp-tabs__container{
+      max-width: var(--usp-max-width);
+      margin-left: auto;
+      margin-right: auto;
+      padding: var(--usp-pt) var(--usp-pr) var(--usp-pb) var(--usp-pl);
+      box-sizing: border-box;
+    }
+    #{{ sid }} .usp-tabs__title{
+      margin-top: var(--usp-title-mt);
+      margin-bottom: var(--usp-title-mb);
+      font-size: var(--usp-title-size);
+      font-weight: var(--usp-title-weight);
+      color: var(--usp-title-color);
+      line-height: 1.25;
+    }
+
+    #{{ sid }} .usp-tabs__card{
+      background: var(--usp-card-bg);
+      border: var(--usp-border-width) solid var(--usp-border-color);
+      border-radius: var(--usp-radius);
+      box-shadow: var(--usp-shadow);
+      overflow: hidden;
+    }
+
+    /* Tabs bar */
+    #{{ sid }} .usp-tabs__tablist{
+      display: flex;
+      align-items: stretch;
+      background: var(--usp-tabs-bg);
+      border-bottom: var(--usp-border-width) solid var(--usp-border-color);
+    }
+    #{{ sid }} .usp-tabs__tab{
+      flex: 1 1 0;
+      appearance: none;
+      border: 0;
+      background: var(--usp-tab-inactive-bg);
+      color: var(--usp-tab-inactive-color);
+      height: var(--usp-tab-height);
+      padding: 10px 10px;
+      cursor: pointer;
+      font-size: var(--usp-tab-size);
+      font-weight: var(--usp-tab-weight-inactive);
+      line-height: 1.15;
+      transition: background .2s ease, color .2s ease, transform .12s ease;
+      position: relative;
+    }
+    #{{ sid }} .usp-tabs__tab + .usp-tabs__tab{
+      border-left: var(--usp-border-width) solid var(--usp-divider-color);
+    }
+    #{{ sid }} .usp-tabs__tab.is-active{
+      background: var(--usp-tab-active-bg);
+      color: var(--usp-tab-active-color);
+      font-weight: var(--usp-tab-weight-active);
+      transform: translateY(0);
+      z-index: 2;
+    }
+    #{{ sid }} .usp-tabs__tab:focus{ outline: none; }
+    #{{ sid }} .usp-tabs__tab:focus-visible{
+      box-shadow: 0 0 0 3px rgba(0,0,0,0.18);
+      z-index: 3;
+    }
+    #{{ sid }} .usp-tabs__tab-label{
+      display: inline-block;
+      max-width: 150px;
+      margin: 0 auto;
+      text-align: center;
+      white-space: normal;
+    }
+
+    /* Panels */
+    #{{ sid }} .usp-tabs__panel{
+      padding: var(--usp-panel-padding);
+      background: var(--usp-card-bg);
+      font-size: var(--usp-body-size);
+      line-height: 1.55;
+      box-sizing: border-box;
+    }
+
+    /* Typography helpers */
+    #{{ sid }} .usp-h2{
+      margin: 0 0 14px;
+      font-size: var(--usp-h2-size);
+      font-weight: var(--usp-h2-weight);
+      color: var(--usp-title-color);
+      line-height: 1.25;
+    }
+    #{{ sid }} .usp-note{
+      margin: 12px 0 0;
+      color: var(--usp-muted-color);
+      font-size: calc(var(--usp-body-size) - 2px);
+    }
+
+    #{{ sid }} .usp-link{
+      color: var(--usp-link-color);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    #{{ sid }} .usp-link:hover{ text-decoration: underline; }
+
+    #{{ sid }} .usp-empty{
+      padding: 12px;
+      border: 1px dashed var(--usp-border-color);
+      border-radius: calc(var(--usp-radius) - 2px);
+      color: var(--usp-muted-color);
+      background: rgba(0,0,0,0.02);
+    }
+
+    /* Vet panel */
+    #{{ sid }} .vet-quote{
+      margin: 0 0 14px;
+      font-style: italic;
+      font-size: calc(var(--usp-body-size) + 4px);
+      line-height: 1.35;
+      color: var(--usp-title-color);
+    }
+    #{{ sid }} .vet-quote p{ margin: 0; }
+
+    #{{ sid }} .vet-meta{
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 10px;
+    }
+    #{{ sid }} .vet-avatar{
+      width: 44px;
+      height: 44px;
+      border-radius: 9999px;
+      overflow: hidden;
+      background: linear-gradient(#fff, var(--usp-border-color));
+      flex: 0 0 auto;
+      position: relative;
+    }
+    #{{ sid }} .vet-avatar img{
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    #{{ sid }} .vet-avatar--placeholder{
+      background: linear-gradient(#fff, var(--usp-border-color));
+    }
+    #{{ sid }} .vet-name{
+      margin: 0;
+      font-weight: 800;
+      line-height: 1.2;
+      color: var(--usp-title-color);
+    }
+    #{{ sid }} .vet-title{
+      margin: 2px 0 0;
+      color: var(--usp-muted-color);
+      line-height: 1.2;
+      font-size: calc(var(--usp-body-size) - 2px);
+      font-weight: 600;
+    }
+
+    /* RTE */
+    #{{ sid }} .usp-rte p{ margin: 0 0 12px; }
+    #{{ sid }} .usp-rte p:last-child{ margin-bottom: 0; }
+    #{{ sid }} .usp-rte a{ color: var(--usp-link-color); }
+
+    /* Ingredients list (like screenshot) */
+    #{{ sid }} .ingredients-list{
+      border-top: 1px solid var(--usp-border-color);
+    }
+    #{{ sid }} .ingredient-row{
+      display: grid;
+      grid-template-columns: 72px 1fr;
+      gap: 14px;
+      align-items: center;
+      padding: 18px 0;
+      border-bottom: 1px solid var(--usp-border-color);
+    }
+    #{{ sid }} .ingredient-icon{
+      width: 60px;
+      height: 60px;
+      border-radius: 9999px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0,0,0,0.03);
+    }
+    #{{ sid }} .ingredient-icon img{
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    #{{ sid }} .ingredient-icon--placeholder{
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.06);
+    }
+    #{{ sid }} .ingredient-name{
+      margin: 0;
+      font-weight: 800;
+      color: var(--usp-title-color);
+      font-size: calc(var(--usp-body-size) + 2px);
+      line-height: 1.2;
+    }
+    #{{ sid }} .ingredient-amount{
+      margin: 6px 0 0;
+      color: var(--usp-muted-color);
+      font-weight: 600;
+    }
+    #{{ sid }} .ingredients-footer{
+      padding-top: 14px;
+    }
+
+    /* Feeding table */
+    #{{ sid }} .feeding-table{
+      width: 100%;
+      border-top: 1px solid var(--usp-border-color);
+    }
+    #{{ sid }} .feeding-row{
+      display: grid;
+      grid-template-columns: 90px 1fr 1fr;
+      gap: 12px;
+      align-items: center;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--usp-border-color);
+    }
+    #{{ sid }} .feeding-row--head{
+      padding: 12px 0;
+      border-bottom: 1px solid var(--usp-border-color);
+    }
+    #{{ sid }} .feeding-cell{
+      color: var(--usp-title-color);
+      font-weight: 700;
+    }
+    #{{ sid }} .feeding-row--head .feeding-cell{
+      font-weight: 800;
+      opacity: 0.95;
+    }
+    #{{ sid }} .feeding-cell--right{
+      text-align: right;
+    }
+    #{{ sid }} .feeding-cell--icon{
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      min-height: 44px;
+    }
+    #{{ sid }} .feeding-cell--icon img{
+      width: 70px;
+      height: auto;
+      display: block;
+    }
+    #{{ sid }} .feeding-icon--placeholder{
+      width: 70px;
+      height: 40px;
+      background: rgba(0,0,0,0.06);
+      border-radius: 10px;
+    }
+    #{{ sid }} .feeding-weight, #{{ sid }} .feeding-dosage{
+      font-weight: 800;
+      color: var(--usp-title-color);
+      font-size: calc(var(--usp-body-size) + 2px);
+    }
+
+    /* Benefits checklist */
+    #{{ sid }} .benefits-list{
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: var(--usp-gap);
+    }
+    #{{ sid }} .benefit-item{
+      display: grid;
+      grid-template-columns: var(--usp-icon-size) 1fr;
+      gap: 12px;
+      align-items: start;
+      font-weight: 700;
+      color: var(--usp-title-color);
+      font-size: calc(var(--usp-body-size) + 1px);
+    }
+    #{{ sid }} .benefit-icon{
+      width: var(--usp-icon-size);
+      height: var(--usp-icon-size);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 9999px;
+      background: rgba(0,0,0,0.03);
+      overflow: hidden;
+    }
+    #{{ sid }} .benefit-icon img{
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    #{{ sid }} .benefit-icon--default{
+      width: 100%;
+      height: 100%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+    }
+
+    /* Mobile tweaks */
+    @media (max-width: 640px){
+      #{{ sid }} .usp-tabs__tab-label{ max-width: 95px; }
+      #{{ sid }} .feeding-row{
+        grid-template-columns: 72px 1fr 1fr;
+      }
+      #{{ sid }} .feeding-cell--icon img{ width: 56px; }
+      #{{ sid }} .ingredient-row{
+        grid-template-columns: 64px 1fr;
+      }
+      #{{ sid }} .ingredient-icon{
+        width: 52px;
+        height: 52px;
+      }
+    }
+  </style>
+
+  <script>
+    (function(){
+      const root = document.getElementById({{ sid | json }});
+      if(!root) return;
+
+      const tabs = Array.from(root.querySelectorAll('.usp-tabs__tab'));
+      const panels = {
+        vet: root.querySelector('#{{ sid }}-panel-vet'),
+        ingredients: root.querySelector('#{{ sid }}-panel-ingredients'),
+        feeding: root.querySelector('#{{ sid }}-panel-feeding'),
+        benefits: root.querySelector('#{{ sid }}-panel-benefits')
+      };
+
+      function setActive(tabKey, focus){
+        tabs.forEach(t => {
+          const isActive = t.dataset.tab === tabKey;
+          t.classList.toggle('is-active', isActive);
+          t.setAttribute('aria-selected', isActive ? 'true' : 'false');
+          t.tabIndex = isActive ? 0 : -1;
+        });
+
+        Object.keys(panels).forEach(k => {
+          const p = panels[k];
+          if(!p) return;
+          if(k === tabKey){
+            p.classList.add('is-active');
+            p.removeAttribute('hidden');
+          } else {
+            p.classList.remove('is-active');
+            p.setAttribute('hidden', '');
+          }
+        });
+
+        if(focus){
+          const t = tabs.find(x => x.dataset.tab === tabKey);
+          t && t.focus();
+        }
+      }
+
+      tabs.forEach(t => {
+        t.addEventListener('click', () => setActive(t.dataset.tab, false));
+      });
+
+      const tablist = root.querySelector('.usp-tabs__tablist');
+      tablist && tablist.addEventListener('keydown', (e) => {
+        const keys = ['ArrowRight','ArrowLeft','Home','End'];
+        if(!keys.includes(e.key)) return;
+
+        const activeIndex = tabs.findIndex(t => t.getAttribute('aria-selected') === 'true');
+        if(activeIndex < 0) return;
+
+        e.preventDefault();
+
+        let nextIndex = activeIndex;
+
+        if(e.key === 'ArrowRight') nextIndex = (activeIndex + 1) % tabs.length;
+        if(e.key === 'ArrowLeft') nextIndex = (activeIndex - 1 + tabs.length) % tabs.length;
+        if(e.key === 'Home') nextIndex = 0;
+        if(e.key === 'End') nextIndex = tabs.length - 1;
+
+        setActive(tabs[nextIndex].dataset.tab, true);
+      });
+    })();
+  </script>
+</section>
+
+{% schema %}
+{
+  "name": "USP Info Tabs (Advanced)",
+  "settings": [
+    { "type": "text", "id": "title", "label": "Titel boven tabs", "default": "Tell Me About:" },
+
+    { "type": "header", "content": "Tab labels" },
+    { "type": "text", "id": "label_vet", "label": "Tab 1 label", "default": "Vet Reviewed" },
+    { "type": "text", "id": "label_ingredients", "label": "Tab 2 label", "default": "Key Ingredients" },
+    { "type": "text", "id": "label_feeding", "label": "Tab 3 label", "default": "Feeding Guide" },
+    { "type": "text", "id": "label_benefits", "label": "Tab 4 label", "default": "Product Benefits" },
+
+    { "type": "header", "content": "Layout" },
+    { "type": "range", "id": "max_width", "label": "Max breedte (px)", "min": 320, "max": 1320, "step": 10, "default": 900 },
+
+    { "type": "range", "id": "margin_top", "label": "Margin top (px)", "min": 0, "max": 120, "step": 2, "default": 16 },
+    { "type": "range", "id": "margin_bottom", "label": "Margin bottom (px)", "min": 0, "max": 120, "step": 2, "default": 24 },
+
+    { "type": "range", "id": "padding_top", "label": "Padding top (px)", "min": 0, "max": 80, "step": 2, "default": 0 },
+    { "type": "range", "id": "padding_right", "label": "Padding right (px)", "min": 0, "max": 80, "step": 2, "default": 0 },
+    { "type": "range", "id": "padding_bottom", "label": "Padding bottom (px)", "min": 0, "max": 80, "step": 2, "default": 0 },
+    { "type": "range", "id": "padding_left", "label": "Padding left (px)", "min": 0, "max": 80, "step": 2, "default": 0 },
+
+    { "type": "range", "id": "panel_padding", "label": "Panel padding (px)", "min": 0, "max": 60, "step": 2, "default": 16 },
+
+    { "type": "header", "content": "Typography" },
+    {
+      "type": "select",
+      "id": "font_family",
+      "label": "Font family",
+      "default": "inherit",
+      "options": [
+        { "value": "inherit", "label": "Theme default" },
+        { "value": "Times, serif", "label": "Times" },
+        { "value": "Georgia, serif", "label": "Georgia" },
+        { "value": "Arial, sans-serif", "label": "Arial" },
+        { "value": "Helvetica, sans-serif", "label": "Helvetica" }
+      ]
+    },
+
+    { "type": "range", "id": "title_font_size", "label": "Titel font-size (px)", "min": 10, "max": 44, "step": 1, "default": 18 },
+    { "type": "range", "id": "title_font_weight", "label": "Titel font-weight", "min": 300, "max": 900, "step": 100, "default": 700 },
+    { "type": "range", "id": "title_margin_top", "label": "Titel margin-top (px)", "min": 0, "max": 60, "step": 2, "default": 16 },
+    { "type": "range", "id": "title_margin_bottom", "label": "Titel margin-bottom (px)", "min": 0, "max": 60, "step": 2, "default": 16 },
+
+    { "type": "range", "id": "tab_font_size", "label": "Tab font-size (px)", "min": 10, "max": 22, "step": 1, "default": 14 },
+    { "type": "range", "id": "tab_font_weight_active", "label": "Tab font-weight (active)", "min": 300, "max": 900, "step": 100, "default": 800 },
+    { "type": "range", "id": "tab_font_weight_inactive", "label": "Tab font-weight (inactive)", "min": 300, "max": 900, "step": 100, "default": 500 },
+    { "type": "range", "id": "tab_height", "label": "Tab hoogte (px)", "min": 44, "max": 90, "step": 2, "default": 58 },
+
+    { "type": "range", "id": "h2_font_size", "label": "Heading (H2) size (px)", "min": 14, "max": 44, "step": 1, "default": 26 },
+    { "type": "range", "id": "h2_font_weight", "label": "Heading (H2) weight", "min": 300, "max": 900, "step": 100, "default": 800 },
+
+    { "type": "range", "id": "body_font_size", "label": "Body font-size (px)", "min": 10, "max": 22, "step": 1, "default": 16 },
+
+    { "type": "header", "content": "Colors" },
+    { "type": "color", "id": "title_color", "label": "Heading kleur", "default": "#001C72" },
+    { "type": "color", "id": "body_text_color", "label": "Body tekst kleur", "default": "#001C72" },
+    { "type": "color", "id": "muted_text_color", "label": "Muted tekst kleur", "default": "#33498E" },
+    { "type": "color", "id": "link_color", "label": "Link kleur", "default": "#001C72" },
+
+    { "type": "color", "id": "card_bg", "label": "Card/panel achtergrond", "default": "#FFFFFF" },
+    { "type": "color", "id": "tabs_bg", "label": "Tabs bar achtergrond", "default": "#F2F4F8" },
+    { "type": "color", "id": "tab_active_bg", "label": "Active tab achtergrond", "default": "#FFFFFF" },
+    { "type": "color", "id": "tab_inactive_bg", "label": "Inactive tab achtergrond", "default": "#F2F4F8" },
+    { "type": "color", "id": "tab_active_color", "label": "Active tab tekstkleur", "default": "#001C72" },
+    { "type": "color", "id": "tab_inactive_color", "label": "Inactive tab tekstkleur", "default": "#001C72" },
+
+    { "type": "color", "id": "border_color", "label": "Border kleur", "default": "#E5E8F1" },
+    { "type": "color", "id": "divider_color", "label": "Tab divider kleur", "default": "#99A4C7" },
+    { "type": "range", "id": "border_width", "label": "Border width (px)", "min": 0, "max": 4, "step": 1, "default": 1 },
+    { "type": "range", "id": "radius", "label": "Radius (px)", "min": 0, "max": 24, "step": 1, "default": 8 },
+
+    { "type": "header", "content": "Shadow" },
+    { "type": "checkbox", "id": "enable_shadow", "label": "Shadow aan", "default": true },
+    { "type": "range", "id": "shadow_blur", "label": "Shadow blur (px)", "min": 0, "max": 40, "step": 1, "default": 14 },
+    { "type": "range", "id": "shadow_opacity", "label": "Shadow opacity (%)", "min": 0, "max": 40, "step": 1, "default": 20 },
+
+    { "type": "header", "content": "Lists & icons" },
+    { "type": "range", "id": "icon_size", "label": "Checklist icon size (px)", "min": 18, "max": 44, "step": 1, "default": 28 },
+    { "type": "range", "id": "item_gap", "label": "Checklist spacing (px)", "min": 6, "max": 26, "step": 1, "default": 12 },
+
+    { "type": "header", "content": "Ingredients footer link (optional)" },
+    { "type": "text", "id": "ingredients_footer_text", "label": "Footer link tekst", "default": "Check out all ingredients below" },
+    { "type": "url", "id": "ingredients_footer_link", "label": "Footer link URL" },
+
+    { "type": "header", "content": "Feeding table labels" },
+    { "type": "text", "id": "feeding_col_1", "label": "Kolom 1", "default": "Size" },
+    { "type": "text", "id": "feeding_col_2", "label": "Kolom 2", "default": "Dog's Weight" },
+    { "type": "text", "id": "feeding_col_3", "label": "Kolom 3", "default": "Daily" },
+{ "type": "text", "id": "feeding_note", "label": "Feeding note (optional)", "default": "Tip: build up slowly in the first 3 days." }
+  ],
+  "blocks": [
+    {
+      "type": "vet_tab",
+      "name": "Vet tab (quote)",
+      "limit": 1,
+      "settings": [
+        { "type": "textarea", "id": "quote", "label": "Quote", "default": "If you want to support your dog's dental health but struggle with toothbrushing, I recommend ProBright." },
+        { "type": "image_picker", "id": "vet_image", "label": "Dierenarts afbeelding (avatar)" },
+        { "type": "text", "id": "vet_name", "label": "Naam", "default": "Dr. Hannah Godfrey" },
+        { "type": "text", "id": "vet_title", "label": "Titel/credentials", "default": "BVetMed MRCVS" },
+        { "type": "richtext", "id": "extra_note", "label": "Extra tekst (optioneel)", "default": "<p></p>" }
+      ]
+    },
+
+    {
+      "type": "ingredients_header",
+      "name": "Ingredients heading",
+      "limit": 1,
+      "settings": [
+        { "type": "text", "id": "heading", "label": "Heading", "default": "Our main ingredients" }
+      ]
+    },
+    {
+      "type": "ingredient_item",
+      "name": "Ingredient item",
+      "settings": [
+        { "type": "image_picker", "id": "icon", "label": "Ingredient afbeelding" },
+        { "type": "text", "id": "name", "label": "Naam", "default": "L-Theanine" },
+        { "type": "text", "id": "amount", "label": "Dosering/subtext", "default": "5g per serving" }
+      ]
+    },
+
+    {
+      "type": "feeding_header",
+      "name": "Feeding heading",
+      "limit": 1,
+      "settings": [
+        { "type": "text", "id": "heading", "label": "Heading", "default": "Feeding Guide" }
+      ]
+    },
+    {
+      "type": "feeding_row",
+      "name": "Feeding row",
+      "settings": [
+        { "type": "image_picker", "id": "icon", "label": "Dog icon" },
+        { "type": "text", "id": "weight", "label": "Dog's weight", "default": "Under 10 kg" },
+        { "type": "text", "id": "dosage", "label": "Daily dosage", "default": "1 Soft Chew" }
+      ]
+    },
+
+    {
+      "type": "benefits_header",
+      "name": "Benefits heading",
+      "limit": 1,
+      "settings": [
+        { "type": "text", "id": "heading", "label": "Heading", "default": "Take your dog's health and comfort to the next level!" }
+      ]
+    },
+    {
+      "type": "benefit_item",
+      "name": "Benefit item",
+      "settings": [
+        { "type": "image_picker", "id": "icon", "label": "Check icon (optional)" },
+        { "type": "text", "id": "text", "label": "Benefit tekst", "default": "Designed to maintain gut health" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "USP Info Tabs (Advanced)",
+      "blocks": [
+        { "type": "vet_tab" },
+        { "type": "ingredients_header" },
+        { "type": "ingredient_item" },
+        { "type": "ingredient_item" },
+        { "type": "feeding_header" },
+        { "type": "feeding_row" },
+        { "type": "feeding_row" },
+        { "type": "benefits_header" },
+        { "type": "benefit_item" },
+        { "type": "benefit_item" }
+      ]
+    }
+  ]
+}
+{% endschema %}

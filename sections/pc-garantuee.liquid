@@ -1,0 +1,407 @@
+{% comment %}
+  Section: PC - Guarantee (Small Icon + Text + Button)
+  - Small icon instead of big image
+  - Text always stays visible
+  - Adjustable icon size in editor
+{% endcomment %}
+
+<section
+  class="pc-guarantee pc-guarantee--{{ section.id }}"
+  style="
+    --pc-bg: {{ section.settings.bg_color }};
+    --pc-max: {{ section.settings.max_width }}px;
+    --pc-gap: {{ section.settings.gap }}px;
+    --pc-pad-top: {{ section.settings.padding_top }}px;
+    --pc-pad-bottom: {{ section.settings.padding_bottom }}px;
+
+    --pc-title-color: {{ section.settings.title_color }};
+    --pc-text-color: {{ section.settings.text_color }};
+    --pc-btn-bg: {{ section.settings.btn_bg }};
+    --pc-btn-text: {{ section.settings.btn_text }};
+    --pc-btn-border: {{ section.settings.btn_border }};
+
+    --pc-title-size: {{ section.settings.title_size }}px;
+    --pc-title-lh: {{ section.settings.title_line_height }}px;
+
+    --pc-text-size: {{ section.settings.text_size }}px;
+    --pc-text-lh: {{ section.settings.text_line_height }}px;
+
+    --pc-btn-radius: {{ section.settings.btn_radius }}px;
+
+    --pc-icon-size: {{ section.settings.icon_size }}px;
+    --pc-icon-radius: {{ section.settings.icon_radius }}px;
+
+    padding-top: var(--pc-pad-top);
+    padding-bottom: var(--pc-pad-bottom);
+    background: var(--pc-bg);
+  "
+>
+  <div class="pc-guarantee__container{% if section.settings.contained %} page-width{% endif %}" style="{% unless section.settings.contained %}max-width: var(--pc-max); margin: 0 auto;{% endunless %}">
+    <div class="pc-guarantee__grid{% if section.settings.icon_position == 'left' %} pc-guarantee__grid--icon-left{% endif %}">
+      {% if section.settings.icon != blank %}
+        <div class="pc-guarantee__iconwrap" aria-hidden="true">
+          <img
+            class="pc-guarantee__icon"
+            src="{{ section.settings.icon | image_url: width: 400 }}"
+            alt="{{ section.settings.icon.alt | escape }}"
+            loading="lazy"
+            width="{{ section.settings.icon.width }}"
+            height="{{ section.settings.icon.height }}"
+          >
+        </div>
+      {% endif %}
+
+      <div class="pc-guarantee__content">
+        {% if section.settings.heading != blank %}
+          <h2 class="pc-guarantee__title">{{ section.settings.heading }}</h2>
+        {% endif %}
+
+        {% if section.settings.text != blank %}
+          <div class="pc-guarantee__text rte">
+            {{ section.settings.text }}
+          </div>
+        {% endif %}
+
+        {% if section.settings.btn_label != blank and section.settings.btn_link != blank %}
+          <div class="pc-guarantee__cta">
+            <a class="pc-guarantee__btn" href="{{ section.settings.btn_link }}">
+              <span>{{ section.settings.btn_label }}</span>
+            </a>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .pc-guarantee__container{
+    width: 100%;
+  }
+
+  /* layout */
+  .pc-guarantee__grid{
+    display: flex;
+    flex-direction: row;
+    gap: var(--pc-gap);
+    max-width: var(--pc-max);
+    margin: 0 auto;
+    align-items: center;
+    padding: 0 16px;
+    box-sizing: border-box;
+  }
+
+  /* default = icon right (zoals jouw eerdere layout vibe) */
+  .pc-guarantee__grid:not(.pc-guarantee__grid--icon-left){
+    flex-direction: row;
+  }
+
+  .pc-guarantee__grid--icon-left{
+    flex-direction: row-reverse;
+  }
+
+  /* icon */
+  .pc-guarantee__iconwrap{
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .pc-guarantee__icon{
+    width: var(--pc-icon-size);
+    height: var(--pc-icon-size);
+    border-radius: var(--pc-icon-radius);
+    display: block;
+    object-fit: contain;
+  }
+
+  /* content ALWAYS visible */
+  .pc-guarantee__content{
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
+  .pc-guarantee__title{
+    margin: 0;
+    font-size: var(--pc-title-size);
+    line-height: var(--pc-title-lh);
+    text-align: left;
+    color: var(--pc-title-color);
+    font-weight: 700;
+  }
+
+  .pc-guarantee__text{
+    margin-top: 16px;
+    color: var(--pc-text-color);
+    font-size: var(--pc-text-size);
+    line-height: var(--pc-text-lh);
+  }
+  .pc-guarantee__text p{ margin: 0; }
+
+  .pc-guarantee__cta{
+    margin-top: 24px;
+    text-align: left;
+  }
+
+  .pc-guarantee__btn{
+    width: 100%;
+    max-width: 300px;
+    gap: 6px;
+    display: inline-flex;
+    align-self: center;
+    justify-content: center;
+    text-decoration: none;
+
+    background: var(--pc-btn-bg);
+    color: var(--pc-btn-text);
+
+    padding: 10px 14px;
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 700;
+
+    border-width: 1.5px;
+    border-style: solid;
+    border-radius: var(--pc-btn-radius);
+    border-color: var(--pc-btn-border);
+
+    box-shadow: rgba(16,24,40,.05) 0 1px 2px 0;
+    transition: .2s ease-in-out;
+    cursor: pointer;
+    position: relative;
+    text-align: center;
+  }
+
+  .pc-guarantee__btn:hover{
+    transform: translateY(-1px);
+  }
+
+  @media (max-width: 749px){
+    .pc-guarantee__grid{
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 16px;
+    }
+    .pc-guarantee__cta{
+      width: 100%;
+    }
+    .pc-guarantee__btn{
+      max-width: 100%;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "PC – Guarantee (Icon)",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "contained",
+      "label": "Use theme page-width container",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "max_width",
+      "label": "Max width (px)",
+      "min": 600,
+      "max": 1600,
+      "step": 20,
+      "default": 1280
+    },
+    {
+      "type": "range",
+      "id": "gap",
+      "label": "Gap between icon and content (px)",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top (px)",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom (px)",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "default": 40
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background color",
+      "default": "#f7ece1"
+    },
+
+    {
+      "type": "header",
+      "content": "Icon"
+    },
+    {
+      "type": "image_picker",
+      "id": "icon",
+      "label": "Icon image"
+    },
+    {
+      "type": "range",
+      "id": "icon_size",
+      "label": "Icon size (px)",
+      "min": 24,
+      "max": 220,
+      "step": 2,
+      "default": 120
+    },
+    {
+      "type": "range",
+      "id": "icon_radius",
+      "label": "Icon radius (px)",
+      "min": 0,
+      "max": 40,
+      "step": 1,
+      "default": 12
+    },
+    {
+      "type": "select",
+      "id": "icon_position",
+      "label": "Icon position",
+      "default": "right",
+      "options": [
+        { "value": "right", "label": "Right" },
+        { "value": "left", "label": "Left" }
+      ]
+    },
+
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "90-Day Money Back Guarantee"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Text",
+      "default": "<p>We’re so sure you’ll love our products, we offer a 90-day money back guarantee on all our edible supplements.</p>"
+    },
+
+    {
+      "type": "header",
+      "content": "Button"
+    },
+    {
+      "type": "text",
+      "id": "btn_label",
+      "label": "Button label",
+      "default": "TRY RISK FREE"
+    },
+    {
+      "type": "url",
+      "id": "btn_link",
+      "label": "Button link"
+    },
+    {
+      "type": "color",
+      "id": "btn_bg",
+      "label": "Button background",
+      "default": "#c5fa56"
+    },
+    {
+      "type": "color",
+      "id": "btn_text",
+      "label": "Button text color",
+      "default": "#212427"
+    },
+    {
+      "type": "color",
+      "id": "btn_border",
+      "label": "Button border color",
+      "default": "#212427"
+    },
+    {
+      "type": "range",
+      "id": "btn_radius",
+      "label": "Button radius (px)",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 50
+    },
+
+    {
+      "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title color",
+      "default": "#212427"
+    },
+    {
+      "type": "range",
+      "id": "title_size",
+      "label": "Title size (px)",
+      "min": 18,
+      "max": 64,
+      "step": 1,
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "title_line_height",
+      "label": "Title line-height (px)",
+      "min": 20,
+      "max": 80,
+      "step": 1,
+      "default": 44
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#212427"
+    },
+    {
+      "type": "range",
+      "id": "text_size",
+      "label": "Text size (px)",
+      "min": 12,
+      "max": 22,
+      "step": 1,
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "text_line_height",
+      "label": "Text line-height (px)",
+      "min": 16,
+      "max": 32,
+      "step": 1,
+      "default": 24
+    }
+  ],
+  "presets": [
+    {
+      "name": "PC – Guarantee (Icon)"
+    }
+  ]
+}
+{% endschema %}

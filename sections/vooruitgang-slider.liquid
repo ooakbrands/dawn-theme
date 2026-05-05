@@ -1,0 +1,436 @@
+{% comment %}
+  SECTION: Bewijs: Vooruitgang Slider (NL)
+  Bestand: sections/proof-progress.liquid
+{% endcomment %}
+
+<section id="pp-{{ section.id }}" class="pp-section">
+  <div class="pp-inner" style="--pp-bg: {{ section.settings.bg_color }}; --pp-pad-top: {{ section.settings.padding_top }}px; --pp-pad-bot: {{ section.settings.padding_bottom }}px; --pp-left-gutter: {{ section.settings.slider_left_gutter }}px; --pp-card-pad-left: {{ section.settings.card_pad_left }}px;">
+    {% if section.settings.heading != blank %}
+      <h2 class="pp-heading">{{ section.settings.heading }}</h2>
+    {% endif %}
+    {% if section.settings.subtext != blank %}
+      <p class="pp-subtext">{{ section.settings.subtext }}</p>
+    {% endif %}
+
+    <div class="pp-track-wrap">
+      <div class="pp-slider" id="pp-track-{{ section.id }}" role="list" aria-label="{{ section.settings.heading | escape }}">
+        {% for block in section.blocks %}
+          {% assign badge = block.settings.badge %}
+          {% assign steps = block.settings.steps %}
+          {% assign title = block.settings.title %}
+          {% assign body  = block.settings.body %}
+          {% assign hls   = block.settings.video_hls %}
+          {% assign mp4   = block.settings.video_mp4 %}
+          {% assign poster_url = '' %}
+          {% if block.settings.poster != blank %}
+            {% assign poster_url = block.settings.poster | image_url: width: 1200 %}
+          {% endif %}
+
+          <article class="pp-card" role="listitem" {{ block.shopify_attributes }}>
+            <div class="pp-media">
+              <video
+                playsinline
+                webkit-playsinline
+                x5-playsinline
+                muted
+                autoplay
+                loop
+                preload="metadata"
+                {% if poster_url != blank %}poster="{{ poster_url }}"{% endif %}
+                aria-label="{{ title | default: badge | escape }}"
+              >
+                {% if hls != blank %}
+                  <source src="{{ hls }}" type="application/x-mpegURL">
+                {% endif %}
+                {% if mp4 != blank %}
+                  <source src="{{ mp4 }}" type="video/mp4">
+                {% endif %}
+              </video>
+
+              {% if badge != blank %}
+                <span class="pp-badge">{{ badge }}</span>
+              {% endif %}
+
+              {% if steps != blank %}
+                <span class="pp-steps">
+                  {% if steps contains '/' %}
+                    <strong>{{ steps | split: '/' | first | strip }}</strong><span class="pp-steps-suffix"> / {{ steps | split: '/' | last | strip }}</span>
+                  {% else %}
+                    <strong>{{ steps }}</strong>
+                  {% endif %}
+                </span>
+              {% endif %}
+            </div>
+
+            <div class="pp-text">
+              {% if title != blank %}
+                <h3 class="pp-card-title">{{ title }}</h3>
+              {% endif %}
+              {% if body != blank %}
+                <p class="pp-card-body">{{ body }}</p>
+              {% endif %}
+            </div>
+          </article>
+        {% endfor %}
+      </div>
+
+      <!-- Dots + Nav op één lijn -->
+      <div class="pp-controls">
+        <div class="pp-dots" id="pp-dots-{{ section.id }}" aria-label="slider pagination">
+          {% for b in section.blocks %}
+            <button type="button" class="pp-dot{% if forloop.first %} is-active{% endif %}" aria-label="Ga naar slide {{ forloop.index }}"></button>
+          {% endfor %}
+        </div>
+
+        {% if section.blocks.size > 1 %}
+          <div class="pp-navs">
+            <button type="button" class="pp-nav pp-prev" aria-label="Scroll naar links">
+              <svg width="46" height="46" viewBox="0 0 46 46" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="1" y="1" width="44" height="44" rx="22" fill="#F1FDF0"></rect>
+                <rect x="1" y="1" width="44" height="44" rx="22" stroke="#17443D" stroke-width="2"></rect>
+                <path d="M30 23H16M16 23L21 19M16 23L21 27" stroke="#17443D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+              </svg>
+            </button>
+            <button type="button" class="pp-nav pp-next" aria-label="Scroll naar rechts">
+              <svg width="46" height="46" viewBox="0 0 46 46" fill="none" xmlns="http://www.w3.org/2000/svg" style="transform:scaleX(-1)">
+                <rect x="1" y="1" width="44" height="44" rx="22" fill="#F1FDF0"></rect>
+                <rect x="1" y="1" width="44" height="44" rx="22" stroke="#17443D" stroke-width="2"></rect>
+                <path d="M30 23H16M16 23L21 19M16 23L21 27" stroke="#17443D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+              </svg>
+            </button>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+
+    {% if section.settings.cta_label != blank %}
+      <div class="pp-cta">
+        <a class="pp-btn" href="{{ section.settings.cta_link | default: '#product-picker-form' }}">{{ section.settings.cta_label }}</a>
+      </div>
+    {% endif %}
+  </div>
+
+  <style>
+    /* Layout & theming */
+    #shopify-section-{{ section.id }} .pp-inner{
+      background: var(--pp-bg);
+      padding-top: var(--pp-pad-top);
+      padding-bottom: var(--pp-pad-bot);
+      color:#212427;
+    }
+    #shopify-section-{{ section.id }} .pp-heading{
+      margin:0 auto;
+      text-align:center;
+      color:#17443D;
+      font-size:30px; /* vaste 30px */
+      line-height:1.2;
+      font-family:'Satoshi Variable','Helvetica Neue',Arial,'Segoe UI',Roboto,sans-serif;
+      font-weight:700;
+      max-width: min(880px, 90vw);
+      padding:0 12px;
+    }
+    #shopify-section-{{ section.id }} .pp-subtext{
+      max-width:min(880px, 90vw);
+      margin:10px auto 0;
+      text-align:center;
+      line-height:1.5;
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      opacity:.95;
+      padding:0 16px;
+      font-size:14px; /* gevraagd: 14px */
+    }
+
+    /* Slider wrap met linker gutter zodat 1e card niet kleeft aan rand */
+    #shopify-section-{{ section.id }} .pp-track-wrap{
+      margin-top:24px;
+    }
+    #shopify-section-{{ section.id }} .pp-slider{
+      display:flex;
+      gap:20px;
+      overflow-x:auto;
+      scroll-snap-type:x mandatory;
+      padding: 4px 16px 16px calc(16px + var(--pp-left-gutter));
+      -webkit-overflow-scrolling:touch;
+      scrollbar-width:none;
+    }
+    #shopify-section-{{ section.id }} .pp-slider::-webkit-scrollbar{ display:none; }
+
+    /* Cards */
+    #shopify-section-{{ section.id }} .pp-card{
+      scroll-snap-align:start;
+      flex:0 0 clamp(340px, 82vw, 560px); /* laat volgende kaart al piepen */
+      border:1px solid #212427;
+      border-radius:16px;
+      background:#fff;
+      box-shadow:0 6px 24px rgba(0,0,0,.06);
+      overflow:hidden;
+    }
+
+  #shopify-section-{{ section.id }} .pp-media{
+  position:relative;
+  background:#000;          /* geen witte balken */
+  aspect-ratio:auto;        /* laat de video zelf de hoogte bepalen */
+  overflow:hidden;
+}
+#shopify-section-{{ section.id }} .pp-media video{
+  position:relative;        /* niet meer absoluut */
+  inset:auto;
+  width:100%;
+  height:auto;              /* behoudt originele verhoudingen */
+  object-fit:contain;       /* toon de HELE video */
+  background:#000;
+  display:block;
+  pointer-events:none;      /* geen pauze/controls overlay */
+}
+
+
+    /* Badge linksboven */
+    #shopify-section-{{ section.id }} .pp-badge{
+      position:absolute; left:12px; top:12px;
+      min-width:125px;
+      background:#C5FA54;
+      border:1px solid #212427;
+      border-radius:10px;
+      padding:10px 12px;
+      font:600 20px/1.1 'Satoshi Variable',Arial,sans-serif;
+      text-align:center;
+      color:#212427;
+      pointer-events:none;
+    }
+
+    /* Stappen – onder midden, altijd één regel */
+    #shopify-section-{{ section.id }} .pp-steps{
+      position:absolute; left:50%; bottom:12px; transform:translateX(-50%);
+      max-width: calc(100% - 2.4rem);
+      background:#fff;
+      border:1px solid #212427;
+      border-radius:12px;
+      padding:10px 12px;
+      font:600 16px/1 'Satoshi Variable',Arial,sans-serif;
+      color:#212427;
+      box-shadow:0 4px 16px rgba(0,0,0,.12);
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+      pointer-events:none;
+    }
+    #shopify-section-{{ section.id }} .pp-steps strong{ margin-right:.25em; }
+
+    /* Tekstkaart onder video */
+    #shopify-section-{{ section.id }} .pp-text{
+      background:#F1FDF0;
+      padding:16px 22px 20px;
+      padding-left: calc(22px + var(--pp-card-pad-left)); /* extra wit links instelbaar */
+      border-top:1px solid #212427;
+      text-align:center;
+    }
+    #shopify-section-{{ section.id }} .pp-card-title{
+      margin:2px 0 6px;
+      font-weight:800;
+      font-size:20px;
+      line-height:1.35;
+      color:#212427;
+    }
+    #shopify-section-{{ section.id }} .pp-card-body{
+      margin:0;
+      line-height:1.55;
+      color:#212427;
+      opacity:.95;
+      font-size:16px;
+    }
+
+    /* Dots + nav bar */
+    #shopify-section-{{ section.id }} .pp-controls{
+      display:flex; align-items:center; justify-content:space-between;
+      gap:16px;
+      padding: 4px 16px;
+      margin-top:10px;
+    }
+    #shopify-section-{{ section.id }} .pp-dots{
+      display:flex; align-items:center; gap:10px;
+    }
+    #shopify-section-{{ section.id }} .pp-dot{
+      width:10px; height:10px; border-radius:999px;
+      background:#D9DEDB; border:0; padding:0; cursor:pointer;
+    }
+    #shopify-section-{{ section.id }} .pp-dot.is-active{ background:#17443D; width:26px; border-radius:999px; transition:width .18s ease; }
+
+    #shopify-section-{{ section.id }} .pp-navs{ display:flex; gap:12px; }
+    #shopify-section-{{ section.id }} .pp-nav{
+      width:46px; height:46px;
+      display:flex; align-items:center; justify-content:center;
+      padding:0; cursor:pointer; background:transparent; border:0;
+    }
+
+    /* CTA */
+    #shopify-section-{{ section.id }} .pp-cta{ text-align:center; margin-top:22px; }
+    #shopify-section-{{ section.id }} .pp-btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      min-width:180px; height:49px; padding:0 30px;
+      border-radius:42px;
+      background:#17443D; color:#fff;
+      border:1.5px solid #fff; text-decoration:none;
+      font:700 16px/1 Inter,Arial,sans-serif; letter-spacing:1px;
+      transition:transform .12s ease;
+    }
+    #shopify-section-{{ section.id }} .pp-btn:active{ transform:scale(.98); }
+
+    /* Kleinere schermen */
+    @media (max-width: 480px){
+      #shopify-section-{{ section.id }} .pp-card{ flex-basis: 85vw; }
+      #shopify-section-{{ section.id }} .pp-badge{ font-size:18px; }
+    }
+    /* Zorg dat onderstukje nooit wit is – card en tekst dezelfde kleur */
+#shopify-section-{{ section.id }} .pp-card{
+  background:#F1FDF0;              /* zelfde tint als je pp-text */
+}
+
+#shopify-section-{{ section.id }} .pp-text{
+  background:#F1FDF0;              /* of transparent; beide werken nu hetzelfde */
+}
+
+/* (optioneel) als je een andere tint wilt gebruiken, zet 'm hier één keer) */
+/*
+#shopify-section-{{ section.id }} .pp-card,
+#shopify-section-{{ section.id }} .pp-text{ background:#F7FFE8; }
+*/
+
+  </style>
+
+  {% if section.blocks.size > 1 %}
+  <script>
+    (function(){
+      var root  = document.getElementById('pp-track-{{ section.id }}');
+      if(!root) return;
+
+      var dotsWrap = document.getElementById('pp-dots-{{ section.id }}');
+      var dots     = dotsWrap ? Array.prototype.slice.call(dotsWrap.querySelectorAll('.pp-dot')) : [];
+      var prevBtn  = document.querySelector('#shopify-section-{{ section.id }} .pp-prev');
+      var nextBtn  = document.querySelector('#shopify-section-{{ section.id }} .pp-next');
+      var cards    = Array.prototype.slice.call(root.querySelectorAll('.pp-card'));
+      if(!cards.length) return;
+
+      function indexFromScroll(){
+        var cw = cards[0].offsetWidth + 20; // card + gap
+        var idx = Math.round(root.scrollLeft / cw);
+        return Math.max(0, Math.min(idx, cards.length - 1));
+      }
+      function goTo(idx){
+        var cw = cards[0].offsetWidth + 20;
+        root.scrollTo({ left: idx * cw, behavior: 'smooth' });
+      }
+      function setActive(i){
+        if(!dots.length) return;
+        dots.forEach(function(d){ d.classList.remove('is-active'); });
+        if (dots[i]) dots[i].classList.add('is-active');
+      }
+
+      // Clicks
+      if (prevBtn) prevBtn.addEventListener('click', function(){
+        setActive(Math.max(0, indexFromScroll()-1));
+        goTo(indexFromScroll()-1);
+      });
+      if (nextBtn) nextBtn.addEventListener('click', function(){
+        setActive(Math.min(cards.length-1, indexFromScroll()+1));
+        goTo(indexFromScroll()+1);
+      });
+      dots.forEach(function(dot, i){ dot.addEventListener('click', function(){ setActive(i); goTo(i); }); });
+
+      // Scroll sync
+      var ticking = false;
+      root.addEventListener('scroll', function(){
+        if(!ticking){
+          window.requestAnimationFrame(function(){
+            setActive(indexFromScroll());
+            ticking = false;
+          });
+          ticking = true;
+        }
+      }, { passive: true });
+    })();
+  </script>
+  {% endif %}
+</section>
+
+{% schema %}
+{
+  "name": "Vooruitgang Slider (NL)",
+  "tag": "section",
+  "class": "section-proof-progress",
+  "settings": [
+    { "type": "color", "id": "bg_color", "label": "Achtergrondkleur sectie", "default": "#FFFFFF" },
+
+    { "type": "text", "id": "heading", "label": "Kop", "default": "Het bewijs zit in de vooruitgang" },
+    { "type": "textarea", "id": "subtext", "label": "Intro tekst", "default": "Bekijk Sadies transformatie van 3 maanden met Advanced Hip & Joint Support kauwsnacks. Haar baasje Stephen trackte haar stappen en deelt een maand-voor-maand overzicht." },
+
+    { "type": "text", "id": "cta_label", "label": "CTA tekst", "default": "NU BESTELLEN" },
+    { "type": "url",  "id": "cta_link",  "label": "CTA link (leeg = #product-picker-form)" },
+
+    { "type": "range", "id": "padding_top", "label": "Bovenmarge", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 60 },
+    { "type": "range", "id": "padding_bottom", "label": "Ondermarge", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 60 },
+
+    { "type": "range", "id": "slider_left_gutter", "label": "Extra wit links van slider (px)", "min": 0, "max": 40, "step": 2, "default": 12 },
+    { "type": "range", "id": "card_pad_left", "label": "Extra wit links in card-tekst (px)", "min": 0, "max": 40, "step": 2, "default": 8 }
+  ],
+  "blocks": [
+    {
+      "type": "slide",
+      "name": "Slide",
+      "settings": [
+        { "type": "text", "id": "badge", "label": "Badge-tekst", "default": "Voor Wuffes" },
+        { "type": "text", "id": "steps", "label": "Stappen (1 regel)", "default": "15k stappen / per dag" },
+        { "type": "text", "id": "title", "label": "Titel onder video", "default": "Voor gewrichtsproblemen" },
+        { "type": "textarea", "id": "body", "label": "Tekst onder video", "default": "Veel energie en een hoog activiteitsniveau." },
+
+        { "type": "url", "id": "video_hls", "label": "Video HLS (.m3u8) URL" },
+        { "type": "url", "id": "video_mp4", "label": "Video MP4 URL" },
+        { "type": "image_picker", "id": "poster", "label": "Poster-afbeelding (fallback)" }
+      ]
+    }
+  ],
+  "max_blocks": 10,
+  "presets": [
+    {
+      "name": "Vooruitgang Slider (NL)",
+      "blocks": [
+        {
+          "type": "slide",
+          "settings": {
+            "badge": "Voor Wuffes",
+            "steps": "15k stappen / per dag",
+            "title": "Voor gewrichtsproblemen",
+            "body": "Veel energie en een hoog activiteitsniveau."
+          }
+        },
+        {
+          "type": "slide",
+          "settings": {
+            "badge": "Maand 1",
+            "steps": "7–9k stappen / per dag",
+            "title": "Begin van gewrichtsproblemen",
+            "body": "Tekenen van vertraging door normale veroudering. Sadies Wuffes-reis begint."
+          }
+        },
+        {
+          "type": "slide",
+          "settings": {
+            "badge": "Maand 2",
+            "steps": "11–13k stappen / per dag",
+            "title": "Eerste verbeteringen",
+            "body": "Ongemak neemt af en Sadie gaat zich weer als vanouds gedragen."
+          }
+        },
+        {
+          "type": "slide",
+          "settings": {
+            "badge": "Maand 3",
+            "steps": "13–16k stappen / per dag",
+            "title": "Ver boven verwachting",
+            "body": "Wuffes hoort nu bij Sadies dagelijkse routine en haar activiteit is hoger dan vóór de diagnose."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

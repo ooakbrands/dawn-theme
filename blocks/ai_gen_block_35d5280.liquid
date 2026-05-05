@@ -1,0 +1,568 @@
+{% doc %}
+  @prompt
+    Create customizable collection bars with the following features:
+    - Each collection bar should have an option to upload a custom icon/image
+    - Display collection name/title next to the icon
+    - Include a clickable arrow on the right side that is displayed inside a circular background
+    - Add shadow effects around each bar for depth
+    - Make the bars slim/not too thick in height
+    - Bars should be tappable/clickable to navigate to the collection
+    - Allow customization of colors for the circular arrow background
+    - Responsive design that works well on mobile devices
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-collection-bars-{{ ai_gen_id }} {
+    display: block;
+    width: 100%;
+    padding: 0;
+  }
+
+  .ai-collection-bars__container-{{ ai_gen_id }} {
+    display: flex;
+    flex-direction: column;
+    gap: {{ block.settings.bar_spacing }}px;
+    width: 100%;
+  }
+
+  .ai-collection-bar-{{ ai_gen_id }} {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: {{ block.settings.bar_padding_vertical }}px {{ block.settings.bar_padding_horizontal }}px;
+    background-color: {{ block.settings.bar_background_color }};
+    border-radius: {{ block.settings.bar_border_radius }}px;
+    box-shadow: {{ block.settings.shadow_horizontal }}px {{ block.settings.shadow_vertical }}px {{ block.settings.shadow_blur }}px rgba(0, 0, 0, {{ block.settings.shadow_opacity | divided_by: 100.0 }});
+    text-decoration: none;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    cursor: pointer;
+    min-height: {{ block.settings.bar_height }}px;
+  }
+
+  .ai-collection-bar-{{ ai_gen_id }}:hover {
+    transform: translateY(-2px);
+    box-shadow: {{ block.settings.shadow_horizontal }}px {{ block.settings.shadow_vertical | plus: 2 }}px {{ block.settings.shadow_blur | plus: 4 }}px rgba(0, 0, 0, {{ block.settings.shadow_opacity | divided_by: 100.0 | times: 1.2 }});
+  }
+
+  .ai-collection-bar__left-{{ ai_gen_id }} {
+    display: flex;
+    align-items: center;
+    gap: {{ block.settings.icon_text_spacing }}px;
+    flex: 1;
+    min-width: 0;
+  }
+
+  .ai-collection-bar__icon-wrapper-{{ ai_gen_id }} {
+    flex-shrink: 0;
+    width: {{ block.settings.icon_size }}px;
+    height: {{ block.settings.icon_size }}px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border-radius: {{ block.settings.icon_border_radius }}px;
+  }
+
+  .ai-collection-bar__icon-{{ ai_gen_id }} {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .ai-collection-bar__icon-placeholder-{{ ai_gen_id }} {
+    width: 100%;
+    height: 100%;
+    background-color: {{ block.settings.icon_placeholder_bg }};
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ai-collection-bar__icon-placeholder-{{ ai_gen_id }} svg {
+    width: 60%;
+    height: 60%;
+    opacity: 0.3;
+  }
+
+  .ai-collection-bar__title-{{ ai_gen_id }} {
+    font-size: {{ block.settings.title_font_size }}px;
+    font-weight: {{ block.settings.title_font_weight }};
+    color: {{ block.settings.title_color }};
+    margin: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .ai-collection-bar__arrow-wrapper-{{ ai_gen_id }} {
+    flex-shrink: 0;
+    width: {{ block.settings.arrow_circle_size }}px;
+    height: {{ block.settings.arrow_circle_size }}px;
+    background-color: {{ block.settings.arrow_background_color }};
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s ease;
+  }
+
+  .ai-collection-bar-{{ ai_gen_id }}:hover .ai-collection-bar__arrow-wrapper-{{ ai_gen_id }} {
+    background-color: {{ block.settings.arrow_background_hover_color }};
+  }
+
+  .ai-collection-bar__arrow-{{ ai_gen_id }} {
+    width: {{ block.settings.arrow_size }}px;
+    height: {{ block.settings.arrow_size }}px;
+    stroke: {{ block.settings.arrow_color }};
+    stroke-width: 2;
+    fill: none;
+  }
+
+  .ai-collection-bar__empty-state-{{ ai_gen_id }} {
+    text-align: center;
+    padding: 40px 20px;
+    color: #666;
+    font-size: 14px;
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-collection-bar__title-{{ ai_gen_id }} {
+      font-size: {{ block.settings.title_font_size | times: 0.9 }}px;
+    }
+
+    .ai-collection-bar__icon-wrapper-{{ ai_gen_id }} {
+      width: {{ block.settings.icon_size | times: 0.85 }}px;
+      height: {{ block.settings.icon_size | times: 0.85 }}px;
+    }
+
+    .ai-collection-bar__arrow-wrapper-{{ ai_gen_id }} {
+      width: {{ block.settings.arrow_circle_size | times: 0.85 }}px;
+      height: {{ block.settings.arrow_circle_size | times: 0.85 }}px;
+    }
+
+    .ai-collection-bar__arrow-{{ ai_gen_id }} {
+      width: {{ block.settings.arrow_size | times: 0.85 }}px;
+      height: {{ block.settings.arrow_size | times: 0.85 }}px;
+    }
+  }
+{% endstyle %}
+
+<collection-bars-{{ ai_gen_id }} class="ai-collection-bars-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <div class="ai-collection-bars__container-{{ ai_gen_id }}">
+    {% liquid
+      assign has_any_collection = false
+      for i in (1..6)
+        assign collection_key = 'collection_' | append: i
+        assign icon_key = 'collection_' | append: i | append: '_icon'
+        assign collection = block.settings[collection_key]
+        if collection != blank
+          assign has_any_collection = true
+          break
+        endif
+      endfor
+    %}
+
+    {% if has_any_collection %}
+      {% for i in (1..6) %}
+        {% liquid
+          assign collection_key = 'collection_' | append: i
+          assign icon_key = 'collection_' | append: i | append: '_icon'
+          assign collection = block.settings[collection_key]
+          assign icon = block.settings[icon_key]
+        %}
+
+        {% if collection != blank %}
+          <a
+            href="{{ collection.url }}"
+            class="ai-collection-bar-{{ ai_gen_id }}"
+            aria-label="View {{ collection.title }} collection"
+          >
+            <div class="ai-collection-bar__left-{{ ai_gen_id }}">
+              <div class="ai-collection-bar__icon-wrapper-{{ ai_gen_id }}">
+                {% if icon != blank %}
+                  <img
+                    src="{{ icon | image_url: width: 200 }}"
+                    alt="{{ collection.title }}"
+                    class="ai-collection-bar__icon-{{ ai_gen_id }}"
+                    loading="lazy"
+                    width="200"
+                    height="200"
+                  >
+                {% else %}
+                  <div class="ai-collection-bar__icon-placeholder-{{ ai_gen_id }}">
+                    {{ 'collection' | placeholder_svg_tag }}
+                  </div>
+                {% endif %}
+              </div>
+
+              <h3 class="ai-collection-bar__title-{{ ai_gen_id }}">
+                {{ collection.title }}
+              </h3>
+            </div>
+
+            <div class="ai-collection-bar__arrow-wrapper-{{ ai_gen_id }}">
+              <svg
+                class="ai-collection-bar__arrow-{{ ai_gen_id }}"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <polyline points="9 18 15 12 9 6"></polyline>
+              </svg>
+            </div>
+          </a>
+        {% endif %}
+      {% endfor %}
+    {% else %}
+      <div class="ai-collection-bar__empty-state-{{ ai_gen_id }}">
+        Next, select collections to display
+      </div>
+    {% endif %}
+  </div>
+</collection-bars-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    class CollectionBars{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+      }
+
+      connectedCallback() {
+        this.bars = this.querySelectorAll('.ai-collection-bar-{{ ai_gen_id }}');
+        this.setupAccessibility();
+      }
+
+      setupAccessibility() {
+        this.bars.forEach((bar) => {
+          bar.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+              e.preventDefault();
+              bar.click();
+            }
+          });
+        });
+      }
+    }
+
+    customElements.define('collection-bars-{{ ai_gen_id }}', CollectionBars{{ ai_gen_id }});
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Collection bars",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Collections"
+    },
+    {
+      "type": "collection",
+      "id": "collection_1",
+      "label": "Collection 1"
+    },
+    {
+      "type": "image_picker",
+      "id": "collection_1_icon",
+      "label": "Collection 1 icon"
+    },
+    {
+      "type": "collection",
+      "id": "collection_2",
+      "label": "Collection 2"
+    },
+    {
+      "type": "image_picker",
+      "id": "collection_2_icon",
+      "label": "Collection 2 icon"
+    },
+    {
+      "type": "collection",
+      "id": "collection_3",
+      "label": "Collection 3"
+    },
+    {
+      "type": "image_picker",
+      "id": "collection_3_icon",
+      "label": "Collection 3 icon"
+    },
+    {
+      "type": "collection",
+      "id": "collection_4",
+      "label": "Collection 4"
+    },
+    {
+      "type": "image_picker",
+      "id": "collection_4_icon",
+      "label": "Collection 4 icon"
+    },
+    {
+      "type": "collection",
+      "id": "collection_5",
+      "label": "Collection 5"
+    },
+    {
+      "type": "image_picker",
+      "id": "collection_5_icon",
+      "label": "Collection 5 icon"
+    },
+    {
+      "type": "collection",
+      "id": "collection_6",
+      "label": "Collection 6"
+    },
+    {
+      "type": "image_picker",
+      "id": "collection_6_icon",
+      "label": "Collection 6 icon"
+    },
+    {
+      "type": "header",
+      "content": "Bar style"
+    },
+    {
+      "type": "range",
+      "id": "bar_height",
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Bar height",
+      "default": 70
+    },
+    {
+      "type": "range",
+      "id": "bar_spacing",
+      "min": 8,
+      "max": 32,
+      "step": 4,
+      "unit": "px",
+      "label": "Spacing between bars",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "bar_padding_vertical",
+      "min": 8,
+      "max": 32,
+      "step": 2,
+      "unit": "px",
+      "label": "Vertical padding",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "bar_padding_horizontal",
+      "min": 12,
+      "max": 40,
+      "step": 4,
+      "unit": "px",
+      "label": "Horizontal padding",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "bar_border_radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "Border radius",
+      "default": 12
+    },
+    {
+      "type": "color",
+      "id": "bar_background_color",
+      "label": "Background color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Icon"
+    },
+    {
+      "type": "range",
+      "id": "icon_size",
+      "min": 30,
+      "max": 80,
+      "step": 5,
+      "unit": "px",
+      "label": "Icon size",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "icon_border_radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "Icon border radius",
+      "default": 8
+    },
+    {
+      "type": "color",
+      "id": "icon_placeholder_bg",
+      "label": "Placeholder background",
+      "default": "#f4f4f4"
+    },
+    {
+      "type": "range",
+      "id": "icon_text_spacing",
+      "min": 8,
+      "max": 32,
+      "step": 4,
+      "unit": "px",
+      "label": "Space between icon and title",
+      "default": 16
+    },
+    {
+      "type": "header",
+      "content": "Title"
+    },
+    {
+      "type": "range",
+      "id": "title_font_size",
+      "min": 14,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Font size",
+      "default": 16
+    },
+    {
+      "type": "select",
+      "id": "title_font_weight",
+      "label": "Font weight",
+      "options": [
+        {
+          "value": "400",
+          "label": "Regular"
+        },
+        {
+          "value": "500",
+          "label": "Medium"
+        },
+        {
+          "value": "600",
+          "label": "Semi-bold"
+        },
+        {
+          "value": "700",
+          "label": "Bold"
+        }
+      ],
+      "default": "600"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title color",
+      "default": "#17433c"
+    },
+    {
+      "type": "header",
+      "content": "Arrow"
+    },
+    {
+      "type": "range",
+      "id": "arrow_circle_size",
+      "min": 30,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "label": "Circle size",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "arrow_size",
+      "min": 12,
+      "max": 32,
+      "step": 2,
+      "unit": "px",
+      "label": "Arrow size",
+      "default": 20
+    },
+    {
+      "type": "color",
+      "id": "arrow_background_color",
+      "label": "Circle background",
+      "default": "#c6fa54"
+    },
+    {
+      "type": "color",
+      "id": "arrow_background_hover_color",
+      "label": "Circle background on hover",
+      "default": "#17433c"
+    },
+    {
+      "type": "color",
+      "id": "arrow_color",
+      "label": "Arrow color",
+      "default": "#17433c"
+    },
+    {
+      "type": "header",
+      "content": "Shadow"
+    },
+    {
+      "type": "range",
+      "id": "shadow_horizontal",
+      "min": -20,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Horizontal offset",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "shadow_vertical",
+      "min": 0,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Vertical offset",
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "shadow_blur",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "Blur",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "shadow_opacity",
+      "min": 0,
+      "max": 50,
+      "step": 5,
+      "unit": "%",
+      "label": "Opacity",
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "desktop_width_percent",
+      "label": "Desktop width",
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 100
+    }
+  ],
+  "presets": [
+    {
+      "name": "Collection bars"
+    }
+  ]
+}
+{% endschema %}

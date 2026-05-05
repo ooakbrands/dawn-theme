@@ -1,0 +1,834 @@
+
+    
+    
+    <style {% if section.settings.section_preload == "false" %} class="gps-link gps-style" type="text/disabled-css" {% endif %}>.gps-610106213048255191.gps.gpsil [style*="--as:"]{align-self:var(--as)}.gps-610106213048255191.gps.gpsil [style*="--aspect:"]{aspect-ratio:var(--aspect)}.gps-610106213048255191.gps.gpsil [style*="--bg:"]{background:var(--bg)}.gps-610106213048255191.gps.gpsil [style*="--hvr-bg:"]:hover{background:var(--hvr-bg)}.gps-610106213048255191.gps.gpsil [style*="--bga:"]{background-attachment:var(--bga)}.gps-610106213048255191.gps.gpsil [style*="--bgc:"]{background-color:var(--bgc)}.gps-610106213048255191.gps.gpsil [style*="--bgi:"]{background-image:var(--bgi)}.gps-610106213048255191.gps.gpsil [style*="--hvr-bgi:"]:hover{background-image:var(--hvr-bgi)}.gps-610106213048255191.gps.gpsil [style*="--bgp:"]{background-position:var(--bgp)}.gps-610106213048255191.gps.gpsil [style*="--bgr:"]{background-repeat:var(--bgr)}.gps-610106213048255191.gps.gpsil [style*="--bgs:"]{background-size:var(--bgs)}.gps-610106213048255191.gps.gpsil [style*="--b:"]{border:var(--b)}.gps-610106213048255191.gps.gpsil [style*="--hvr-b:"]:hover{border:var(--hvr-b)}.gps-610106213048255191.gps.gpsil [style*="--bb:"]{border-bottom:var(--bb)}.gps-610106213048255191.gps.gpsil [style*="--hvr-bb:"]:hover{border-bottom:var(--hvr-bb)}.gps-610106213048255191.gps.gpsil [style*="--bc:"]{border-color:var(--bc)}.gps-610106213048255191.gps.gpsil [style*="--bblr:"]{border-bottom-left-radius:var(--bblr)}.gps-610106213048255191.gps.gpsil [style*="--hvr-bblr:"]:hover{border-bottom-left-radius:var(--hvr-bblr)}.gps-610106213048255191.gps.gpsil [style*="--bbrr:"]{border-bottom-right-radius:var(--bbrr)}.gps-610106213048255191.gps.gpsil [style*="--hvr-bbrr:"]:hover{border-bottom-right-radius:var(--hvr-bbrr)}.gps-610106213048255191.gps.gpsil [style*="--radius:"]{border-radius:var(--radius)}.gps-610106213048255191.gps.gpsil [style*="--bs:"]{border-style:var(--bs)}.gps-610106213048255191.gps.gpsil [style*="--bt:"]{border-top:var(--bt)}.gps-610106213048255191.gps.gpsil [style*="--hvr-bt:"]:hover{border-top:var(--hvr-bt)}.gps-610106213048255191.gps.gpsil [style*="--btlr:"]{border-top-left-radius:var(--btlr)}.gps-610106213048255191.gps.gpsil [style*="--hvr-btlr:"]:hover{border-top-left-radius:var(--hvr-btlr)}.gps-610106213048255191.gps.gpsil [style*="--btrr:"]{border-top-right-radius:var(--btrr)}.gps-610106213048255191.gps.gpsil [style*="--hvr-btrr:"]:hover{border-top-right-radius:var(--hvr-btrr)}.gps-610106213048255191.gps.gpsil [style*="--bw:"]{border-width:var(--bw)}.gps-610106213048255191.gps.gpsil [style*="--shadow:"]{box-shadow:var(--shadow)}.gps-610106213048255191.gps.gpsil [style*="--c:"]{color:var(--c)}.gps-610106213048255191.gps.gpsil [style*="--cg:"]{-moz-column-gap:var(--cg);column-gap:var(--cg)}.gps-610106213048255191.gps.gpsil [style*="--ff:"]{font-family:var(--ff)}.gps-610106213048255191.gps.gpsil [style*="--size:"]{font-size:var(--size)}.gps-610106213048255191.gps.gpsil [style*="--weight:"]{font-weight:var(--weight)}.gps-610106213048255191.gps.gpsil [style*="--fs:"]{font-style:var(--fs)}.gps-610106213048255191.gps.gpsil [style*="--gtc:"]{grid-template-columns:var(--gtc)}.gps-610106213048255191.gps.gpsil [style*="--h:"]{height:var(--h)}.gps-610106213048255191.gps.gpsil [style*="--jc:"]{justify-content:var(--jc)}.gps-610106213048255191.gps.gpsil [style*="--lh:"]{line-height:var(--lh)}.gps-610106213048255191.gps.gpsil [style*="--tdt:"]{text-decoration-thickness:var(--tdt)}.gps-610106213048255191.gps.gpsil [style*="--tdl:"]{text-decoration-line:var(--tdl)}.gps-610106213048255191.gps.gpsil [style*="--m:"]{margin:var(--m)}.gps-610106213048255191.gps.gpsil [style*="--mb:"]{margin-bottom:var(--mb)}.gps-610106213048255191.gps.gpsil [style*="--mt:"]{margin-top:var(--mt)}.gps-610106213048255191.gps.gpsil [style*="--minw:"]{min-width:var(--minw)}.gps-610106213048255191.gps.gpsil [style*="--objf:"]{-o-object-fit:var(--objf);object-fit:var(--objf)}.gps-610106213048255191.gps.gpsil [style*="--op:"]{opacity:var(--op)}.gps-610106213048255191.gps.gpsil [style*="--o:"]{order:var(--o)}.gps-610106213048255191.gps.gpsil [style*="--of:"]{overflow:var(--of)}.gps-610106213048255191.gps.gpsil [style*="--pc:"]{place-content:var(--pc)}.gps-610106213048255191.gps.gpsil [style*="--p:"]{padding:var(--p)}.gps-610106213048255191.gps.gpsil [style*="--pb:"]{padding-bottom:var(--pb)}.gps-610106213048255191.gps.gpsil [style*="--pl:"]{padding-left:var(--pl)}.gps-610106213048255191.gps.gpsil [style*="--pr:"]{padding-right:var(--pr)}.gps-610106213048255191.gps.gpsil [style*="--pt:"]{padding-top:var(--pt)}.gps-610106213048255191.gps.gpsil [style*="--rg:"]{row-gap:var(--rg)}.gps-610106213048255191.gps.gpsil [style*="--ta:"]{text-align:var(--ta)}.gps-610106213048255191.gps.gpsil [style*="--ts:"]{text-shadow:var(--ts)}.gps-610106213048255191.gps.gpsil [style*="--tt:"]{text-transform:var(--tt)}.gps-610106213048255191.gps.gpsil [style*="--t:"]{transform:var(--t)}.gps-610106213048255191.gps.gpsil [style*="--w:"]{width:var(--w)}.gps-610106213048255191.gps.gpsil [style*="--line-clamp:"]{display:-webkit-box;overflow:hidden;-webkit-box-orient:vertical;-webkit-line-clamp:var(--line-clamp)}@media only screen and (max-width:1024px){.gps-610106213048255191.gps.gpsil [style*="--aspect-tablet:"]{aspect-ratio:var(--aspect-tablet)}.gps-610106213048255191.gps.gpsil [style*="--cg-tablet:"]{-moz-column-gap:var(--cg-tablet);column-gap:var(--cg-tablet)}.gps-610106213048255191.gps.gpsil [style*="--size-tablet:"]{font-size:var(--size-tablet)}.gps-610106213048255191.gps.gpsil [style*="--h-tablet:"]{height:var(--h-tablet)}.gps-610106213048255191.gps.gpsil [style*="--lh-tablet:"]{line-height:var(--lh-tablet)}.gps-610106213048255191.gps.gpsil [style*="--mb-tablet:"]{margin-bottom:var(--mb-tablet)}.gps-610106213048255191.gps.gpsil [style*="--minw-tablet:"]{min-width:var(--minw-tablet)}.gps-610106213048255191.gps.gpsil [style*="--pb-tablet:"]{padding-bottom:var(--pb-tablet)}.gps-610106213048255191.gps.gpsil [style*="--pl-tablet:"]{padding-left:var(--pl-tablet)}.gps-610106213048255191.gps.gpsil [style*="--pr-tablet:"]{padding-right:var(--pr-tablet)}.gps-610106213048255191.gps.gpsil [style*="--pt-tablet:"]{padding-top:var(--pt-tablet)}.gps-610106213048255191.gps.gpsil [style*="--rg-tablet:"]{row-gap:var(--rg-tablet)}.gps-610106213048255191.gps.gpsil [style*="--ta-tablet:"]{text-align:var(--ta-tablet)}.gps-610106213048255191.gps.gpsil [style*="--w-tablet:"]{width:var(--w-tablet)}.gps-610106213048255191.gps.gpsil [style*="--line-clamp-tablet:"]{display:-webkit-box;overflow:hidden;-webkit-box-orient:vertical;-webkit-line-clamp:var(--line-clamp-tablet)}}@media only screen and (max-width:767px){.gps-610106213048255191.gps.gpsil [style*="--aspect-mobile:"]{aspect-ratio:var(--aspect-mobile)}.gps-610106213048255191.gps.gpsil [style*="--bga-mobile:"]{background-attachment:var(--bga-mobile)}.gps-610106213048255191.gps.gpsil [style*="--bgc-mobile:"]{background-color:var(--bgc-mobile)}.gps-610106213048255191.gps.gpsil [style*="--bgi-mobile:"]{background-image:var(--bgi-mobile)}.gps-610106213048255191.gps.gpsil [style*="--bgp-mobile:"]{background-position:var(--bgp-mobile)}.gps-610106213048255191.gps.gpsil [style*="--bgr-mobile:"]{background-repeat:var(--bgr-mobile)}.gps-610106213048255191.gps.gpsil [style*="--bgs-mobile:"]{background-size:var(--bgs-mobile)}.gps-610106213048255191.gps.gpsil [style*="--bc-mobile:"]{border-color:var(--bc-mobile)}.gps-610106213048255191.gps.gpsil [style*="--bblr-mobile:"]{border-bottom-left-radius:var(--bblr-mobile)}.gps-610106213048255191.gps.gpsil [style*="--bbrr-mobile:"]{border-bottom-right-radius:var(--bbrr-mobile)}.gps-610106213048255191.gps.gpsil [style*="--bs-mobile:"]{border-style:var(--bs-mobile)}.gps-610106213048255191.gps.gpsil [style*="--btlr-mobile:"]{border-top-left-radius:var(--btlr-mobile)}.gps-610106213048255191.gps.gpsil [style*="--btrr-mobile:"]{border-top-right-radius:var(--btrr-mobile)}.gps-610106213048255191.gps.gpsil [style*="--bw-mobile:"]{border-width:var(--bw-mobile)}.gps-610106213048255191.gps.gpsil [style*="--size-mobile:"]{font-size:var(--size-mobile)}.gps-610106213048255191.gps.gpsil [style*="--gtc-mobile:"]{grid-template-columns:var(--gtc-mobile)}.gps-610106213048255191.gps.gpsil [style*="--h-mobile:"]{height:var(--h-mobile)}.gps-610106213048255191.gps.gpsil [style*="--lh-mobile:"]{line-height:var(--lh-mobile)}.gps-610106213048255191.gps.gpsil [style*="--mb-mobile:"]{margin-bottom:var(--mb-mobile)}.gps-610106213048255191.gps.gpsil [style*="--mt-mobile:"]{margin-top:var(--mt-mobile)}.gps-610106213048255191.gps.gpsil [style*="--minw-mobile:"]{min-width:var(--minw-mobile)}.gps-610106213048255191.gps.gpsil [style*="--objf-mobile:"]{-o-object-fit:var(--objf-mobile);object-fit:var(--objf-mobile)}.gps-610106213048255191.gps.gpsil [style*="--of-mobile:"]{overflow:var(--of-mobile)}.gps-610106213048255191.gps.gpsil [style*="--pb-mobile:"]{padding-bottom:var(--pb-mobile)}.gps-610106213048255191.gps.gpsil [style*="--pl-mobile:"]{padding-left:var(--pl-mobile)}.gps-610106213048255191.gps.gpsil [style*="--pr-mobile:"]{padding-right:var(--pr-mobile)}.gps-610106213048255191.gps.gpsil [style*="--pt-mobile:"]{padding-top:var(--pt-mobile)}.gps-610106213048255191.gps.gpsil [style*="--rg-mobile:"]{row-gap:var(--rg-mobile)}.gps-610106213048255191.gps.gpsil [style*="--ta-mobile:"]{text-align:var(--ta-mobile)}.gps-610106213048255191.gps.gpsil [style*="--w-mobile:"]{width:var(--w-mobile)}.gps-610106213048255191.gps.gpsil [style*="--line-clamp-mobile:"]{display:-webkit-box;overflow:hidden;-webkit-box-orient:vertical;-webkit-line-clamp:var(--line-clamp-mobile)}}.gps-610106213048255191 .gp-relative{position:relative}.gps-610106213048255191 .gp-mx-auto{margin-left:auto;margin-right:auto}.gps-610106213048255191 .gp-mb-0{margin-bottom:0}.gps-610106213048255191 .gp-inline-block{display:inline-block}.gps-610106213048255191 .gp-flex{display:flex}.gps-610106213048255191 .gp-inline-flex{display:inline-flex}.gps-610106213048255191 .gp-grid{display:grid}.gps-610106213048255191 .gp-contents{display:contents}.gps-610106213048255191 .\!gp-hidden{display:none!important}.gps-610106213048255191 .gp-hidden{display:none}.gps-610106213048255191 .gp-h-auto{height:auto}.gps-610106213048255191 .gp-h-full{height:100%}.gps-610106213048255191 .gp-w-full{width:100%}.gps-610106213048255191 .gp-max-w-full{max-width:100%}.gps-610106213048255191 .gp-flex-none{flex:none}.gps-610106213048255191 .gp-grid-rows-\[1fr\]{grid-template-rows:1fr}.gps-610106213048255191 .gp-flex-row-reverse{flex-direction:row-reverse}.gps-610106213048255191 .gp-flex-col{flex-direction:column}.gps-610106213048255191 .gp-items-center{align-items:center}.gps-610106213048255191 .gp-justify-center{justify-content:center}.gps-610106213048255191 .gp-overflow-hidden{overflow:hidden}.gps-610106213048255191 .gp-break-words{overflow-wrap:break-word}.gps-610106213048255191 .gp-text-center{text-align:center}.gps-610106213048255191 .gp-leading-\[0\]{line-height:0}.gps-610106213048255191 .gp-text-g-bg-3{color:var(--g-c-bg-3)}.gps-610106213048255191 .gp-no-underline{text-decoration-line:none}.gps-610106213048255191 .gp-transition-colors{transition-duration:.15s;transition-property:color,background-color,border-color,text-decoration-color,fill,stroke;transition-timing-function:cubic-bezier(.4,0,.2,1)}.gps-610106213048255191 .gp-duration-200{transition-duration:.2s}.gps-610106213048255191 .gp-ease-in-out{transition-timing-function:cubic-bezier(.4,0,.2,1)}.gps-610106213048255191 .disabled\:gp-btn-disabled:disabled{cursor:default}.gps-610106213048255191 .disabled\:gp-opacity-30:disabled{opacity:.3}.gps-610106213048255191 .gp-group\/button:active .group-active\/button\:\!gp-text-inherit{color:inherit!important}.gps-610106213048255191 .gp-group[data-state=loading] .group-data-\[state\=loading\]\:gp-invisible{visibility:hidden}@media (max-width:1024px){.gps-610106213048255191 .tablet\:\!gp-hidden{display:none!important}.gps-610106213048255191 .tablet\:gp-hidden{display:none}.gps-610106213048255191 .tablet\:gp-h-auto{height:auto}.gps-610106213048255191 .tablet\:gp-flex-none{flex:none}}@media (max-width:767px){.gps-610106213048255191 .mobile\:\!gp-hidden{display:none!important}.gps-610106213048255191 .mobile\:gp-hidden{display:none}.gps-610106213048255191 .mobile\:gp-h-auto{height:auto}.gps-610106213048255191 .mobile\:gp-flex-none{flex:none}}.gps-610106213048255191 .\[\&\>svg\]\:\!gp-h-\[var\(--height-desktop\)\]>svg{height:var(--height-desktop)!important}.gps-610106213048255191 .\[\&\>svg\]\:\!gp-w-auto>svg{width:auto!important}@media (max-width:1024px){.gps-610106213048255191 .tablet\:\[\&\>svg\]\:\!gp-h-\[var\(--height-tablet\)\]>svg{height:var(--height-tablet)!important}}@media (max-width:767px){.gps-610106213048255191 .mobile\:\[\&\>svg\]\:\!gp-h-\[var\(--height-mobile\)\]>svg{height:var(--height-mobile)!important}}.gps-610106213048255191 .\[\&_\*\]\:gp-max-w-full *{max-width:100%}.gps-610106213048255191 .\[\&_p\]\:gp-whitespace-pre-line p{white-space:pre-line}</style>
+    <style {% if section.settings.section_preload == "false" %} class="gps-link" type="text/disabled-css" {% endif %}>@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-stretch: normal;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/roboto/v51/KFOMCnqEu92Fr1ME7kSn66aGLdTylUAMQXC89YmC2DPNWubEbWmT.ttf) format('truetype');
+}
+
+
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 700;
+  font-stretch: normal;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/roboto/v51/KFOMCnqEu92Fr1ME7kSn66aGLdTylUAMQXC89YmC2DPNWuYjammT.ttf) format('truetype');
+}
+
+
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/poppins/v24/pxiEyp8kv8JHgFVrFJA.ttf) format('truetype');
+}
+
+
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/poppins/v24/pxiByp8kv8JHgFVrLEj6V1s.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/poppins/v24/pxiByp8kv8JHgFVrLCz7V1s.ttf) format('truetype');
+}
+</style>
+  
+    
+    
+    
+
+    {% assign locationOrigin = request.origin | append: routes.root_url | split: '/' | join: '/' %}
+
+    
+        <section
+          class="gp-mx-auto gp-max-w-full [&_*]:gp-max-w-full {% if section.settings.section_preload == "false" %}gps-lazy {% endif %}"
+          style="--w:100%;--w-tablet:100%;--w-mobile:100%;--pl:none;--pl-tablet:none;--pl-mobile:none;--pr:none;--pr-tablet:none;--pr-mobile:none"
+        >
+          
+    <gp-row gp-data='{"background":{"desktop":{"attachment":"scroll","color":"#FFFFFF","image":{"height":0,"src":"","width":0},"position":{"x":50,"y":50},"repeat":"no-repeat","size":"cover","type":"color"}},"uid":"gnRh-2tC2r"}' data-id="gnRh-2tC2r" id="gnRh-2tC2r" data-same-height-subgrid-container class="gnRh-2tC2r gp-relative gp-mx-auto gp-mb-0 gp-grid gp-max-w-full gp-transition-colors gp-duration-200 gp-ease-in-out [&_*]:gp-max-w-full gp-grid-rows-[1fr]" style="--bs:none;--bw:0px;--bc:transparent;--shadow:none;--d:grid;--d-mobile:grid;--d-tablet:grid;--op:100%;--pageType:GP_STATIC;--bblr:0px;--bbrr:0px;--btlr:0px;--btrr:0px;--pt:15px;--pl:15px;--pb:auto;--pr:15px;--pt-tablet:10px;--pl-tablet:15px;--pb-tablet:auto;--pr-tablet:15px;--pt-mobile:10px;--pl-mobile:15px;--pb-mobile:auto;--pr-mobile:15px;--cg:62px;--cg-tablet:62px;--gtc:minmax(0, 12fr);--gtc-mobile:minmax(0, 12fr);--w:100%;--w-tablet:100%;--w-mobile:100%;--bgc:#FFFFFF;--bgi:url();--bgp:50% 50%;--bgs:cover;--bgr:no-repeat;--bga:scroll;--pc:start">
+      
+
+      <div
+      data-same-height-display-contents
+      style="--jc:start"
+      class="go_GQCwUSk gp-relative gp-flex gp-flex-col"
+    >
+      
+    
+
+    
+
+    
+    <gp-row gp-data='{"background":{"desktop":{"attachment":"scroll","color":"transparent","image":{"height":0,"src":"","width":0},"position":{"x":50,"y":50},"repeat":"no-repeat","size":"cover","type":"color"}},"uid":"gyOmwdMVfN"}' data-id="gyOmwdMVfN" id="gyOmwdMVfN" data-same-height-subgrid-container class="gyOmwdMVfN gp-relative gp-mx-auto gp-mb-0 gp-grid gp-max-w-full gp-transition-colors gp-duration-200 gp-ease-in-out [&_*]:gp-max-w-full gp-grid-rows-[1fr] gp_top-elm" style="--bs:solid;--bw:0px;--bc:#121212;--shadow:none;--d:grid;--d-mobile:grid;--d-tablet:grid;--op:100%;--pageType:GP_STATIC;--bblr:0px;--bbrr:0px;--btlr:0px;--btrr:0px;--cg:62px;--gtc:minmax(0, 12fr);--gtc-mobile:minmax(0, 12fr);--w:100%;--h:100%;--bgc:transparent;--bgi:url();--bgp:50% 50%;--bgs:cover;--bgr:no-repeat;--bga:scroll;--pc:start">
+      
+
+      <div
+      data-same-height-display-contents
+      style="--jc:start"
+      class="gzfkZySQ_m gp-relative gp-flex gp-flex-col"
+    >
+      
+    {% assign locationOrigin = request.origin | append: routes.root_url | split: '/' | join: '/' %}
+    <div data-id="gedxf1T6u0"
+        class="gedxf1T6u0"
+        style="--ta:left;--bs:none;--bw:0px;--bc:transparent;--shadow:none;--d:block;--d-mobile:block;--d-tablet:block;--op:100%;--pageType:GP_STATIC;--bblr:0px;--bbrr:0px;--btlr:0px;--btrr:0px;--mb:var(--g-s-s);--dynamic-source-color:#F4F4F4"
+      >
+      <div class="gp-flex" style="--jc:left">
+        <h2
+          data-gp-text
+          class=" gp-text-instant gp-text"
+          style="--w:100%;--w-tablet:100%;--w-mobile:100%;--tdt:auto;--bblr:0px;--bbrr:0px;--btlr:0px;--btrr:0px;--ts:none;--ta:left;--ta-mobile:left;--c:#242424;--fs:normal;--ff:var(--g-font-Roboto, 'Roboto'), var(--g-font-heading, heading);--size:33px;--size-tablet:33px;--size-mobile:24px;--lh:110%;--lh-tablet:110%;--lh-mobile:110%;--weight:bold;word-break:break-word;overflow:hidden;--tdl:"
+        >
+          {{ section.settings.ggedxf1T6u0_text | replace: '$locationOrigin', locationOrigin }}
+        </h2>
+      </div>
+    </div>
+    
+    {% assign locationOrigin = request.origin | append: routes.root_url | split: '/' | join: '/' %}
+    <div data-id="gJeG8clmk9"
+        class="gJeG8clmk9"
+        style="--ta:left;--bs:none;--bw:0px;--bc:transparent;--shadow:none;--d:block;--d-mobile:block;--d-tablet:block;--op:100%;--pageType:GP_STATIC;--bblr:0px;--bbrr:0px;--btlr:0px;--btrr:0px;--mb:var(--g-s-s);--mb-mobile:5px;--dynamic-source-color:#F4F4F4"
+      >
+      <div class="gp-flex" style="--jc:left">
+        <h2
+          data-gp-text
+          class=" gp-text-instant gp-text"
+          style="--w:100%;--w-tablet:100%;--w-mobile:100%;--tdt:auto;--bblr:0px;--bbrr:0px;--btlr:0px;--btrr:0px;--ts:none;--ta:left;--ta-tablet:left;--ta-mobile:left;--c:#4F4F4F;--fs:normal;--ff:var(--g-font-Roboto, 'Roboto'), var(--g-font-heading, heading);--weight:400;--size:15px;--size-tablet:18px;--size-mobile:11px;--lh:110%;--lh-tablet:110%;--lh-mobile:110%;word-break:break-word;overflow:hidden;--tdl:"
+        >
+          {{ section.settings.ggJeG8clmk9_text | replace: '$locationOrigin', locationOrigin }}
+        </h2>
+      </div>
+    </div>
+    
+    {% assign locationOrigin = request.origin | append: routes.root_url | split: '/' | join: '/' %}
+    <div data-id="gY0pYRHYam"
+        class="gY0pYRHYam"
+        style="--ta:left;--bs:none;--bw:1px 1px 1px 1px;--bc:var(--g-c-line-3, line-3);--d:block;--d-mobile:block;--d-tablet:block;--op:100%;--pageType:GP_STATIC;--bblr:0px;--bbrr:0px;--btlr:0px;--btrr:0px;--mb:var(--g-s-s);--pt:0px;--pl:0px;--pb:0px;--pr:0px;--mb-tablet:var(--g-s-s);--pt-tablet:0px;--pl-tablet:0px;--pb-tablet:0px;--pr-tablet:0px;--mb-mobile:15px;--pt-mobile:0px;--pl-mobile:0px;--pb-mobile:0px;--pr-mobile:0px;--dynamic-source-color:#F4F4F4"
+      >
+      <div class="gp-flex" style="--jc:left">
+        <div
+          data-gp-text
+          class=" gp-text-instant gp-text"
+          style="--w:100%;--w-tablet:100%;--w-mobile:100%;--tdt:auto;--b:none;--bc:#121212;--bw:1px 1px 1px 1px;--bblr:0px;--bbrr:0px;--btlr:0px;--btrr:0px;--shadow:none;--ts:none;--ta:left;--ta-mobile:left;--line-clamp:unset;--line-clamp-tablet:unset;--line-clamp-mobile:unset;--ff:var(--g-font-sans-serif, 'sans-serif'), var(--g-font-body, body);--weight:400;--size:20px;--size-tablet:14px;--size-mobile:13px;--lh:120%;--lh-tablet:180%;--lh-mobile:180%;--c:var(--g-c-text-1, text-1);--tt:none;word-break:break-word;--bgc:transparent;--bgc-mobile:#E6FFFB;--bgi:url();--bgi-mobile:url();--bgp:50% 50%;--bgp-mobile:50% 50%;--bgs:cover;--bgs-mobile:cover;--bgr:no-repeat;--bgr-mobile:no-repeat;--bga:scroll;--bga-mobile:scroll;--pl-mobile:8px;--pr-mobile:8px;--pt-mobile:8px;--pb-mobile:8px;overflow:hidden;--tdl:"
+        >
+          {{ section.settings.ggY0pYRHYam_text | replace: '$locationOrigin', locationOrigin }}
+        </div>
+      </div>
+    </div>
+    
+    <div
+      role="presentation"
+      data-id="gl4jn7CBep"
+      style="--bs:none;--bw:0px;--bc:transparent;--shadow:none;--d:block;--d-mobile:block;--d-tablet:block;--op:100%;--pageType:GP_STATIC;--bblr:0px;--bbrr:0px;--btlr:0px;--btrr:0px;--mb:var(--g-s-2xl);--mb-mobile:16px;--ta:left"
+      class="gp-group/image gp-relative force-publish-1773183197520 gp-flex-none gp-h-auto mobile:gp-flex-none mobile:gp-h-auto tablet:gp-flex-none tablet:gp-h-auto gl4jn7CBep"
+    >
+      <div
+        
+        style="border-radius:inherit;--jc:left"
+        class="gp-h-full gp-w-full gp-flex pointer-events-auto"
+      >
+        
+    <picture style="border-radius:inherit" class="gp-contents">
+      
+      <source media="(max-width: 767px)" data-srcSet="{{ "Tabby_cat_lying_on_couch_32b457e0a1.jpg" | file_url }}" srcset="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTM3NiIgaGVpZ2h0PSI3NjgiIHZlcnNpb249IjEuMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+CiAgICA8ZGVmcz4KICAgICAgPGxpbmVhckdyYWRpZW50IGlkPSJnLTEzNzYtNzY4Ij4KICAgICAgICA8c3RvcCBzdG9wLWNvbG9yPSJyZ2JhKDUxLCA1MSwgNTEsIDApIiBvZmZzZXQ9IjIwJSIgLz4KICAgICAgICA8c3RvcCBzdG9wLWNvbG9yPSJyZ2JhKDUxLCA1MSwgNTEsIDApIiBvZmZzZXQ9IjUwJSIgLz4KICAgICAgICA8c3RvcCBzdG9wLWNvbG9yPSJyZ2JhKDUxLCA1MSwgNTEsIDApIiBvZmZzZXQ9IjcwJSIgLz4KICAgICAgPC9saW5lYXJHcmFkaWVudD4KICAgIDwvZGVmcz4KICAgIDxyZWN0IHdpZHRoPSIxMzc2IiBoZWlnaHQ9Ijc2OCIgZmlsbD0icmdiYSg1MSwgNTEsIDUxLCAwKSIgLz4KICAgIDxyZWN0IGlkPSJyIiB3aWR0aD0iMTM3NiIgaGVpZ2h0PSI3NjgiIGZpbGw9InVybCgjZy0xMzc2LTc2OCkiIC8+CiAgICA8YW5pbWF0ZSB4bGluazpocmVmPSIjciIgYXR0cmlidXRlTmFtZT0ieCIgZnJvbT0iLTEzNzYiIHRvPSIxMzc2IiBkdXI9IjFzIiByZXBlYXRDb3VudD0iaW5kZWZpbml0ZSIgIC8+CiAgPC9zdmc+" />
+      <source media="(max-width: 1024px)" data-srcSet="{{ "Tabby_cat_lying_on_couch_32b457e0a1.jpg" | file_url }}" srcset="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTM3NiIgaGVpZ2h0PSI3NjgiIHZlcnNpb249IjEuMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+CiAgICA8ZGVmcz4KICAgICAgPGxpbmVhckdyYWRpZW50IGlkPSJnLTEzNzYtNzY4Ij4KICAgICAgICA8c3RvcCBzdG9wLWNvbG9yPSJyZ2JhKDUxLCA1MSwgNTEsIDApIiBvZmZzZXQ9IjIwJSIgLz4KICAgICAgICA8c3RvcCBzdG9wLWNvbG9yPSJyZ2JhKDUxLCA1MSwgNTEsIDApIiBvZmZzZXQ9IjUwJSIgLz4KICAgICAgICA8c3RvcCBzdG9wLWNvbG9yPSJyZ2JhKDUxLCA1MSwgNTEsIDApIiBvZmZzZXQ9IjcwJSIgLz4KICAgICAgPC9saW5lYXJHcmFkaWVudD4KICAgIDwvZGVmcz4KICAgIDxyZWN0IHdpZHRoPSIxMzc2IiBoZWlnaHQ9Ijc2OCIgZmlsbD0icmdiYSg1MSwgNTEsIDUxLCAwKSIgLz4KICAgIDxyZWN0IGlkPSJyIiB3aWR0aD0iMTM3NiIgaGVpZ2h0PSI3NjgiIGZpbGw9InVybCgjZy0xMzc2LTc2OCkiIC8+CiAgICA8YW5pbWF0ZSB4bGluazpocmVmPSIjciIgYXR0cmlidXRlTmFtZT0ieCIgZnJvbT0iLTEzNzYiIHRvPSIxMzc2IiBkdXI9IjFzIiByZXBlYXRDb3VudD0iaW5kZWZpbml0ZSIgIC8+CiAgPC9zdmc+" />
+    
+      
+      <img
+        title="Image Title" base-src="{{ "Tabby_cat_lying_on_couch_32b457e0a1.jpg" | file_url }}" quality-type="{}" quality-percent="{}"
+        src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTM3NiIgaGVpZ2h0PSI3NjgiIHZlcnNpb249IjEuMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+CiAgICA8ZGVmcz4KICAgICAgPGxpbmVhckdyYWRpZW50IGlkPSJnLTEzNzYtNzY4Ij4KICAgICAgICA8c3RvcCBzdG9wLWNvbG9yPSJyZ2JhKDUxLCA1MSwgNTEsIDApIiBvZmZzZXQ9IjIwJSIgLz4KICAgICAgICA8c3RvcCBzdG9wLWNvbG9yPSJyZ2JhKDUxLCA1MSwgNTEsIDApIiBvZmZzZXQ9IjUwJSIgLz4KICAgICAgICA8c3RvcCBzdG9wLWNvbG9yPSJyZ2JhKDUxLCA1MSwgNTEsIDApIiBvZmZzZXQ9IjcwJSIgLz4KICAgICAgPC9saW5lYXJHcmFkaWVudD4KICAgIDwvZGVmcz4KICAgIDxyZWN0IHdpZHRoPSIxMzc2IiBoZWlnaHQ9Ijc2OCIgZmlsbD0icmdiYSg1MSwgNTEsIDUxLCAwKSIgLz4KICAgIDxyZWN0IGlkPSJyIiB3aWR0aD0iMTM3NiIgaGVpZ2h0PSI3NjgiIGZpbGw9InVybCgjZy0xMzc2LTc2OCkiIC8+CiAgICA8YW5pbWF0ZSB4bGluazpocmVmPSIjciIgYXR0cmlidXRlTmFtZT0ieCIgZnJvbT0iLTEzNzYiIHRvPSIxMzc2IiBkdXI9IjFzIiByZXBlYXRDb3VudD0iaW5kZWZpbml0ZSIgIC8+CiAgPC9zdmc+" data-src="{{ "Tabby_cat_lying_on_couch_32b457e0a1.jpg" | file_url }}"
+        alt="Alt Image"
+        width="100%"
+        style="--aspect:4/3;--aspect-tablet:4/3;--aspect-mobile:4/3;--objf:cover;--objf-mobile:cover;--w:100%;--w-tablet:100%;--w-mobile:100%;--h:auto;--h-tablet:auto;--h-mobile:auto;--b:none;--bblr:10px;--bbrr:10px;--btlr:10px;--btrr:10px;--radiusType:rounded;--shadow:none"
+        class="gp-inline-block gp-w-full gp-max-w-full gp_lazyload"
+      />
+    
+    </picture>
+  
+      </div>
+    </div>
+  
+    {% assign locationOrigin = request.origin | append: routes.root_url | split: '/' | join: '/' %}
+    <div data-id="gALp8TkPsA"
+        class="gALp8TkPsA"
+        style="--ta:left;--bs:none;--bw:0px;--bc:transparent;--shadow:none;--d:block;--d-mobile:block;--d-tablet:block;--op:100%;--pageType:GP_STATIC;--bblr:0px;--bbrr:0px;--btlr:0px;--btrr:0px;--mb:var(--g-s-3xl);--mb-mobile:20px;--pt-mobile:0px;--pl-mobile:0px;--pb-mobile:0px;--pr-mobile:0px;--dynamic-source-color:#F4F4F4"
+      >
+      <div class="gp-flex" style="--jc:left">
+        <div
+          data-gp-text
+          class=" gp-text-instant gp-text"
+          style="--w:100%;--w-tablet:100%;--w-mobile:100%;--tdt:auto;--bblr:0px;--bbrr:0px;--btlr:0px;--btrr:0px;--ts:none;--ta:left;--ta-mobile:left;--line-clamp:unset;--line-clamp-tablet:unset;--line-clamp-mobile:unset;--c:#242424;--fs:normal;--ff:var(--g-font-Roboto, 'Roboto'), var(--g-font-body, body);--weight:400;--size:15px;--size-tablet:14px;--size-mobile:17px;--lh:150%;--lh-tablet:180%;--lh-mobile:120%;word-break:break-word;overflow:hidden;--tdl:"
+        >
+          {{ section.settings.ggALp8TkPsA_text | replace: '$locationOrigin', locationOrigin }}
+        </div>
+      </div>
+    </div>
+    
+    {% assign locationOrigin = request.origin | append: routes.root_url | split: '/' | join: '/' %}
+    <div data-id="gaYlNHfCEu"
+        class="gaYlNHfCEu"
+        style="--ta:left;--bs:none;--bw:0px;--bc:transparent;--shadow:none;--d:block;--d-mobile:block;--d-tablet:block;--op:100%;--pageType:GP_STATIC;--bblr:0px;--bbrr:0px;--btlr:0px;--btrr:0px;--mb:var(--g-s-m);--dynamic-source-color:#F4F4F4"
+      >
+      <div class="gp-flex" style="--jc:left">
+        <h2
+          data-gp-text
+          class=" gp-text-instant gp-text"
+          style="--w:100%;--w-tablet:100%;--w-mobile:100%;--tdt:auto;--bblr:0px;--bbrr:0px;--btlr:0px;--btrr:0px;--ts:none;--ta:left;--ta-mobile:left;--c:#242424;--fs:normal;--ff:var(--g-font-Roboto, 'Roboto'), var(--g-font-heading, heading);--weight:700;--size:28px;--size-tablet:28px;--size-mobile:21px;--lh:130%;--lh-tablet:130%;--lh-mobile:130%;word-break:break-word;overflow:hidden;--tdl:"
+        >
+          {{ section.settings.ggaYlNHfCEu_text | replace: '$locationOrigin', locationOrigin }}
+        </h2>
+      </div>
+    </div>
+    
+    {% assign locationOrigin = request.origin | append: routes.root_url | split: '/' | join: '/' %}
+    <div data-id="g45ZTCFKdr"
+        class="g45ZTCFKdr"
+        style="--ta:left;--bs:none;--bw:0px;--bc:transparent;--shadow:none;--d:block;--d-mobile:block;--d-tablet:block;--op:100%;--pageType:GP_STATIC;--bblr:0px;--bbrr:0px;--btlr:0px;--btrr:0px;--mb:var(--g-s-3xl);--mb-mobile:20px;--pt-mobile:0px;--pl-mobile:0px;--pb-mobile:0px;--pr-mobile:0px;--dynamic-source-color:#F4F4F4"
+      >
+      <div class="gp-flex" style="--jc:left">
+        <div
+          data-gp-text
+          class=" gp-text-instant gp-text"
+          style="--w:100%;--w-tablet:100%;--w-mobile:100%;--tdt:auto;--bblr:0px;--bbrr:0px;--btlr:0px;--btrr:0px;--ts:none;--ta:left;--ta-mobile:left;--line-clamp:unset;--line-clamp-tablet:unset;--line-clamp-mobile:unset;--c:#242424;--fs:normal;--ff:var(--g-font-Roboto, 'Roboto'), var(--g-font-body, body);--weight:400;--size:15px;--size-tablet:14px;--size-mobile:17px;--lh:150%;--lh-tablet:180%;--lh-mobile:120%;word-break:break-word;overflow:hidden;--tdl:"
+        >
+          {{ section.settings.gg45ZTCFKdr_text | replace: '$locationOrigin', locationOrigin }}
+        </div>
+      </div>
+    </div>
+    
+    {% assign locationOrigin = request.origin | append: routes.root_url | split: '/' | join: '/' %}
+    <div data-id="gEZuT0__Qo"
+        class="gEZuT0__Qo"
+        style="--ta:left;--bs:none;--bw:0px;--bc:transparent;--shadow:none;--d:block;--d-mobile:block;--d-tablet:block;--op:100%;--pageType:GP_STATIC;--bblr:0px;--bbrr:0px;--btlr:0px;--btrr:0px;--mb:var(--g-s-m);--dynamic-source-color:#F4F4F4"
+      >
+      <div class="gp-flex" style="--jc:left">
+        <h2
+          data-gp-text
+          class=" gp-text-instant gp-text"
+          style="--w:100%;--w-tablet:100%;--w-mobile:100%;--tdt:auto;--bblr:0px;--bbrr:0px;--btlr:0px;--btrr:0px;--ts:none;--ta:left;--ta-mobile:left;--c:#242424;--fs:normal;--ff:var(--g-font-Roboto, 'Roboto'), var(--g-font-heading, heading);--weight:700;--size:28px;--size-tablet:28px;--size-mobile:21px;--lh:130%;--lh-tablet:130%;--lh-mobile:130%;word-break:break-word;overflow:hidden;--tdl:"
+        >
+          {{ section.settings.ggEZuT0__Qo_text | replace: '$locationOrigin', locationOrigin }}
+        </h2>
+      </div>
+    </div>
+    
+    {% assign locationOrigin = request.origin | append: routes.root_url | split: '/' | join: '/' %}
+    <div data-id="gQK6xyXD5u"
+        class="gQK6xyXD5u"
+        style="--ta:left;--bs:none;--bw:0px;--bc:transparent;--shadow:none;--d:block;--d-mobile:block;--d-tablet:block;--op:100%;--pageType:GP_STATIC;--bblr:0px;--bbrr:0px;--btlr:0px;--btrr:0px;--mb:var(--g-s-3xl);--mb-mobile:20px;--pt-mobile:0px;--pl-mobile:0px;--pb-mobile:0px;--pr-mobile:0px;--dynamic-source-color:#F4F4F4"
+      >
+      <div class="gp-flex" style="--jc:left">
+        <div
+          data-gp-text
+          class=" gp-text-instant gp-text"
+          style="--w:100%;--w-tablet:100%;--w-mobile:100%;--tdt:auto;--bblr:0px;--bbrr:0px;--btlr:0px;--btrr:0px;--ts:none;--ta:left;--ta-mobile:left;--line-clamp:unset;--line-clamp-tablet:unset;--line-clamp-mobile:unset;--c:#242424;--fs:normal;--ff:var(--g-font-Roboto, 'Roboto'), var(--g-font-body, body);--weight:400;--size:15px;--size-tablet:14px;--size-mobile:17px;--lh:150%;--lh-tablet:180%;--lh-mobile:120%;word-break:break-word;overflow:hidden;--tdl:"
+        >
+          {{ section.settings.ggQK6xyXD5u_text | replace: '$locationOrigin', locationOrigin }}
+        </div>
+      </div>
+    </div>
+    
+    <div
+      role="presentation"
+      data-id="gfx6ZPAVKU"
+      style="--bs:none;--bw:0px;--bc:transparent;--shadow:none;--d:block;--d-mobile:block;--d-tablet:block;--op:100%;--pageType:GP_STATIC;--bblr:0px;--bbrr:0px;--btlr:0px;--btrr:0px;--mb:var(--g-s-2xl);--mb-mobile:16px;--ta:left"
+      class="gp-group/image gp-relative force-publish-1773183197521 gp-flex-none gp-h-auto mobile:gp-flex-none mobile:gp-h-auto tablet:gp-flex-none tablet:gp-h-auto gfx6ZPAVKU"
+    >
+      <div
+        
+        style="border-radius:inherit;--jc:left"
+        class="gp-h-full gp-w-full gp-flex pointer-events-auto"
+      >
+        
+    <picture style="border-radius:inherit" class="gp-contents">
+      
+      <source media="(max-width: 767px)" data-srcSet="{{ "Senior_cat_face_resting_fe85d0c189.jpg" | file_url }}" srcset="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTM3NiIgaGVpZ2h0PSI3NjgiIHZlcnNpb249IjEuMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+CiAgICA8ZGVmcz4KICAgICAgPGxpbmVhckdyYWRpZW50IGlkPSJnLTEzNzYtNzY4Ij4KICAgICAgICA8c3RvcCBzdG9wLWNvbG9yPSJyZ2JhKDUxLCA1MSwgNTEsIDApIiBvZmZzZXQ9IjIwJSIgLz4KICAgICAgICA8c3RvcCBzdG9wLWNvbG9yPSJyZ2JhKDUxLCA1MSwgNTEsIDApIiBvZmZzZXQ9IjUwJSIgLz4KICAgICAgICA8c3RvcCBzdG9wLWNvbG9yPSJyZ2JhKDUxLCA1MSwgNTEsIDApIiBvZmZzZXQ9IjcwJSIgLz4KICAgICAgPC9saW5lYXJHcmFkaWVudD4KICAgIDwvZGVmcz4KICAgIDxyZWN0IHdpZHRoPSIxMzc2IiBoZWlnaHQ9Ijc2OCIgZmlsbD0icmdiYSg1MSwgNTEsIDUxLCAwKSIgLz4KICAgIDxyZWN0IGlkPSJyIiB3aWR0aD0iMTM3NiIgaGVpZ2h0PSI3NjgiIGZpbGw9InVybCgjZy0xMzc2LTc2OCkiIC8+CiAgICA8YW5pbWF0ZSB4bGluazpocmVmPSIjciIgYXR0cmlidXRlTmFtZT0ieCIgZnJvbT0iLTEzNzYiIHRvPSIxMzc2IiBkdXI9IjFzIiByZXBlYXRDb3VudD0iaW5kZWZpbml0ZSIgIC8+CiAgPC9zdmc+" />
+      <source media="(max-width: 1024px)" data-srcSet="{{ "Senior_cat_face_resting_fe85d0c189.jpg" | file_url }}" srcset="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTM3NiIgaGVpZ2h0PSI3NjgiIHZlcnNpb249IjEuMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+CiAgICA8ZGVmcz4KICAgICAgPGxpbmVhckdyYWRpZW50IGlkPSJnLTEzNzYtNzY4Ij4KICAgICAgICA8c3RvcCBzdG9wLWNvbG9yPSJyZ2JhKDUxLCA1MSwgNTEsIDApIiBvZmZzZXQ9IjIwJSIgLz4KICAgICAgICA8c3RvcCBzdG9wLWNvbG9yPSJyZ2JhKDUxLCA1MSwgNTEsIDApIiBvZmZzZXQ9IjUwJSIgLz4KICAgICAgICA8c3RvcCBzdG9wLWNvbG9yPSJyZ2JhKDUxLCA1MSwgNTEsIDApIiBvZmZzZXQ9IjcwJSIgLz4KICAgICAgPC9saW5lYXJHcmFkaWVudD4KICAgIDwvZGVmcz4KICAgIDxyZWN0IHdpZHRoPSIxMzc2IiBoZWlnaHQ9Ijc2OCIgZmlsbD0icmdiYSg1MSwgNTEsIDUxLCAwKSIgLz4KICAgIDxyZWN0IGlkPSJyIiB3aWR0aD0iMTM3NiIgaGVpZ2h0PSI3NjgiIGZpbGw9InVybCgjZy0xMzc2LTc2OCkiIC8+CiAgICA8YW5pbWF0ZSB4bGluazpocmVmPSIjciIgYXR0cmlidXRlTmFtZT0ieCIgZnJvbT0iLTEzNzYiIHRvPSIxMzc2IiBkdXI9IjFzIiByZXBlYXRDb3VudD0iaW5kZWZpbml0ZSIgIC8+CiAgPC9zdmc+" />
+    
+      
+      <img
+        title="Image Title" base-src="{{ "Senior_cat_face_resting_fe85d0c189.jpg" | file_url }}" quality-type="{}" quality-percent="{}"
+        src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTM3NiIgaGVpZ2h0PSI3NjgiIHZlcnNpb249IjEuMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+CiAgICA8ZGVmcz4KICAgICAgPGxpbmVhckdyYWRpZW50IGlkPSJnLTEzNzYtNzY4Ij4KICAgICAgICA8c3RvcCBzdG9wLWNvbG9yPSJyZ2JhKDUxLCA1MSwgNTEsIDApIiBvZmZzZXQ9IjIwJSIgLz4KICAgICAgICA8c3RvcCBzdG9wLWNvbG9yPSJyZ2JhKDUxLCA1MSwgNTEsIDApIiBvZmZzZXQ9IjUwJSIgLz4KICAgICAgICA8c3RvcCBzdG9wLWNvbG9yPSJyZ2JhKDUxLCA1MSwgNTEsIDApIiBvZmZzZXQ9IjcwJSIgLz4KICAgICAgPC9saW5lYXJHcmFkaWVudD4KICAgIDwvZGVmcz4KICAgIDxyZWN0IHdpZHRoPSIxMzc2IiBoZWlnaHQ9Ijc2OCIgZmlsbD0icmdiYSg1MSwgNTEsIDUxLCAwKSIgLz4KICAgIDxyZWN0IGlkPSJyIiB3aWR0aD0iMTM3NiIgaGVpZ2h0PSI3NjgiIGZpbGw9InVybCgjZy0xMzc2LTc2OCkiIC8+CiAgICA8YW5pbWF0ZSB4bGluazpocmVmPSIjciIgYXR0cmlidXRlTmFtZT0ieCIgZnJvbT0iLTEzNzYiIHRvPSIxMzc2IiBkdXI9IjFzIiByZXBlYXRDb3VudD0iaW5kZWZpbml0ZSIgIC8+CiAgPC9zdmc+" data-src="{{ "Senior_cat_face_resting_fe85d0c189.jpg" | file_url }}"
+        alt="Alt Image"
+        width="100%"
+        style="--aspect:4/3;--aspect-tablet:auto;--aspect-mobile:4/3;--objf:cover;--objf-mobile:cover;--w:100%;--w-tablet:100%;--w-mobile:100%;--h:auto;--h-tablet:auto;--h-mobile:auto;--b:none;--bblr:10px;--bbrr:10px;--btlr:10px;--btrr:10px;--radiusType:rounded;--shadow:none"
+        class="gp-inline-block gp-w-full gp-max-w-full gp_lazyload"
+      />
+    
+    </picture>
+  
+      </div>
+    </div>
+  
+    {% assign locationOrigin = request.origin | append: routes.root_url | split: '/' | join: '/' %}
+    <div data-id="g5y3oD1JRw"
+        class="g5y3oD1JRw"
+        style="--ta:left;--bs:none;--bw:0px;--bc:transparent;--shadow:none;--d:block;--d-mobile:block;--d-tablet:block;--op:100%;--pageType:GP_STATIC;--bblr:0px;--bbrr:0px;--btlr:0px;--btrr:0px;--mb:var(--g-s-m);--dynamic-source-color:#F4F4F4"
+      >
+      <div class="gp-flex" style="--jc:left">
+        <h2
+          data-gp-text
+          class=" gp-text-instant gp-text"
+          style="--w:100%;--w-tablet:100%;--w-mobile:100%;--tdt:auto;--bblr:0px;--bbrr:0px;--btlr:0px;--btrr:0px;--ts:none;--ta:left;--ta-mobile:left;--c:#242424;--fs:normal;--ff:var(--g-font-Roboto, 'Roboto'), var(--g-font-heading, heading);--weight:700;--size:28px;--size-tablet:28px;--size-mobile:21px;--lh:130%;--lh-tablet:130%;--lh-mobile:130%;word-break:break-word;overflow:hidden;--tdl:"
+        >
+          {{ section.settings.gg5y3oD1JRw_text | replace: '$locationOrigin', locationOrigin }}
+        </h2>
+      </div>
+    </div>
+    
+    {% assign locationOrigin = request.origin | append: routes.root_url | split: '/' | join: '/' %}
+    <div data-id="gBTywczrZn"
+        class="gBTywczrZn"
+        style="--ta:left;--bs:none;--bw:0px;--bc:transparent;--shadow:none;--d:block;--d-mobile:block;--d-tablet:block;--op:100%;--pageType:GP_STATIC;--bblr:0px;--bbrr:0px;--btlr:0px;--btrr:0px;--mb:var(--g-s-3xl);--mb-mobile:16px;--pt-mobile:0px;--pl-mobile:0px;--pb-mobile:0px;--pr-mobile:0px;--dynamic-source-color:#F4F4F4"
+      >
+      <div class="gp-flex" style="--jc:left">
+        <div
+          data-gp-text
+          class=" gp-text-instant gp-text"
+          style="--w:100%;--w-tablet:100%;--w-mobile:100%;--tdt:auto;--bblr:0px;--bbrr:0px;--btlr:0px;--btrr:0px;--ts:none;--ta:left;--ta-mobile:left;--line-clamp:unset;--line-clamp-tablet:unset;--line-clamp-mobile:unset;--c:#242424;--fs:normal;--ff:var(--g-font-Roboto, 'Roboto'), var(--g-font-body, body);--weight:400;--size:15px;--size-tablet:14px;--size-mobile:17px;--lh:150%;--lh-tablet:180%;--lh-mobile:120%;word-break:break-word;overflow:hidden;--tdl:"
+        >
+          {{ section.settings.ggBTywczrZn_text | replace: '$locationOrigin', locationOrigin }}
+        </div>
+      </div>
+    </div>
+    
+    {% assign locationOrigin = request.origin | append: routes.root_url | split: '/' | join: '/' %}
+    <div data-id="gZIATKum4U"
+        class="gZIATKum4U"
+        style="--ta:left;--bs:none;--bw:0px;--bc:transparent;--shadow:none;--d:block;--d-mobile:block;--d-tablet:block;--op:100%;--pageType:GP_STATIC;--bblr:0px;--bbrr:0px;--btlr:0px;--btrr:0px;--mb:var(--g-s-m);--dynamic-source-color:#F4F4F4"
+      >
+      <div class="gp-flex" style="--jc:left">
+        <h2
+          data-gp-text
+          class=" gp-text-instant gp-text"
+          style="--w:100%;--w-tablet:100%;--w-mobile:100%;--tdt:auto;--bblr:0px;--bbrr:0px;--btlr:0px;--btrr:0px;--ts:none;--ta:left;--ta-mobile:left;--c:#242424;--fs:normal;--ff:var(--g-font-Roboto, 'Roboto'), var(--g-font-heading, heading);--weight:700;--size:28px;--size-tablet:28px;--size-mobile:21px;--lh:130%;--lh-tablet:130%;--lh-mobile:130%;word-break:break-word;overflow:hidden;--tdl:"
+        >
+          {{ section.settings.ggZIATKum4U_text | replace: '$locationOrigin', locationOrigin }}
+        </h2>
+      </div>
+    </div>
+    
+    {% assign locationOrigin = request.origin | append: routes.root_url | split: '/' | join: '/' %}
+    <div data-id="g-oPl0_Xi8"
+        class="g-oPl0_Xi8"
+        style="--ta:left;--bs:none;--bw:0px;--bc:transparent;--shadow:none;--d:block;--d-mobile:block;--d-tablet:block;--op:100%;--pageType:GP_STATIC;--bblr:0px;--bbrr:0px;--btlr:0px;--btrr:0px;--mb:var(--g-s-3xl);--mb-mobile:16px;--pt-mobile:0px;--pl-mobile:0px;--pb-mobile:0px;--pr-mobile:0px;--dynamic-source-color:#F4F4F4"
+      >
+      <div class="gp-flex" style="--jc:left">
+        <div
+          data-gp-text
+          class=" gp-text-instant gp-text"
+          style="--w:100%;--w-tablet:100%;--w-mobile:100%;--tdt:auto;--bblr:0px;--bbrr:0px;--btlr:0px;--btrr:0px;--ts:none;--ta:left;--ta-mobile:left;--line-clamp:unset;--line-clamp-tablet:unset;--line-clamp-mobile:unset;--c:#242424;--fs:normal;--ff:var(--g-font-Roboto, 'Roboto'), var(--g-font-body, body);--weight:400;--size:15px;--size-tablet:14px;--size-mobile:17px;--lh:150%;--lh-tablet:180%;--lh-mobile:120%;word-break:break-word;overflow:hidden;--tdl:"
+        >
+          {{ section.settings.gg-oPl0_Xi8_text | replace: '$locationOrigin', locationOrigin }}
+        </div>
+      </div>
+    </div>
+    
+    {% assign locationOrigin = request.origin | append: routes.root_url | split: '/' | join: '/' %}
+    <div data-id="grBa3CInuZ"
+        class="grBa3CInuZ"
+        style="--ta:left;--bs:none;--bw:0px;--bc:transparent;--shadow:none;--d:block;--d-mobile:block;--d-tablet:block;--op:100%;--pageType:GP_STATIC;--bblr:0px;--bbrr:0px;--btlr:0px;--btrr:0px;--mb:var(--g-s-m);--dynamic-source-color:#F4F4F4"
+      >
+      <div class="gp-flex" style="--jc:left">
+        <h2
+          data-gp-text
+          class=" gp-text-instant gp-text"
+          style="--w:100%;--w-tablet:100%;--w-mobile:100%;--tdt:auto;--bblr:0px;--bbrr:0px;--btlr:0px;--btrr:0px;--ts:none;--ta:left;--ta-mobile:left;--c:#242424;--fs:normal;--ff:var(--g-font-Roboto, 'Roboto'), var(--g-font-heading, heading);--weight:700;--size:28px;--size-tablet:28px;--size-mobile:21px;--lh:130%;--lh-tablet:130%;--lh-mobile:130%;word-break:break-word;overflow:hidden;--tdl:"
+        >
+          {{ section.settings.ggrBa3CInuZ_text | replace: '$locationOrigin', locationOrigin }}
+        </h2>
+      </div>
+    </div>
+    
+    {% assign locationOrigin = request.origin | append: routes.root_url | split: '/' | join: '/' %}
+    <div data-id="gyoTn1GTzH"
+        class="gyoTn1GTzH"
+        style="--ta:left;--bs:none;--bw:0px;--bc:transparent;--shadow:none;--d:block;--d-mobile:block;--d-tablet:block;--op:100%;--pageType:GP_STATIC;--bblr:0px;--bbrr:0px;--btlr:0px;--btrr:0px;--mb:var(--g-s-3xl);--mb-mobile:16px;--pt-mobile:0px;--pl-mobile:0px;--pb-mobile:0px;--pr-mobile:0px;--dynamic-source-color:#F4F4F4"
+      >
+      <div class="gp-flex" style="--jc:left">
+        <div
+          data-gp-text
+          class=" gp-text-instant gp-text"
+          style="--w:100%;--w-tablet:100%;--w-mobile:100%;--tdt:auto;--bblr:0px;--bbrr:0px;--btlr:0px;--btrr:0px;--ts:none;--ta:left;--ta-mobile:left;--line-clamp:unset;--line-clamp-tablet:unset;--line-clamp-mobile:unset;--c:#242424;--fs:normal;--ff:var(--g-font-Roboto, 'Roboto'), var(--g-font-body, body);--weight:400;--size:15px;--size-tablet:14px;--size-mobile:17px;--lh:150%;--lh-tablet:180%;--lh-mobile:120%;word-break:break-word;overflow:hidden;--tdl:"
+        >
+          {{ section.settings.ggyoTn1GTzH_text | replace: '$locationOrigin', locationOrigin }}
+        </div>
+      </div>
+    </div>
+    
+    {% assign locationOrigin = request.origin | append: routes.root_url | split: '/' | join: '/' %}
+    <div data-id="ghLiLFHV3-"
+        class="ghLiLFHV3-"
+        style="--ta:left;--bs:none;--bw:0px;--bc:transparent;--shadow:none;--d:block;--d-mobile:block;--d-tablet:block;--op:100%;--pageType:GP_STATIC;--bblr:0px;--bbrr:0px;--btlr:0px;--btrr:0px;--mb:var(--g-s-m);--dynamic-source-color:#F4F4F4"
+      >
+      <div class="gp-flex" style="--jc:left">
+        <h2
+          data-gp-text
+          class=" gp-text-instant gp-text"
+          style="--w:100%;--w-tablet:100%;--w-mobile:100%;--tdt:auto;--bblr:0px;--bbrr:0px;--btlr:0px;--btrr:0px;--ts:none;--ta:left;--ta-mobile:left;--c:#242424;--fs:normal;--ff:var(--g-font-Roboto, 'Roboto'), var(--g-font-heading, heading);--weight:700;--size:28px;--size-tablet:28px;--size-mobile:21px;--lh:130%;--lh-tablet:130%;--lh-mobile:130%;word-break:break-word;overflow:hidden;--tdl:"
+        >
+          {{ section.settings.gghLiLFHV3-_text | replace: '$locationOrigin', locationOrigin }}
+        </h2>
+      </div>
+    </div>
+    
+    {% assign locationOrigin = request.origin | append: routes.root_url | split: '/' | join: '/' %}
+    <div data-id="gA2kmsgKoJ"
+        class="gA2kmsgKoJ"
+        style="--ta:left;--bs:none;--bw:0px;--bc:transparent;--shadow:none;--d:block;--d-mobile:block;--d-tablet:block;--op:100%;--pageType:GP_STATIC;--bblr:0px;--bbrr:0px;--btlr:0px;--btrr:0px;--mb:var(--g-s-3xl);--mb-mobile:16px;--pt-mobile:0px;--pl-mobile:0px;--pb-mobile:0px;--pr-mobile:0px;--dynamic-source-color:#F4F4F4"
+      >
+      <div class="gp-flex" style="--jc:left">
+        <div
+          data-gp-text
+          class=" gp-text-instant gp-text"
+          style="--w:100%;--w-tablet:100%;--w-mobile:100%;--tdt:auto;--bblr:0px;--bbrr:0px;--btlr:0px;--btrr:0px;--ts:none;--ta:left;--ta-mobile:left;--line-clamp:unset;--line-clamp-tablet:unset;--line-clamp-mobile:unset;--c:#242424;--fs:normal;--ff:var(--g-font-Roboto, 'Roboto'), var(--g-font-body, body);--weight:400;--size:15px;--size-tablet:14px;--size-mobile:17px;--lh:150%;--lh-tablet:180%;--lh-mobile:120%;word-break:break-word;overflow:hidden;--tdl:"
+        >
+          {{ section.settings.ggA2kmsgKoJ_text | replace: '$locationOrigin', locationOrigin }}
+        </div>
+      </div>
+    </div>
+    
+    {% assign locationOrigin = request.origin | append: routes.root_url | split: '/' | join: '/' %}
+    <div data-id="gjzCV_cxms"
+        class="gjzCV_cxms"
+        style="--ta:left;--bs:none;--bw:0px;--bc:transparent;--shadow:none;--d:block;--d-mobile:block;--d-tablet:block;--op:100%;--pageType:GP_STATIC;--bblr:0px;--bbrr:0px;--btlr:0px;--btrr:0px;--mb:var(--g-s-m);--dynamic-source-color:#F4F4F4"
+      >
+      <div class="gp-flex" style="--jc:left">
+        <h2
+          data-gp-text
+          class=" gp-text-instant gp-text"
+          style="--w:100%;--w-tablet:100%;--w-mobile:100%;--tdt:auto;--bblr:0px;--bbrr:0px;--btlr:0px;--btrr:0px;--ts:none;--ta:left;--ta-mobile:left;--c:#242424;--fs:normal;--ff:var(--g-font-Roboto, 'Roboto'), var(--g-font-heading, heading);--weight:700;--size:28px;--size-tablet:28px;--size-mobile:21px;--lh:130%;--lh-tablet:130%;--lh-mobile:130%;word-break:break-word;overflow:hidden;--tdl:"
+        >
+          {{ section.settings.ggjzCV_cxms_text | replace: '$locationOrigin', locationOrigin }}
+        </h2>
+      </div>
+    </div>
+    
+    {% assign locationOrigin = request.origin | append: routes.root_url | split: '/' | join: '/' %}
+    <div data-id="gT_NH_uE__"
+        class="gT_NH_uE__"
+        style="--ta:left;--bs:none;--bw:0px;--bc:transparent;--shadow:none;--d:block;--d-mobile:block;--d-tablet:block;--op:100%;--pageType:GP_STATIC;--bblr:0px;--bbrr:0px;--btlr:0px;--btrr:0px;--mb:var(--g-s-3xl);--mb-mobile:16px;--pt-mobile:0px;--pl-mobile:0px;--pb-mobile:0px;--pr-mobile:0px;--dynamic-source-color:#F4F4F4"
+      >
+      <div class="gp-flex" style="--jc:left">
+        <div
+          data-gp-text
+          class=" gp-text-instant gp-text"
+          style="--w:100%;--w-tablet:100%;--w-mobile:100%;--tdt:auto;--bblr:0px;--bbrr:0px;--btlr:0px;--btrr:0px;--ts:none;--ta:left;--ta-mobile:left;--line-clamp:unset;--line-clamp-tablet:unset;--line-clamp-mobile:unset;--c:#242424;--fs:normal;--ff:var(--g-font-Roboto, 'Roboto'), var(--g-font-body, body);--weight:400;--size:15px;--size-tablet:14px;--size-mobile:17px;--lh:150%;--lh-tablet:180%;--lh-mobile:120%;word-break:break-word;overflow:hidden;--tdl:"
+        >
+          {{ section.settings.ggT_NH_uE___text | replace: '$locationOrigin', locationOrigin }}
+        </div>
+      </div>
+    </div>
+    
+    <div
+      role="presentation"
+      data-id="g6htUnJXMM"
+      style="--bs:none;--bw:0px;--bc:transparent;--shadow:none;--d:block;--d-mobile:block;--d-tablet:block;--op:100%;--pageType:GP_STATIC;--bblr:0px;--bbrr:0px;--btlr:0px;--btrr:0px;--mb:var(--g-s-2xl);--mb-mobile:16px;--ta:left"
+      class="gp-group/image gp-relative force-publish-1773183197522 gp-flex-none gp-h-auto mobile:gp-flex-none mobile:gp-h-auto tablet:gp-flex-none tablet:gp-h-auto g6htUnJXMM"
+    >
+      <div
+        
+        style="border-radius:inherit;--jc:left"
+        class="gp-h-full gp-w-full gp-flex pointer-events-auto"
+      >
+        
+    <picture style="border-radius:inherit" class="gp-contents">
+      
+      <source media="(max-width: 767px)" data-srcSet="{{ "Tabby_cat_midjump_energetic_7ba144c960.jpg" | file_url }}" srcset="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTM3NiIgaGVpZ2h0PSI3NjgiIHZlcnNpb249IjEuMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+CiAgICA8ZGVmcz4KICAgICAgPGxpbmVhckdyYWRpZW50IGlkPSJnLTEzNzYtNzY4Ij4KICAgICAgICA8c3RvcCBzdG9wLWNvbG9yPSJyZ2JhKDUxLCA1MSwgNTEsIDApIiBvZmZzZXQ9IjIwJSIgLz4KICAgICAgICA8c3RvcCBzdG9wLWNvbG9yPSJyZ2JhKDUxLCA1MSwgNTEsIDApIiBvZmZzZXQ9IjUwJSIgLz4KICAgICAgICA8c3RvcCBzdG9wLWNvbG9yPSJyZ2JhKDUxLCA1MSwgNTEsIDApIiBvZmZzZXQ9IjcwJSIgLz4KICAgICAgPC9saW5lYXJHcmFkaWVudD4KICAgIDwvZGVmcz4KICAgIDxyZWN0IHdpZHRoPSIxMzc2IiBoZWlnaHQ9Ijc2OCIgZmlsbD0icmdiYSg1MSwgNTEsIDUxLCAwKSIgLz4KICAgIDxyZWN0IGlkPSJyIiB3aWR0aD0iMTM3NiIgaGVpZ2h0PSI3NjgiIGZpbGw9InVybCgjZy0xMzc2LTc2OCkiIC8+CiAgICA8YW5pbWF0ZSB4bGluazpocmVmPSIjciIgYXR0cmlidXRlTmFtZT0ieCIgZnJvbT0iLTEzNzYiIHRvPSIxMzc2IiBkdXI9IjFzIiByZXBlYXRDb3VudD0iaW5kZWZpbml0ZSIgIC8+CiAgPC9zdmc+" />
+      <source media="(max-width: 1024px)" data-srcSet="{{ "Tabby_cat_midjump_energetic_7ba144c960.jpg" | file_url }}" srcset="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTM3NiIgaGVpZ2h0PSI3NjgiIHZlcnNpb249IjEuMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+CiAgICA8ZGVmcz4KICAgICAgPGxpbmVhckdyYWRpZW50IGlkPSJnLTEzNzYtNzY4Ij4KICAgICAgICA8c3RvcCBzdG9wLWNvbG9yPSJyZ2JhKDUxLCA1MSwgNTEsIDApIiBvZmZzZXQ9IjIwJSIgLz4KICAgICAgICA8c3RvcCBzdG9wLWNvbG9yPSJyZ2JhKDUxLCA1MSwgNTEsIDApIiBvZmZzZXQ9IjUwJSIgLz4KICAgICAgICA8c3RvcCBzdG9wLWNvbG9yPSJyZ2JhKDUxLCA1MSwgNTEsIDApIiBvZmZzZXQ9IjcwJSIgLz4KICAgICAgPC9saW5lYXJHcmFkaWVudD4KICAgIDwvZGVmcz4KICAgIDxyZWN0IHdpZHRoPSIxMzc2IiBoZWlnaHQ9Ijc2OCIgZmlsbD0icmdiYSg1MSwgNTEsIDUxLCAwKSIgLz4KICAgIDxyZWN0IGlkPSJyIiB3aWR0aD0iMTM3NiIgaGVpZ2h0PSI3NjgiIGZpbGw9InVybCgjZy0xMzc2LTc2OCkiIC8+CiAgICA8YW5pbWF0ZSB4bGluazpocmVmPSIjciIgYXR0cmlidXRlTmFtZT0ieCIgZnJvbT0iLTEzNzYiIHRvPSIxMzc2IiBkdXI9IjFzIiByZXBlYXRDb3VudD0iaW5kZWZpbml0ZSIgIC8+CiAgPC9zdmc+" />
+    
+      
+      <img
+        title="Image Title" base-src="{{ "Tabby_cat_midjump_energetic_7ba144c960.jpg" | file_url }}" quality-type="{}" quality-percent="{}"
+        src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTM3NiIgaGVpZ2h0PSI3NjgiIHZlcnNpb249IjEuMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+CiAgICA8ZGVmcz4KICAgICAgPGxpbmVhckdyYWRpZW50IGlkPSJnLTEzNzYtNzY4Ij4KICAgICAgICA8c3RvcCBzdG9wLWNvbG9yPSJyZ2JhKDUxLCA1MSwgNTEsIDApIiBvZmZzZXQ9IjIwJSIgLz4KICAgICAgICA8c3RvcCBzdG9wLWNvbG9yPSJyZ2JhKDUxLCA1MSwgNTEsIDApIiBvZmZzZXQ9IjUwJSIgLz4KICAgICAgICA8c3RvcCBzdG9wLWNvbG9yPSJyZ2JhKDUxLCA1MSwgNTEsIDApIiBvZmZzZXQ9IjcwJSIgLz4KICAgICAgPC9saW5lYXJHcmFkaWVudD4KICAgIDwvZGVmcz4KICAgIDxyZWN0IHdpZHRoPSIxMzc2IiBoZWlnaHQ9Ijc2OCIgZmlsbD0icmdiYSg1MSwgNTEsIDUxLCAwKSIgLz4KICAgIDxyZWN0IGlkPSJyIiB3aWR0aD0iMTM3NiIgaGVpZ2h0PSI3NjgiIGZpbGw9InVybCgjZy0xMzc2LTc2OCkiIC8+CiAgICA8YW5pbWF0ZSB4bGluazpocmVmPSIjciIgYXR0cmlidXRlTmFtZT0ieCIgZnJvbT0iLTEzNzYiIHRvPSIxMzc2IiBkdXI9IjFzIiByZXBlYXRDb3VudD0iaW5kZWZpbml0ZSIgIC8+CiAgPC9zdmc+" data-src="{{ "Tabby_cat_midjump_energetic_7ba144c960.jpg" | file_url }}"
+        alt="Alt Image"
+        width="100%"
+        style="--aspect:4/3;--aspect-tablet:auto;--aspect-mobile:4/3;--objf:cover;--w:100%;--w-tablet:100%;--w-mobile:100%;--h:auto;--h-tablet:auto;--h-mobile:auto;--b:none;--bc:transparent;--bblr:10px;--bbrr:10px;--btlr:10px;--btrr:10px;--radiusType:rounded;--shadow:none"
+        class="gp-inline-block gp-w-full gp-max-w-full gp_lazyload"
+      />
+    
+    </picture>
+  
+      </div>
+    </div>
+  
+    {% assign locationOrigin = request.origin | append: routes.root_url | split: '/' | join: '/' %}
+    <div data-id="gUmJ9Sfrts"
+        class="gUmJ9Sfrts"
+        style="--ta:left;--bs:none;--bw:0px;--bc:transparent;--shadow:none;--d:block;--d-mobile:block;--d-tablet:block;--op:100%;--pageType:GP_STATIC;--bblr:0px;--bbrr:0px;--btlr:0px;--btrr:0px;--mb:var(--g-s-m);--dynamic-source-color:#F4F4F4"
+      >
+      <div class="gp-flex" style="--jc:left">
+        <h2
+          data-gp-text
+          class=" gp-text-instant gp-text"
+          style="--w:100%;--w-tablet:100%;--w-mobile:100%;--tdt:auto;--bblr:0px;--bbrr:0px;--btlr:0px;--btrr:0px;--ts:none;--ta:left;--ta-mobile:left;--c:#242424;--fs:normal;--ff:var(--g-font-Roboto, 'Roboto'), var(--g-font-heading, heading);--weight:700;--size:28px;--size-tablet:28px;--size-mobile:21px;--lh:130%;--lh-tablet:130%;--lh-mobile:130%;word-break:break-word;overflow:hidden;--tdl:"
+        >
+          {{ section.settings.ggUmJ9Sfrts_text | replace: '$locationOrigin', locationOrigin }}
+        </h2>
+      </div>
+    </div>
+    
+    {% assign locationOrigin = request.origin | append: routes.root_url | split: '/' | join: '/' %}
+    <div data-id="gYk1YFpzDo"
+        class="gYk1YFpzDo"
+        style="--ta:left;--bs:none;--bw:0px;--bc:transparent;--shadow:none;--d:block;--d-mobile:block;--d-tablet:block;--op:100%;--pageType:GP_STATIC;--bblr:0px;--bbrr:0px;--btlr:0px;--btrr:0px;--mb:var(--g-s-3xl);--mb-mobile:16px;--pt-mobile:0px;--pl-mobile:0px;--pb-mobile:0px;--pr-mobile:0px;--dynamic-source-color:#F4F4F4"
+      >
+      <div class="gp-flex" style="--jc:left">
+        <div
+          data-gp-text
+          class=" gp-text-instant gp-text"
+          style="--w:100%;--w-tablet:100%;--w-mobile:100%;--tdt:auto;--bblr:0px;--bbrr:0px;--btlr:0px;--btrr:0px;--ts:none;--ta:left;--ta-mobile:left;--line-clamp:unset;--line-clamp-tablet:unset;--line-clamp-mobile:unset;--c:#242424;--fs:normal;--ff:var(--g-font-Roboto, 'Roboto'), var(--g-font-body, body);--weight:400;--size:15px;--size-tablet:14px;--size-mobile:17px;--lh:150%;--lh-tablet:180%;--lh-mobile:120%;word-break:break-word;overflow:hidden;--tdl:"
+        >
+          {{ section.settings.ggYk1YFpzDo_text | replace: '$locationOrigin', locationOrigin }}
+        </div>
+      </div>
+    </div>
+    
+  
+    <div
+      
+      style="--d:block;--d-tablet:block;--d-mobile:block;--bs:none;--bw:1px 1px 1px 1px;--bc:var(--g-c-line-3, line-3);--bblr:0px;--bbrr:0px;--btlr:0px;--btrr:0px;--op:100%;--mb:var(--g-s-3xl);--mb-mobile:0px;--ta:left;--bgc:transparent;--bgi:url();--bgp:50% 50%;--bgs:cover;--bgr:no-repeat;--bga:scroll"
+      data-keep-class="true"
+      class="ghlaeIL1Bi gp-custom-code">
+      <div>
+    <!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PetCura Reviews</title>
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;0,700;1,400&family=Georgia&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #fff;
+    font-family: Georgia, 'Times New Roman', serif;
+    color: #1a1a1a;
+    padding: 40px 20px;
+    max-width: 680px;
+    margin: 0 auto;
+    font-size: 17px;
+    line-height: 1.7;
+  }
+
+  .reviews-label {
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #666;
+    margin-bottom: 22px;
+    display: block;
+  }
+
+  .review-block {
+    border-left: 3px solid #d4892a;
+    padding: 0 0 0 20px;
+    margin-bottom: 32px;
+  }
+
+  .review-text {
+    font-size: 16.5px;
+    line-height: 1.75;
+    color: #222;
+    font-style: italic;
+    margin-bottom: 10px;
+  }
+
+  .review-attribution {
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+    color: #888;
+    font-style: normal;
+  }
+
+  .review-attribution strong {
+    color: #444;
+    font-weight: 700;
+  }
+</style>
+</head>
+<body>
+
+<span class="reviews-label">Wat andere eigenaren zeggen</span>
+
+<div class="review-block">
+  <p class="review-text">"Na twee mislukte supplementen en één dierenartsinjectie die na een jaar stopte te werken, had ik weinig hoop meer. Binnen drie weken liep Noor zonder zichtbaar te hinken. Na twee maanden sprong ze weer op het bed. Ik had dat niet meer verwacht."</p>
+  <p class="review-attribution"><strong>Sandra</strong> — eigenaar van Noor, 14 jaar</p>
+</div>
+
+<div class="review-block">
+  <p class="review-text">"Mijn dierenarts zei dat operatie de enige echte optie was. €8.000 die ik niet heb. Op aanraden van een vriendin heb ik PetCura geprobeerd. Kees eet ze alsof het snoepjes zijn. Na zes weken loopt hij weer de trap op. Ik huil nog steeds als ik eraan denk."</p>
+  <p class="review-attribution"><strong>Thomas</strong> — eigenaar van Kees, 11 jaar</p>
+</div>
+
+<div class="review-block">
+  <p class="review-text">"Het eerste supplement gaf hem diarree. Het tweede at hij niet. Dit eet hij elke dag zonder problemen — en het verschil in zijn beweging na vier weken was onmiskenbaar."</p>
+  <p class="review-attribution"><strong>Liesbeth</strong> — eigenaar van Piet, 13 jaar</p>
+</div>
+
+</body>
+</html>
+    </div>
+    </div>
+  
+    {% assign locationOrigin = request.origin | append: routes.root_url | split: '/' | join: '/' %}
+    <div data-id="go4OnTseoi"
+        class="go4OnTseoi"
+        style="--ta:left;--bs:none;--bw:0px;--bc:transparent;--shadow:none;--d:block;--d-mobile:block;--d-tablet:block;--op:100%;--pageType:GP_STATIC;--bblr:0px;--bbrr:0px;--btlr:0px;--btrr:0px;--mb:var(--g-s-m);--dynamic-source-color:#F4F4F4"
+      >
+      <div class="gp-flex" style="--jc:left">
+        <h2
+          data-gp-text
+          class=" gp-text-instant gp-text"
+          style="--w:100%;--w-tablet:100%;--w-mobile:100%;--tdt:auto;--bblr:0px;--bbrr:0px;--btlr:0px;--btrr:0px;--ts:none;--ta:left;--ta-mobile:left;--c:#242424;--fs:normal;--ff:var(--g-font-Roboto, 'Roboto'), var(--g-font-heading, heading);--weight:700;--size:28px;--size-tablet:28px;--size-mobile:21px;--lh:130%;--lh-tablet:130%;--lh-mobile:130%;word-break:break-word;overflow:hidden;--tdl:"
+        >
+          {{ section.settings.ggo4OnTseoi_text | replace: '$locationOrigin', locationOrigin }}
+        </h2>
+      </div>
+    </div>
+    
+    {% assign locationOrigin = request.origin | append: routes.root_url | split: '/' | join: '/' %}
+    <div data-id="g0u6TElMqn"
+        class="g0u6TElMqn"
+        style="--ta:left;--bs:none;--bw:0px;--bc:transparent;--shadow:none;--d:block;--d-mobile:block;--d-tablet:block;--op:100%;--pageType:GP_STATIC;--bblr:0px;--bbrr:0px;--btlr:0px;--btrr:0px;--mb:var(--g-s-3xl);--mb-mobile:16px;--pt-mobile:0px;--pl-mobile:0px;--pb-mobile:0px;--pr-mobile:0px;--dynamic-source-color:#F4F4F4"
+      >
+      <div class="gp-flex" style="--jc:left">
+        <div
+          data-gp-text
+          class=" gp-text-instant gp-text"
+          style="--w:100%;--w-tablet:100%;--w-mobile:100%;--tdt:auto;--bblr:0px;--bbrr:0px;--btlr:0px;--btrr:0px;--ts:none;--ta:left;--ta-mobile:left;--line-clamp:unset;--line-clamp-tablet:unset;--line-clamp-mobile:unset;--c:#242424;--fs:normal;--ff:var(--g-font-Roboto, 'Roboto'), var(--g-font-body, body);--weight:400;--size:15px;--size-tablet:14px;--size-mobile:17px;--lh:150%;--lh-tablet:180%;--lh-mobile:120%;word-break:break-word;overflow:hidden;--tdl:"
+        >
+          {{ section.settings.gg0u6TElMqn_text | replace: '$locationOrigin', locationOrigin }}
+        </div>
+      </div>
+    </div>
+    
+    
+
+    
+
+    
+    <gp-row gp-data='{"background":{"mobile":{"color":"#FFD9DE","preload":false,"type":"color"}},"uid":"g7u-3Ixeay"}' data-id="g7u-3Ixeay" id="g7u-3Ixeay" data-same-height-subgrid-container class="g7u-3Ixeay gp-relative gp-mx-auto gp-mb-0 gp-grid gp-max-w-full gp-transition-colors gp-duration-200 gp-ease-in-out [&_*]:gp-max-w-full gp-grid-rows-[1fr]" style="--bs:none;--bs-mobile:solid;--bw:1px 1px 1px 1px;--bw-mobile:1px 1px 1px 1px;--bc:var(--g-c-line-3, line-3);--bc-mobile:#FF0C00;--d:none;--d-mobile:grid;--d-tablet:none;--op:100%;--pageType:GP_STATIC;--bblr:0px;--bbrr:0px;--btlr:0px;--btrr:0px;--bblr-mobile:8px;--bbrr-mobile:8px;--btlr-mobile:8px;--btrr-mobile:8px;--mb:var(--g-s-s);--mt-mobile:6px;--mb-mobile:16px;--pt-mobile:0px;--pl-mobile:0px;--pb-mobile:0px;--pr-mobile:0px;--cg:16px;--rg:16px;--rg-tablet:16px;--rg-mobile:16px;--gtc:minmax(0, 6fr) minmax(0, 6fr);--gtc-mobile:minmax(0, auto) minmax(0, auto);--w:var(--g-ct-w, 1200px);--h:auto;--of-mobile:hidden;--bgc-mobile:#FFD9DE;--bgi-mobile:url();--pc:start">
+      
+
+      <div
+      data-same-height-display-contents
+      style="--jc:start"
+      class="gfIQzKaScs gp-relative gp-flex gp-flex-col"
+    >
+      
+    <div id="gFeNtF9rSS" class="gp-leading-[0] gFeNtF9rSS" style="--bs:none;--bw:1px 1px 1px 1px;--bc:var(--g-c-line-3, line-3);--d:block;--d-mobile:block;--d-tablet:block;--op:100%;--pageType:GP_STATIC;--bblr:0px;--bbrr:0px;--btlr:0px;--btrr:0px;--mb-mobile:0px;--pt-mobile:26px;--pl-mobile:12px;--pb-mobile:0px;--pr-mobile:0px;--ta:left;--ta-mobile:left">
+      <div data-id="gFeNtF9rSS" class="icon-wrapper gp-inline-flex gp-overflow-hidden gFeNtF9rSS " style="--shadow:none">
+      
+        <div >
+          <span style="--c:#FF0708;--t:rotate(0deg);--w:24px;--w-tablet:24px;--w-mobile:26px;--h:24px;--h-tablet:24px;--h-mobile:26px;--minw:24px;--minw-tablet:24px;--minw-mobile:26px;--height-desktop:24px;--height-tablet:24px;--height-mobile:26px" class="gp-inline-flex gp-items-center gp-justify-center gp-overflow-hidden [&>svg]:!gp-h-[var(--height-desktop)] [&>svg]:!gp-w-auto tablet:[&>svg]:!gp-h-[var(--height-tablet)] mobile:[&>svg]:!gp-h-[var(--height-mobile)] "><svg height="20" width="20" data-name="warning-circle-filled" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 256 256" fill="currentColor" data-id="508817766389317992">
+              <path fill="currentColor" strokeLinecap="round" strokeLinejoin="round" fill="currentColor" d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm-8,56a8,8,0,0,1,16,0v56a8,8,0,0,1-16,0Zm8,104a12,12,0,1,1,12-12A12,12,0,0,1,128,184Z" /></svg></span>
+        </div>
+      </div>
+    </div>
+    
+    </div><div
+      data-same-height-display-contents
+      style="--jc:start"
+      class="gjZqFCznzs gp-relative gp-flex gp-flex-col"
+    >
+      
+    {% assign locationOrigin = request.origin | append: routes.root_url | split: '/' | join: '/' %}
+    <div data-id="g5DcIj-0BI"
+        class="g5DcIj-0BI"
+        style="--ta:left;--bs:none;--bw:1px 1px 1px 1px;--bc:var(--g-c-line-3, line-3);--d:block;--d-mobile:block;--d-tablet:block;--op:100%;--pageType:GP_STATIC;--bblr:0px;--bbrr:0px;--btlr:0px;--btrr:0px;--mt-mobile:0px;--pt-mobile:4px;--pl-mobile:0px;--pb-mobile:0px;--pr-mobile:0px;--dynamic-source-color:#F4F4F4"
+      >
+      <div class="gp-flex" style="--jc:left">
+        <div
+          data-gp-text
+          class=" gp-text-instant gp-text"
+          style="--w:100%;--w-tablet:100%;--w-mobile:100%;--tdt:auto;--b:none;--bc:#121212;--bw:1px 1px 1px 1px;--bblr:0px;--bbrr:0px;--btlr:0px;--btrr:0px;--shadow:none;--ts:none;--ta:left;--ta-mobile:left;--line-clamp:unset;--line-clamp-tablet:unset;--line-clamp-mobile:unset;--ff:var(--g-font-Poppins, 'Poppins'), var(--g-font-body, body);--weight:400;--size:16px;--size-tablet:14px;--size-mobile:15px;--lh:180%;--lh-tablet:180%;--lh-mobile:180%;--c:var(--g-c-text-1, text-1);--tt:none;word-break:break-word;--bgc:transparent;--bgc-mobile:transparent;--bgi:url();--bgi-mobile:url();--bgp:50% 50%;--bgp-mobile:50% 50%;--bgs:cover;--bgs-mobile:cover;--bgr:no-repeat;--bgr-mobile:no-repeat;--bga:scroll;--bga-mobile:scroll;overflow:hidden;--tdl:"
+        >
+          {{ section.settings.gg5DcIj-0BI_text | replace: '$locationOrigin', locationOrigin }}
+        </div>
+      </div>
+    </div>
+    
+    </div>
+
+      
+    </gp-row>
+  
+  
+    <gp-button
+      gp-data='{"btnLink":{"link":"/products/gewrichtssnacks-voor-katten","selectedTab":"products","target":"_self","type":"open-page"}}'
+      
+      class="gp-flex gp-flex-col"
+    >
+      <div style="--bs:none;--bw:0px;--bc:transparent;--shadow:none;--d:block;--d-mobile:block;--d-tablet:block;--op:100%;--pageType:GP_STATIC;--bblr:0px;--bbrr:0px;--btlr:0px;--btrr:0px;--mb:var(--g-s-s);--mb-mobile:16px;--pt-mobile:0px;--pl-mobile:0px;--pb-mobile:0px;--pr-mobile:0px;--ta:left" >
+        <style>[data-id="gvYvsAWNT8"].gp-button-base::before, [data-id="gvYvsAWNT8-interaction"].gp-button-base::before {
+      
+    content: "";
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    pointer-events: none;
+    top: 0;
+    left: 0;
+    border-style: solid;
+  border-width: 1px 1px 1px 1px;
+  border-color: transparent;
+  
+    
+      border-bottom-left-radius: 10px;
+      border-bottom-right-radius: 10px;
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+      
+  
+    }
+  
+      
+  [data-id="gvYvsAWNT8"]:hover::before, [data-id="gvYvsAWNT8-interaction"]:hover::before {
+    
+    
+  }</style>
+        
+        <a
+          data-id="gvYvsAWNT8" dataId="gvYvsAWNT8" data-state="idle" aria-label="<p>BEKIJK BESCHIKBAARHEID EN CLAIM KORTING »</p>"
+          
+          href="{{ request.origin }}{{ routes.root_url | split: '/' | join: '/' }}/products/gewrichtssnacks-voor-katten" target="_self"
+          style="--w:100%;--w-tablet:100%;--w-mobile:100%;--h:Auto;--h-tablet:Auto;--h-mobile:Auto;--pl:24px;--pr:24px;--pt:16px;--pb:16px;--pl-tablet:24px;--pr-tablet:24px;--pt-tablet:16px;--pb-tablet:16px;--pl-mobile:24px;--pr-mobile:24px;--pt-mobile:5px;--pb-mobile:5px;--bblr:10px;--bbrr:10px;--btlr:10px;--btrr:10px;--hvr-bblr:10px;--hvr-bbrr:10px;--hvr-btlr:10px;--hvr-btrr:10px;--shadow:2.8284271247461903px 2.82842712474619px 4px 0px rgba(0, 0, 0, 0.25);--bgi:;--hvr-bgi:;--hvr-bg:#246B60;--bg:#417C00;--c:var(--g-c-bg-3, bg-3);--ff:var(--g-font-sans-serif, 'sans-serif'), var(--g-font-body, body);--size:16px;--size-tablet:16px;--size-mobile:19px;--lh:180%;--lh-tablet:180%;--lh-mobile:150%;--weight:bold;--tt:capitalize"
+          class="gvYvsAWNT8 gp-text-center gp-button-base gp-group gp-relative gp-inline-flex gp-max-w-full gp-items-center gp-justify-center gp-no-underline gp-transition-colors gp-duration-200 disabled:gp-btn-disabled disabled:gp-opacity-30 gp-text-g-bg-3 "
+        >
+        
+        <div class="gp-inline-flex gp-flex-row-reverse">
+          
+          
+    <span
+      data-gp-text
+      style="--ff:var(--g-font-sans-serif, 'sans-serif'), var(--g-font-body, body);--size:16px;--size-tablet:16px;--size-mobile:19px;--lh:180%;--lh-tablet:180%;--lh-mobile:150%;--weight:bold;--tt:capitalize;--ts:none;word-break:break-word"
+      class="gp-content-product-button group-active/button:!gp-text-inherit gp-relative gp-flex gp-h-full gp-items-center gp-overflow-hidden gp-break-words group-data-[state=loading]:gp-invisible [&_p]:gp-whitespace-pre-line gp-text button-text"
+    >
+      {{ section.settings.ggvYvsAWNT8_label | downcase }}
+    </span>
+        </div>
+        
+        </a>
+      </div>
+      <script {% if section.settings.section_preload == "false" %}class="gps-link" delay {% else %}src{% endif %}="https://assets.gemcommerce.com/assets-v2/gp-button-v7-5.js?v={{ shop.metafields.GEMPAGES.ASSETS_VERSION }}" defer="defer"></script>
+    </gp-button>
+  
+    {% assign locationOrigin = request.origin | append: routes.root_url | split: '/' | join: '/' %}
+    <div data-id="gVtak_WLzU"
+        class="gVtak_WLzU"
+        style="--ta:left;--bs:none;--bw:0px;--bc:transparent;--shadow:none;--d:block;--d-mobile:block;--d-tablet:block;--op:100%;--pageType:GP_STATIC;--bblr:0px;--bbrr:0px;--btlr:0px;--btrr:0px;--mb:var(--g-s-3xl);--mb-mobile:16px;--pt-mobile:0px;--pl-mobile:0px;--pb-mobile:0px;--pr-mobile:0px;--dynamic-source-color:#F4F4F4"
+      >
+      <div class="gp-flex" style="--jc:left">
+        <div
+          data-gp-text
+          class=" gp-text-instant gp-text"
+          style="--w:100%;--w-tablet:100%;--w-mobile:100%;--tdt:auto;--bblr:0px;--bbrr:0px;--btlr:0px;--btrr:0px;--ts:none;--ta:left;--ta-mobile:left;--line-clamp:unset;--line-clamp-tablet:unset;--line-clamp-mobile:unset;--c:#242424;--fs:normal;--ff:var(--g-font-Roboto, 'Roboto'), var(--g-font-body, body);--weight:400;--size:15px;--size-tablet:14px;--size-mobile:17px;--lh:150%;--lh-tablet:180%;--lh-mobile:120%;word-break:break-word;overflow:hidden;--tdl:"
+        >
+          {{ section.settings.ggVtak_WLzU_text | replace: '$locationOrigin', locationOrigin }}
+        </div>
+      </div>
+    </div>
+    
+    <gp-button
+      gp-data='{"btnLink":{"link":"/products/gewrichtssnacks-voor-katten","selectedTab":"products","target":"_self","type":"open-page"}}'
+      
+      class="gp-flex gp-flex-col"
+    >
+      <div style="--bs:none;--bw:0px;--bc:transparent;--shadow:none;--d:block;--d-mobile:block;--d-tablet:block;--op:100%;--pageType:GP_STATIC;--bblr:0px;--bbrr:0px;--btlr:0px;--btrr:0px;--mb:var(--g-s-s);--mb-mobile:16px;--pt-mobile:0px;--pl-mobile:0px;--pb-mobile:0px;--pr-mobile:0px;--ta:left" >
+        <style>[data-id="gZSVfvJB7Z"].gp-button-base::before, [data-id="gZSVfvJB7Z-interaction"].gp-button-base::before {
+      
+    content: "";
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    pointer-events: none;
+    top: 0;
+    left: 0;
+    border-style: solid;
+  border-width: 1px 1px 1px 1px;
+  border-color: transparent;
+  
+    
+      border-bottom-left-radius: 10px;
+      border-bottom-right-radius: 10px;
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+      
+  
+    }
+  
+      
+  [data-id="gZSVfvJB7Z"]:hover::before, [data-id="gZSVfvJB7Z-interaction"]:hover::before {
+    
+    
+  }</style>
+        
+        <a
+          data-id="gZSVfvJB7Z" dataId="gZSVfvJB7Z" data-state="idle" aria-label="<p>BEKIJK BESCHIKBAARHEID »</p>"
+          
+          href="{{ request.origin }}{{ routes.root_url | split: '/' | join: '/' }}/products/gewrichtssnacks-voor-katten" target="_self"
+          style="--w:100%;--w-tablet:100%;--w-mobile:100%;--h:Auto;--h-tablet:Auto;--h-mobile:Auto;--pl:24px;--pr:24px;--pt:16px;--pb:16px;--pl-tablet:24px;--pr-tablet:24px;--pt-tablet:16px;--pb-tablet:16px;--pl-mobile:24px;--pr-mobile:24px;--pt-mobile:16px;--pb-mobile:16px;--bblr:10px;--bbrr:10px;--btlr:10px;--btrr:10px;--hvr-bblr:10px;--hvr-bbrr:10px;--hvr-btlr:10px;--hvr-btrr:10px;--shadow:2.8284271247461903px 2.82842712474619px 4px 0px rgba(0, 0, 0, 0.25);--bgi:;--hvr-bgi:;--hvr-bg:#246B60;--bg:#417C00;--c:var(--g-c-bg-3, bg-3);--ff:var(--g-font-sans-serif, 'sans-serif'), var(--g-font-body, body);--size:16px;--size-tablet:16px;--size-mobile:19px;--lh:180%;--lh-tablet:180%;--lh-mobile:150%;--weight:bold;--tt:capitalize"
+          class="gZSVfvJB7Z gp-text-center gp-button-base gp-group gp-relative gp-inline-flex gp-max-w-full gp-items-center gp-justify-center gp-no-underline gp-transition-colors gp-duration-200 disabled:gp-btn-disabled disabled:gp-opacity-30 gp-text-g-bg-3 "
+        >
+        
+        <div class="gp-inline-flex gp-flex-row-reverse">
+          
+          
+    <span
+      data-gp-text
+      style="--ff:var(--g-font-sans-serif, 'sans-serif'), var(--g-font-body, body);--size:16px;--size-tablet:16px;--size-mobile:19px;--lh:180%;--lh-tablet:180%;--lh-mobile:150%;--weight:bold;--tt:capitalize;--ts:none;word-break:break-word"
+      class="gp-content-product-button group-active/button:!gp-text-inherit gp-relative gp-flex gp-h-full gp-items-center gp-overflow-hidden gp-break-words group-data-[state=loading]:gp-invisible [&_p]:gp-whitespace-pre-line gp-text button-text"
+    >
+      {{ section.settings.ggZSVfvJB7Z_label | downcase }}
+    </span>
+        </div>
+        
+        </a>
+      </div>
+      <script {% if section.settings.section_preload == "false" %}class="gps-link" delay {% else %}src{% endif %}="https://assets.gemcommerce.com/assets-v2/gp-button-v7-5.js?v={{ shop.metafields.GEMPAGES.ASSETS_VERSION }}" defer="defer"></script>
+    </gp-button>
+  
+    </div>
+
+      
+    </gp-row>
+  
+  
+    </div>
+
+      
+    </gp-row>
+  
+        </section>
+      
+  
+    
+{% schema %}
+  {
+    
+    "name": "Section 1",
+    "tag": "section",
+    "class": "gps-610106213048255191 gps gpsil",
+    "settings": [{"type":"paragraph","content":"Section design by GemPages. [Click here to start design](https://admin.shopify.com/store/yfjhzv-6z/apps/gempages-cro/app/shopify/edit?pageType=GP_STATIC&editorId=610106212964369111&sectionId=610106213048255191)"},{"type":"select","label":"Section Preload","id":"section_preload","options":[{"label":"On","value":"true"},{"label":"Off","value":"false"},{"label":"Off Lazy Script","value":"off_lazy_script"}],"default":"false"},{"type":"text","label":"Checksum","id":"checksum"},{"type":"html","id":"ggedxf1T6u0_text","label":"ggedxf1T6u0_text","default":"Dierenarts onthult schokkende waarheid: Waarom jouw kat pijn verbergt — en hoe je het kunt zien voordat het te laat is"},{"type":"html","id":"ggJeG8clmk9_text","label":"ggJeG8clmk9_text","default":"10 Maart 2026 om 11:48 geschreven."},{"type":"html","id":"ggY0pYRHYam_text","label":"ggY0pYRHYam_text","default":"<p><span style=\"font-size:13px;\">\"Op het moment dat je het ziet, is het al maanden aan de gang. Dit is het pijnlijkste dat ik elke week opnieuw zie in mijn praktijk.\" - Dierenarts Sandra Visser</span></p>"},{"type":"html","id":"ggALp8TkPsA_text","label":"ggALp8TkPsA_text","default":"<p>Als jouw kat langzamer beweegt dan vroeger...</p><p>&nbsp;</p><p>Als ze plekken mijdt die ze altijd moeiteloos bereikte...</p><p>&nbsp;</p><p>Als haar ogen soms half dicht zijn terwijl ze wakker is...</p><p>&nbsp;</p><p>Dan moet je dit lezen.</p><p>&nbsp;</p><p>Er speelt zich iets stils af in huiskamers door heel Nederland.</p><p>&nbsp;</p><p>Het treft katten van alle leeftijden. Maar vooral katten boven de 10 jaar.</p><p>&nbsp;</p><p>En het engste deel? <strong>Jouw kat verbergt het bewust voor jou.</strong></p><p>&nbsp;</p><p>Niet omdat ze je wil beschermen. Maar omdat ze zo zijn geprogrammeerd.</p><p>&nbsp;</p><p>Ik had hier geen idee van. Totdat ik op een dinsdagavond iets zag wat ik niet meer kon negeren.</p>"},{"type":"html","id":"ggaYlNHfCEu_text","label":"ggaYlNHfCEu_text","default":"Hoe Een Gewone Avond Alles Veranderde"},{"type":"html","id":"gg45ZTCFKdr_text","label":"gg45ZTCFKdr_text","default":"<p>Mijn naam is Marieke de Vries.</p><p>&nbsp;</p><p>Ik woon in Utrecht met mijn man en onze kat Boris — een dikke, eigenzinnige cyperse kater die in april 13 jaar wordt.</p><p>&nbsp;</p><p>Boris was altijd een grote persoonlijkheid in een klein lichaam. Het type kat dat op de koelkast klom om je te beoordelen terwijl je kookte. Die zijn waterbak negeerde maar wél uit je glas dronk. Die elke ochtend op je hoofd zat voordat je wekker afging.</p><p>&nbsp;</p><p>Hij was veel. Ik aanbad hem.</p><p>&nbsp;</p><p>De afgelopen twee jaar was hij langzamer geworden. Maar ik noemde het gewoon \"ouder worden.\"</p><p>&nbsp;</p><p>Hij sprong niet meer op het aanrecht. Normaal voor een kat van zijn leeftijd, toch?</p><p>&nbsp;</p><p>Hij gebruikte de onderste verdieping van zijn krabpaal in plaats van de bovenste. Logisch, hij is geen kitten meer.</p><p>&nbsp;</p><p>De zoomies duurden korter. Eerst minuten. Dan seconden. Toen één enkele sprint door de gang.</p><p>&nbsp;</p><p>Elke kleine verandering had een excuus. En samen vormden al die excuses een patroon dat ik weigerde te zien.</p>"},{"type":"html","id":"ggEZuT0__Qo_text","label":"ggEZuT0__Qo_text","default":"Het Moment Dat Ik Het Niet Meer Kon Wegkijken"},{"type":"html","id":"ggQK6xyXD5u_text","label":"ggQK6xyXD5u_text","default":"<p>Op een dinsdag avond zat ik op de bank. Boris lag op zijn vaste plek bij de verwarming.</p><p>&nbsp;</p><p>Ik keek naar hem — echt naar hem, voor het eerst in een tijdje.</p><p>&nbsp;</p><p>Zijn ogen waren half dicht.</p><p>&nbsp;</p><p>Niet op de slaperige manier waarop katten knipperen als ze tevreden zijn. Er was iets anders. Een spanning in zijn schouders. Een manier waarop hij zijn poten onder zich hield, alsof hij zijn gewicht verplaatste.</p><p>&nbsp;</p><p>Ik pakte mijn telefoon en typte in: <i>half dichte ogen kat betekenis pijn.</i></p><p>&nbsp;</p><p><strong>Wat ik las, bezorgde me kippenvel.</strong></p>"},{"type":"html","id":"gg5y3oD1JRw_text","label":"gg5y3oD1JRw_text","default":"Wat Dierenartsen Al Jaren Weten — Maar Niemand Je Vertelt"},{"type":"html","id":"ggBTywczrZn_text","label":"ggBTywczrZn_text","default":"<p>Katten zijn evolutionair geprogrammeerd om zwakte te verbergen.</p><p>&nbsp;</p><p>In het wild betekent zichtbare pijn gevaar. Een kat die kreupelt wordt een makkelijk doelwit.</p><p>&nbsp;</p><p>Dus doen katten wat ze altijd hebben gedaan: ze verbergen het.</p><p>&nbsp;</p><p>Ze blijven eten. Ze snurren nog steeds. Ze liggen er vredig bij.</p><p>&nbsp;</p><p>En die half dichte ogen? Dat is geen ontspanning.</p><p>&nbsp;</p><p>Wetenschappers noemen het de <i>Feline Grimace Scale</i> — een meetmethode die dierenartsen gebruiken om pijn bij katten te beoordelen. <strong>Half dichte ogen staan bovenaan de lijst van pijnsignalen.</strong></p><p>&nbsp;</p><p>De volgende ochtend belde ik dierenarts Sandra Visser, die Boris al jaren behandelt.</p><p>&nbsp;</p><p>Ze bevestigde het meteen.</p><p>&nbsp;</p><p>\"Dit zie ik elke week,\" zei ze. \"Katten kunnen maanden of zelfs jaren pijn hebben voordat een eigenaar het opmerkt. Tegen de tijd dat het zichtbaar wordt in hun manier van lopen, is de gewrichtsschade vaak al ver gevorderd.\"</p><p>&nbsp;</p><p>Ik vroeg haar: hoe lang heeft Boris dit al?</p><p>&nbsp;</p><p>Ze aarzelde. \"Op basis van wat ik zie... dit is waarschijnlijk al meer dan een jaar aan de gang.\"</p>"},{"type":"html","id":"ggZIATKum4U_text","label":"ggZIATKum4U_text","default":"Waarom \"Gewoon Ouder Worden\" Geen Antwoord Is"},{"type":"html","id":"gg-oPl0_Xi8_text","label":"gg-oPl0_Xi8_text","default":"<p>Dierenarts Visser legde me iets uit wat ik nooit eerder had gehoord.</p><p>&nbsp;</p><p>Gewrichtsschade bij katten is geen kwestie van leeftijd alleen.</p><p>&nbsp;</p><p>Het is een kwestie van hyaluronzuur.</p><p>&nbsp;</p><p>In gezonde gewrichten fungeert hyaluronzuur als smeermiddel — het is de \"olie\" die zorgt dat gewrichten soepel bewegen zonder wrijving. <strong>Bij katten boven de 10 jaar daalt de aanmaak van hyaluronzuur dramatisch.</strong></p><p>&nbsp;</p><p>Zonder dat smeermiddel schuurt bot op bot.</p><p>&nbsp;</p><p>Elke stap doet pijn. Elke sprong kost moeite. Elke ochtend na het slapen is stijf en ongemakkelijk.</p><p>&nbsp;</p><p>\"Het probleem,\" zei dierenarts Visser, \"is dat de meeste suppletmiddelen dit maar gedeeltelijk aanpakken. Ze geven glucosamine. Of chondroïtine. Maar gewrichtsschade is een probleem op vier fronten tegelijk: ontsteking, kraakbeenafbraak, verlies van smeermiddel én verzwakking van bindweefsel. Als je maar één van die vier aanpakt, zie je weinig resultaat.\"</p><p>&nbsp;</p><p>Dat verklaarde waarom alles wat ik eerder had geprobeerd, had gefaald.</p>"},{"type":"html","id":"ggrBa3CInuZ_text","label":"ggrBa3CInuZ_text","default":"De Mislukte Pogingen Die Ik Liever Vergeet"},{"type":"html","id":"ggyoTn1GTzH_text","label":"ggyoTn1GTzH_text","default":"<p>Ik was niet passief geweest.</p><p>&nbsp;</p><p>Zes maanden eerder had ik gewrichtssupplementen gekocht die online goed beoordeeld werden. Boris had er bloeddiarree van gekregen. Gestopt.</p><p>&nbsp;</p><p>Daarna kauwsnacks geprobeerd. Hij weigerde ze volledig — snoof eraan en liep weg alsof ik hem had beledigd.</p><p>&nbsp;</p><p>Toen een poeder door zijn eten gemengd. Hij at de helft van zijn bak op en liet de rest staan.</p><p>&nbsp;</p><p>Elke keer dacht ik: misschien werkt het gewoon niet bij hem. Misschien is hij te kieskeurig.</p><p>&nbsp;</p><p>Maar dierenarts Visser legde me iets anders uit.</p><p>&nbsp;</p><p><strong>\"Het probleem was niet de ingrediënten. Het probleem was de dosering.\"</strong></p><p>&nbsp;</p><p>Supplementen werken alleen als een kat elke dag de volledige therapeutische dosis binnenkrijgt. Niet af en toe. Niet de helft. Consequent, dagelijks, de volledige hoeveelheid.</p><p>&nbsp;</p><p>En geen kat ter wereld neemt consequent iets in wat hij vies vindt.</p><p>&nbsp;</p><p>\"Dat is de reden waarom de meeste supplementen falen,\" zei ze. \"Niet omdat de ingrediënten niet werken. Maar omdat katten ze weigeren — en de eigenaar na drie weken opgeeft.\"</p>"},{"type":"html","id":"gghLiLFHV3-_text","label":"gghLiLFHV3-_text","default":"De Ontdekking Die Ik Niet Had Verwacht"},{"type":"html","id":"ggA2kmsgKoJ_text","label":"ggA2kmsgKoJ_text","default":"<p>Dierenarts Visser stuurde me naar huis met één aanbeveling.</p><p>&nbsp;</p><p>Geen recept. Geen injectie. Geen dure operatie.</p><p>&nbsp;</p><p>Ze noemde PetCura Gewrichtssnacks — een formule die ze was gaan aanbevelen aan eigenaren van katten met gewrichtsproblemen, specifiek omdat katten de snacks vrijwillig eten.</p><p>&nbsp;</p><p>\"Dat klinkt simpel,\" zei ik. \"Maar is dat niet gewoon een marketingtruc?\"</p><p>&nbsp;</p><p>Ze schudde haar hoofd. \"Het verschil zit in twee dingen. Ten eerste: de formule bevat negen werkzame ingrediënten die alle vier de pijnpaden tegelijk aanpakken — inclusief een speciaal gestructureerd hyaluronzuur met een hogere biologische beschikbaarheid dan standaard varianten. Ten tweede: omdat het een snack is die katten lekker vinden, krijgen ze elke dag de volledige dosis binnen. Dat is het enige wat supplementen onderscheidt die werken van supplementen die dat niet doen.\"</p><p>&nbsp;</p><p>Ik was sceptisch. Ik was ook wanhopig.</p><p>&nbsp;</p><p>Ik bestelde die avond nog.</p>"},{"type":"html","id":"ggjzCV_cxms_text","label":"ggjzCV_cxms_text","default":"Wat Er Daarna Gebeurde"},{"type":"html","id":"ggT_NH_uE___text","label":"ggT_NH_uE___text","default":"<p>De eerste week geloofde ik er nog niet echt in.</p><p>&nbsp;</p><p>Boris at de snacks alsof het de gewoonste zaak van de wereld was. Geen gemorrel. Geen gemengd door zijn eten. Hij liep gewoon op me af toen hij het zakje hoorde ritselen.</p><p>&nbsp;</p><p>Week twee: ik merkte dat hij minder lang bleef staan na het opstaan. Katten rekken zich altijd uit na het slapen — maar Boris had de laatste tijd de neiging om een paar passen te lopen en dan weer te gaan zitten. Dat werd minder.</p><p>&nbsp;</p><p><strong>Week drie: hij stond bij zijn krabpaal.</strong></p><p>&nbsp;</p><p>Hij keek omhoog naar de tweede verdieping. Ik hield mijn adem in.</p><p>Hij sprong.</p><p>&nbsp;</p><p>Niet perfect. Niet zoals vroeger. Maar hij deed het.</p><p>&nbsp;</p><p>Ik stond in de keuken en moest even stoppen met wat ik aan het doen was.</p><p>&nbsp;</p><p>Na twee maanden liep hij de trap weer op zonder halverwege te pauzeren. Hij sprong op de bank zonder aarzeling. En op een ochtend — een gewone donderdagochtend — liep hij de keuken in, sprong op het aanrecht, en keek me aan met die blik die zei: <i>ja, en?</i></p><p>&nbsp;</p><p>Ik heb nooit zo blij geweest met brutaal gedrag.</p>"},{"type":"html","id":"ggUmJ9Sfrts_text","label":"ggUmJ9Sfrts_text","default":"Waarom Dit Werkt Als Andere Dingen Faalden"},{"type":"html","id":"ggYk1YFpzDo_text","label":"ggYk1YFpzDo_text","default":"<p>PetCura Gewrichtssnacks bevatten <strong>9 werkzame ingrediënten</strong> die samenwerken om gewrichtsschade op alle fronten aan te pakken:</p><p>&nbsp;</p><p><strong>✓ Hyaluronzuur</strong> — Herstelt het smeermiddel dat artritis heeft uitgedroogd. Bot-op-bot wrijving verdwijnt.</p><p>&nbsp;</p><p><strong>✓ Glucosamine HCl</strong> — Herbouwt beschadigd kraakbeen van binnenuit.</p><p>&nbsp;</p><p><strong>✓ Chondroïtinesulfaat</strong> — Voorkomt verdere kraakbeenafbraak terwijl herstel plaatsvindt.</p><p>&nbsp;</p><p><strong>✓ MSM</strong> — Krachtige ontstekingsremmer die gewrichtszwelling en pijn verlaagt.</p><p>&nbsp;</p><p><strong>✓ Kurkuma</strong> — Natuurlijke pijnstiller die ontstekingen op celniveau aanpakt.</p><p>&nbsp;</p><p><strong>✓ Groenlipmossel</strong> — Rijke bron van Omega-3 en glycosaminoglycanen voor gewrichtsverzorging.</p><p>&nbsp;</p><p><strong>✓ Eierschaalmembraan</strong> — Bevat natuurlijk collageen, glucosamine en chondroïtine in de meest biologisch beschikbare vorm.</p><p>&nbsp;</p><p><strong>✓ Type II Collageen</strong> — Het specifieke collageen dat in kraakbeen voorkomt — herstelt gewrichtsweefsel direct.</p><p>&nbsp;</p><p><strong>✓ Omega-3 Vetzuren</strong> — Vermindert ontstekingsreacties door het hele lichaam.</p><p>&nbsp;</p><p>De meeste supplementen bevatten 1 tot 3 van deze ingrediënten. <strong>PetCura gebruikt alle negen — in therapeutische doseringen, niet symbolische hoeveelheden.</strong></p><p><br>&nbsp;</p><p>En omdat het een snack is die katten zelf willen eten, krijgen ze elke dag de volledige dosis binnen. Dat is het verschil tussen een supplement dat werkt en een supplement dat in de kast belandt.</p>"},{"type":"html","id":"ggo4OnTseoi_text","label":"ggo4OnTseoi_text","default":"Waar Kun Je PetCura Krijgen?"},{"type":"html","id":"gg0u6TElMqn_text","label":"gg0u6TElMqn_text","default":"<p>PetCura Gewrichtssnacks zijn ontwikkeld door dierenartsen, speciaal voor katten.</p><p>&nbsp;</p><p>Geen pillen. Geen poeders. Geen gevecht.</p><p>&nbsp;</p><p>Gewoon een snack die jouw kat zelf wil eten — elke dag, de volledige dosis.</p><p>&nbsp;</p><p><strong>Resultaten zijn zichtbaar binnen 2 tot 4 weken.</strong> Niet na maanden van hopen en gissen.</p><p>&nbsp;</p><p>Op dit moment biedt PetCura <strong>een speciale korting</strong> voor lezers die via deze pagina bestellen.</p><p>&nbsp;</p><p>Maar de voorraad is beperkt — en de vraag stijgt snel nu meer dierenartsen PetCura actief aanbevelen.</p>"},{"type":"html","id":"gg5DcIj-0BI_text","label":"gg5DcIj-0BI_text","default":"<p><strong>⚠️ </strong><span style=\"color:#000000;\"><strong>UPDATE:</strong></span> <strong>Voorraad is beperkt. Controleer beschikbaarheid.</strong></p>"},{"type":"html","id":"ggvYvsAWNT8_label","label":"ggvYvsAWNT8_label","default":"<p>BEKIJK BESCHIKBAARHEID EN CLAIM KORTING »</p>"},{"type":"html","id":"ggVtak_WLzU_text","label":"ggVtak_WLzU_text","default":"<p>Gedekt door een <strong>100% niet-goed-geld-terug garantie.</strong><br>&nbsp;</p><p>Als je binnen 30 dagen geen zichtbare verbetering ziet in de beweging van jouw kat, krijg je je geld terug. Zonder vragen.</p><p>&nbsp;</p><p>Elke dag zonder ondersteuning is een dag dat de gewrichten verder slijten.</p><p>&nbsp;</p><p>Je kunt wachten tot het zichtbaarder wordt.</p><p>&nbsp;</p><p>Of je kunt nu iets doen — terwijl er nog tijd is.</p>"},{"type":"html","id":"ggZSVfvJB7Z_label","label":"ggZSVfvJB7Z_label","default":"<p>BEKIJK BESCHIKBAARHEID »</p>"}],
+    "blocks": [{"type": "@app"}],
+    "locales": {}
+  }
+{% endschema %}

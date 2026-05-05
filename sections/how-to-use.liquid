@@ -1,0 +1,372 @@
+<section id="wex-wrap-{{ section.id }}" class="wex-wrap"
+  style="
+    margin-top: {{ section.settings.margin_top }}px;
+    margin-bottom: {{ section.settings.margin_bottom }}px;
+  "
+>
+  <section id="wex-{{ section.id }}" class="wex"
+    style="
+      --wex-accent: {{ section.settings.accent_color }};
+      --wex-text: {{ section.settings.text_color }};
+      --wex-border: {{ section.settings.border_color }};
+      --wex-max: {{ section.settings.max_width }}px;
+      --wex-pad-y: {{ section.settings.section_padding_y }}px;
+      --wex-btn-bg: {{ section.settings.button_bg }};
+      --wex-btn-text: {{ section.settings.button_text }};
+      --wex-section-bg: {{ section.settings.section_bg }};
+      --wex-font: {{ section.settings.font_family }};
+      --wex-space-top: {{ section.settings.space_top }}px;
+      --wex-space-bottom: {{ section.settings.space_bottom }}px;
+    "
+  >
+
+    <div class="wex__inner">
+      {% if section.settings.heading != blank or section.settings.intro != blank %}
+        <div class="wex__intro">
+          {% if section.settings.heading != blank %}
+            <h2 class="wex__heading">{{ section.settings.heading }}</h2>
+          {% endif %}
+          {% if section.settings.intro != blank %}
+            <p class="wex__subtitle">{{ section.settings.intro }}</p>
+          {% endif %}
+        </div>
+      {% endif %}
+
+      <!-- Card 1: Directions -->
+      <div class="wex__card">
+        <div class="wex__card-head">
+          {% if section.settings.directions_icon != blank %}
+            <img class="wex__icon" src="{{ section.settings.directions_icon | image_url: width: 90 }}" alt="" width="40" height="40" loading="lazy">
+          {% endif %}
+          <h4 class="wex__card-title">{{ section.settings.directions_title }}</h4>
+        </div>
+
+        <div class="wex__dose-grid">
+          {% for block in section.blocks %}
+            {% if block.type == 'dose_card' %}
+              <div class="wex__dose" {{ block.shopify_attributes }}>
+                <div class="wex__dose-top">
+                  <p class="wex__dose-label">{{ block.settings.label }}</p>
+                </div>
+                <div class="wex__dose-body">
+                  <div class="wex__chews">
+                    {% if block.settings.chew_icon != blank %}
+                      <img class="wex__chew-icon" src="{{ block.settings.chew_icon | image_url: width: 84 }}" alt="" width="42" height="42" loading="lazy">
+                    {% endif %}
+                  </div>
+                  <p class="wex__dose-text"><strong>{{ block.settings.dose_text }}</strong></p>
+                </div>
+              </div>
+            {% endif %}
+          {% endfor %}
+        </div>
+
+        {% if section.settings.dose_note != blank %}
+          <p class="wex__dose-note">{{ section.settings.dose_note }}</p>
+        {% endif %}
+
+        <p class="wex__tips">
+          <a href="#tricks-popup" class="wex__tips-link" hidden>Discover our handy serving tips</a>
+        </p>
+      </div>
+
+      <!-- Card 2: Results -->
+      <div class="wex__card">
+        <div class="wex__card-head">
+          {% if section.settings.results_icon != blank %}
+            <img class="wex__icon" src="{{ section.settings.results_icon | image_url: width: 90 }}" alt="" width="40" height="40" loading="lazy">
+          {% endif %}
+          <h4 class="wex__card-title">{{ section.settings.results_title }}</h4>
+        </div>
+
+        <div class="wex__stats">
+          {% for block in section.blocks %}
+            {% if block.type == 'result_stat' %}
+              <div class="wex__stat" {{ block.shopify_attributes }}>
+                <p class="wex__stat-line">
+                  <span class="wex__pill">{{ block.settings.percent }}</span>
+                  {{ block.settings.text }}
+                </p>
+              </div>
+            {% endif %}
+          {% endfor %}
+        </div>
+
+        {% if section.settings.results_note != blank %}
+          <div class="wex__footnote">{{ section.settings.results_note }}</div>
+        {% endif %}
+      </div>
+
+      <!-- Card 3: Look out for -->
+      <div class="wex__card">
+        <div class="wex__card-head wex__card-head--with-desc">
+          {% if section.settings.lookout_icon != blank %}
+            <img class="wex__icon" src="{{ section.settings.lookout_icon | image_url: width: 90 }}" alt="" width="40" height="40" loading="lazy">
+          {% endif %}
+          <h4 class="wex__card-title">{{ section.settings.lookout_title }}</h4>
+          {% if section.settings.lookout_intro != blank %}
+            <p class="wex__card-desc">{{ section.settings.lookout_intro }}</p>
+          {% endif %}
+        </div>
+
+        <div class="wex__lookout">
+          {% for block in section.blocks %}
+            {% if block.type == 'lookout_item' %}
+              <div class="wex__lookout-item" {{ block.shopify_attributes }}>
+                {% if block.settings.icon != blank %}
+                  <img class="wex__lookout-icon" src="{{ block.settings.icon | image_url: width: 90 }}" alt="" width="45" height="45" loading="lazy">
+                {% endif %}
+                <p class="wex__lookout-text">{{ block.settings.text }}</p>
+              </div>
+            {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+
+      {% if section.settings.button_label != blank %}
+        <a
+          class="wex__cta"
+          href="{% if section.settings.button_link != blank %}{{ section.settings.button_link }}{% else %}#{% endif %}"
+        >
+          {{ section.settings.button_label }}
+        </a>
+      {% endif %}
+
+    </div>
+
+    <style>
+      #wex-{{ section.id }}{
+        color: var(--wex-text);
+        background: var(--wex-section-bg);
+        font-family: var(--wex-font);
+        padding: calc(var(--wex-pad-y) + var(--wex-space-top)) 0 calc(var(--wex-pad-y) + var(--wex-space-bottom));
+      }
+      #wex-{{ section.id }} .wex__inner{
+        max-width: var(--wex-max);
+        margin: 0 auto;
+        padding: 0 15px;
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+        font-family: inherit;
+      }
+      #wex-{{ section.id }} .wex__intro{ text-align:center; }
+      #wex-{{ section.id }} .wex__heading{ margin:0 0 12px; font-size:22px; line-height:1.2; font-weight:700; }
+      #wex-{{ section.id }} .wex__subtitle{ margin:12px 0 0; font-size:16px; }
+
+      #wex-{{ section.id }} .wex__card{
+        border: 1px solid var(--wex-border);
+        border-radius: 8px;
+        background: #fff;
+        padding: 20px 16px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+      #wex-{{ section.id }} .wex__card-head{ display:grid; grid-template-columns:30px 1fr; align-items:center; column-gap:12px; }
+      #wex-{{ section.id }} .wex__card-title{ margin:0; font-size:16px; line-height:1.2; font-weight:700; }
+      #wex-{{ section.id }} .wex__card-desc{ grid-column:1 / -1; margin:10px 0 0; font-size:16px; }
+      #wex-{{ section.id }} .wex__icon{ max-width:40px; width:100%; height:auto; }
+
+      /* Dosage */
+      #wex-{{ section.id }} .wex__dose-grid{ display:flex; gap:10px; flex-wrap:wrap; }
+      #wex-{{ section.id }} .wex__dose{ flex:1 1 calc(50% - 10px); display:flex; flex-direction:column; }
+      #wex-{{ section.id }} .wex__dose-top{
+        background: var(--wex-accent);
+        color: #17443d;
+        height: 33px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid var(--wex-border);
+        border-radius: 4px 4px 0 0;
+      }
+      #wex-{{ section.id }} .wex__dose-label{ margin:0; font-weight:600; }
+      #wex-{{ section.id }} .wex__dose-body{
+        display:flex;
+        flex-direction:column;
+        gap:5px;
+        align-items:center;
+        text-align:center;
+        justify-content:space-between;
+        flex-grow:1;
+        border:1px solid var(--wex-border);
+        border-top:0;
+        border-radius:0 0 4px 4px;
+        padding:5px 10px 10px;
+      }
+      #wex-{{ section.id }} .wex__chews{ display:flex; align-items:center; justify-content:center; gap:8px; flex-wrap:wrap; }
+      #wex-{{ section.id }} .wex__chew-icon{ max-width:84px; height:auto; max-height:28px; }
+      #wex-{{ section.id }} .wex__dose-text{ margin:0; font-weight:400; }
+
+      /* Add to meal note */
+      #wex-{{ section.id }} .wex__dose-note{ margin: 8px 0 0; font-size:16px; text-align:center; }
+
+      /* Tips */
+      #wex-{{ section.id }} .wex__tips{ text-align:center; margin:0; font-size:16px; }
+      #wex-{{ section.id }} .wex__tips-link{ color:#006c5b; }
+
+      /* Stats */
+      #wex-{{ section.id }} .wex__stats{ display:flex; gap:10px; flex-wrap:wrap; }
+      #wex-{{ section.id }} .wex__stat{ flex:1 1 100%; }
+      #wex-{{ section.id }} .wex__stat-line{ margin:0; font-size:16px; display:flex; align-items:center; }
+      #wex-{{ section.id }} .wex__pill{
+        display:inline-flex;
+        justify-content:center;
+        align-items:center;
+        width:3.9rem;
+        height:39px;
+        border-radius:999px;
+        margin-right:6px;
+        background: var(--wex-accent);
+        color:#17443d;
+        font-weight:700;
+        font-size:18px;
+        font-family: Inconsolata, monospace;
+      }
+      #wex-{{ section.id }} .wex__footnote{ text-align:center; padding-top:12px; font-size:14px; opacity:.9; }
+
+      /* Lookout */
+      #wex-{{ section.id }} .wex__lookout{ display:flex; gap:10px; flex-wrap:wrap; }
+      #wex-{{ section.id }} .wex__lookout-item{
+        flex:1 1 100%;
+        max-width:100%;
+        display:flex;
+        gap:10px;
+        align-items:center;
+        padding:8px 5px;
+        border:1px solid var(--wex-border);
+        border-radius:4px;
+        background:#fff;
+      }
+      #wex-{{ section.id }} .wex__lookout-icon{ max-width:45px; height:auto; }
+      #wex-{{ section.id }} .wex__lookout-text{ margin:0; font-size:16px; }
+
+      /* CTA Button */
+      #wex-{{ section.id }} .wex__cta{
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        width:100%;
+        min-height:50px;
+        padding:14px 18px;
+        background: var(--wex-btn-bg);
+        color: var(--wex-btn-text);
+        border: 2px solid var(--wex-border);
+        border-radius:999px;
+        font-weight:800;
+        text-decoration:none;
+        text-transform:uppercase;
+        letter-spacing:.02em;
+        font-family: inherit;
+      }
+
+      @media (min-width: 700px){
+        #wex-{{ section.id }} .wex__stat{ flex:1 1 calc(50% - 10px); }
+      }
+    </style>
+  </section>
+</section>
+
+{% schema %}
+{
+  "name": "What to expect",
+  "enabled_on": { "templates": ["product", "page", "index", "collection"] },
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "What to Expect With Wuffes" },
+    { "type": "textarea", "id": "intro", "label": "Intro text", "default": "Here’s some helpful information on how to take Wuffes, and what to expect in the first 90 days of consistent use." },
+
+    { "type": "image_picker", "id": "directions_icon", "label": "Directions icon" },
+    { "type": "text", "id": "directions_title", "label": "Directions title", "default": "Directions for Use" },
+
+    { "type": "textarea", "id": "dose_note", "label": "Dosage note (under dosage guide)", "default": "We recommend feeding supplements with meals." },
+
+    { "type": "image_picker", "id": "results_icon", "label": "Results icon" },
+    { "type": "text", "id": "results_title", "label": "Results title", "default": "When to expect results" },
+    { "type": "richtext", "id": "results_note", "label": "Survey footnote", "default": "<p>*Based on an independent survey conducted in 2024 (n=200)</p>" },
+
+    { "type": "image_picker", "id": "lookout_icon", "label": "Lookout icon" },
+    { "type": "text", "id": "lookout_title", "label": "What to look out for title", "default": "What to look out for" },
+    { "type": "textarea", "id": "lookout_intro", "label": "Lookout intro", "default": "Our chews are scientifically-formulated to enhance bone and joint health, so you can expect to see:" },
+
+    { "type": "text", "id": "button_label", "label": "Button label", "default": "BUY NOW" },
+    { "type": "url", "id": "button_link", "label": "Button link" },
+    { "type": "color", "id": "button_bg", "label": "Button background", "default": "#c5f954" },
+    { "type": "color", "id": "button_text", "label": "Button text color", "default": "#1a1a1a" },
+
+    { "type": "color", "id": "accent_color", "label": "Accent color", "default": "#c5f954" },
+    { "type": "color", "id": "text_color", "label": "Text color", "default": "#212427" },
+    { "type": "color", "id": "border_color", "label": "Border color", "default": "#212427" },
+
+    { "type": "color", "id": "section_bg", "label": "Section background color", "default": "#f7f2e9" },
+
+    {
+      "type": "select",
+      "id": "font_family",
+      "label": "Font family",
+      "default": "inherit",
+      "options": [
+        { "value": "inherit", "label": "Theme default" },
+        { "value": "Inter, sans-serif", "label": "Inter" },
+        { "value": "Montserrat, sans-serif", "label": "Montserrat" },
+        { "value": "Poppins, sans-serif", "label": "Poppins" },
+        { "value": "Arial, sans-serif", "label": "Arial" },
+        { "value": "Georgia, serif", "label": "Georgia (serif)" }
+      ]
+    },
+
+    { "type": "range", "id": "margin_top", "label": "Outside margin top (px)", "min": 0, "max": 160, "step": 4, "default": 0 },
+    { "type": "range", "id": "margin_bottom", "label": "Outside margin bottom (px)", "min": 0, "max": 160, "step": 4, "default": 0 },
+
+    { "type": "range", "id": "space_top", "label": "Space top (inside bg)", "min": 0, "max": 160, "step": 4, "default": 0 },
+    { "type": "range", "id": "space_bottom", "label": "Space bottom (inside bg)", "min": 0, "max": 160, "step": 4, "default": 0 },
+
+    { "type": "checkbox", "id": "full_width", "label": "Full width", "default": false },
+    { "type": "range", "id": "max_width", "label": "Max content width (px)", "min": 800, "max": 1400, "step": 10, "default": 1280 },
+    { "type": "range", "id": "section_padding_y", "label": "Vertical padding (px)", "min": 0, "max": 80, "step": 4, "default": 0 }
+  ],
+  "blocks": [
+    {
+      "type": "dose_card",
+      "name": "Dosage card",
+      "settings": [
+        { "type": "text", "id": "label", "label": "Weight range label", "default": "Under 35lbs" },
+        { "type": "image_picker", "id": "chew_icon", "label": "Chew icon" },
+        { "type": "text", "id": "dose_text", "label": "Dose text", "default": "1 Soft Chew daily" }
+      ]
+    },
+    {
+      "type": "result_stat",
+      "name": "Result stat",
+      "settings": [
+        { "type": "text", "id": "percent", "label": "Percent", "default": "94%" },
+        { "type": "text", "id": "text", "label": "Text", "default": "saw improved mobility in 3 weeks when doubling up" }
+      ]
+    },
+    {
+      "type": "lookout_item",
+      "name": "Lookout item",
+      "settings": [
+        { "type": "image_picker", "id": "icon", "label": "Icon" },
+        { "type": "text", "id": "text", "label": "Text", "default": "Maintained mobility" }
+      ]
+    }
+  ],
+  "max_blocks": 12,
+  "presets": [
+    {
+      "name": "What to expect",
+      "blocks": [
+        { "type": "dose_card" },
+        { "type": "dose_card" },
+        { "type": "result_stat" },
+        { "type": "result_stat" },
+        { "type": "lookout_item" },
+        { "type": "lookout_item" },
+        { "type": "lookout_item" },
+        { "type": "lookout_item" }
+      ]
+    }
+  ]
+}
+{% endschema %}

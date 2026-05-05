@@ -1,0 +1,133 @@
+{%- liquid
+  assign sid = 'pc-acc-' | append: block.id
+  assign ff = block.settings.font_family
+  assign font_css = 'inherit'
+
+  if ff == 'montserrat'
+    assign font_css = 'Montserrat, sans-serif'
+  elsif ff == 'recoleta'
+    assign font_css = 'Recoleta, serif'
+  elsif ff == 'system'
+    assign font_css = '-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, sans-serif'
+  endif
+-%}
+
+<div
+  id="{{ sid }}"
+  class="pc-acc"
+  style="
+    --pc-bg: {{ block.settings.bg_color }};
+    --pc-border: {{ block.settings.border_color }};
+    --pc-title: {{ block.settings.title_color }};
+    --pc-icon: {{ block.settings.icon_color }};
+    --pc-content: {{ block.settings.content_color }};
+    --pc-title-size: {{ block.settings.title_size }}px;
+    --pc-content-size: {{ block.settings.content_size }}px;
+    --pc-pad-y: {{ block.settings.item_padding_y }}px;
+    --pc-gap: {{ block.settings.icon_gap }}px;
+    --pc-font: {{ font_css }};
+    padding-top: {{ block.settings.padding_top }}px;
+    padding-bottom: {{ block.settings.padding_bottom }}px;
+    background: var(--pc-bg);
+  "
+  {{ block.shopify_attributes }}
+>
+  <div class="pc-acc__wrap">
+    {%- for i in (1..4) -%}
+      {%- assign t_key = 'item_' | append: i | append: '_title' -%}
+      {%- assign c_key = 'item_' | append: i | append: '_content' -%}
+      {%- assign title = block.settings[t_key] -%}
+      {%- assign content = block.settings[c_key] -%}
+
+      {%- if title != blank or content != blank -%}
+        <div class="pc-acc__item{% if i == 1 and block.settings.first_open %} is-open{% endif %}">
+          <button class="pc-acc__btn" type="button" aria-expanded="{% if i == 1 and block.settings.first_open %}true{% else %}false{% endif %}">
+            <span class="pc-acc__title">{{ title | escape }}</span>
+            <span class="pc-acc__chev" aria-hidden="true">
+              <svg viewBox="0 0 20 20" width="14" height="14" focusable="false" role="presentation">
+                <path d="M5.5 7.5L10 12l4.5-4.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+              </svg>
+            </span>
+          </button>
+
+          <div class="pc-acc__panel"{% unless i == 1 and block.settings.first_open %} hidden{% endunless %}>
+            <div class="pc-acc__content rte">
+              {{ content }}
+            </div>
+          </div>
+        </div>
+      {%- endif -%}
+    {%- endfor -%}
+  </div>
+</div>
+
+<style>
+  #{{ sid }}{ font-family: var(--pc-font); }
+  #{{ sid }} .pc-acc__wrap{ border-top:1px solid var(--pc-border); }
+  #{{ sid }} .pc-acc__item{ border-bottom:1px solid var(--pc-border); }
+  #{{ sid }} .pc-acc__btn{
+    width:100%; border:0; background:transparent; cursor:pointer;
+    padding: var(--pc-pad-y) 0;
+    display:flex; align-items:center; justify-content:space-between; text-align:left;
+  }
+  #{{ sid }} .pc-acc__title{
+    color: var(--pc-title);
+    font-size: var(--pc-title-size);
+    font-weight:700;
+    line-height:1.2;
+  }
+  #{{ sid }} .pc-acc__chev{
+    color: var(--pc-icon);
+    opacity:.45;
+    transition: transform .25s ease, opacity .25s ease;
+    display:inline-flex; align-items:center; justify-content:center;
+  }
+  #{{ sid }} .pc-acc__item.is-open .pc-acc__chev{ transform: rotate(180deg); opacity:.9; }
+  #{{ sid }} .pc-acc__panel{ padding-bottom: 14px; }
+  #{{ sid }} .pc-acc__content{
+    color: var(--pc-content);
+    font-size: var(--pc-content-size);
+    line-height:1.6;
+  }
+</style>
+
+<script>
+(function(){
+  var root = document.getElementById({{ sid | json }});
+  if(!root || root.dataset.init === '1') return;
+  root.dataset.init = '1';
+
+  var items = root.querySelectorAll('.pc-acc__item');
+  items.forEach(function(item){
+    var btn = item.querySelector('.pc-acc__btn');
+    var panel = item.querySelector('.pc-acc__panel');
+    if(!btn || !panel) return;
+
+    btn.addEventListener('click', function(){
+      var isOpen = item.classList.contains('is-open');
+
+      // close others unless multiple_open
+      if(root.closest('[data-multiple-open="true"]') == null && {{ block.settings.multiple_open | json }} !== true){
+        items.forEach(function(i){
+          if(i === item) return;
+          i.classList.remove('is-open');
+          var b = i.querySelector('.pc-acc__btn');
+          var p = i.querySelector('.pc-acc__panel');
+          if(b) b.setAttribute('aria-expanded','false');
+          if(p) p.hidden = true;
+        });
+      }
+
+      if(isOpen){
+        item.classList.remove('is-open');
+        btn.setAttribute('aria-expanded','false');
+        panel.hidden = true;
+      }else{
+        item.classList.add('is-open');
+        btn.setAttribute('aria-expanded','true');
+        panel.hidden = false;
+      }
+    });
+  });
+})();
+</script>
